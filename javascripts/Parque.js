@@ -133,6 +133,7 @@ class Parque {
     ci.crearCilindro(170, 15, 380, 0, 0, 0, 1, 1, 1, 80, 1, textura, false);
     //partes de los jardines
     a.jardines();
+    pi.dibujarPileta();
   }
 
   Lineacirculo(

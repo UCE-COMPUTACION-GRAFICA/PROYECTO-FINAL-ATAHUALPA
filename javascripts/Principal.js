@@ -100,7 +100,7 @@ container.appendChild( renderer.domElement );*/
  
 
 
-
+//luces
   var light2 = new THREE.PointLight(0x66FF00, 1);
   light2.position.x=-100;
   light2.position.y=40;
@@ -108,12 +108,9 @@ container.appendChild( renderer.domElement );*/
   scene.add(light2);
 
 
-
+//insertar un modelo de arbol
  ar.cargarModelo3D('Modelos/arbol2.glb',-100,20,250,0,0,0,1.5,1.5,1.5);
  
-  
-  pi.dibujarPileta();
-
 //CASAS
 
 var ca=new Casas();
