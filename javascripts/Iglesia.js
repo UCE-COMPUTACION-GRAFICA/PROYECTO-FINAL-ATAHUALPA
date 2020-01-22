@@ -174,7 +174,7 @@ class Iglesia {
     t.crear_texturas("texturas/puerta.png", 1, 0.6);
     textura2 = textura;
     t.crear_texturas("texturas/puerta.png", 1, 1);
-
+    
     i.puertas(-66, -55, 0, 0, 0, 0, 1.9, 1.55, 1, textura2, textura);
 
     pivotPoint.add(pivotPuerta);

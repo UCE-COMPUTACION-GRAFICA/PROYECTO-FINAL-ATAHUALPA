@@ -50,19 +50,19 @@ lado2 = new THREE.Object3D();
 baseiglesia = new THREE.Object3D();
 
 //objetos
-var p = new PlanoBase();
-var par = new Parque();
+
 
 var ci = new Cilindro();
 var cu = new Cubo();
 var t = new Textura();
 var e = new Esfera();
-
+var a = new Parque();
 var i = new Iglesia();
 var ar=new Modelo3D();
 var to=new Torus();
 var pi=new Pileta();
 var f=new Fondo();
+
 
 var container, stats;
 
@@ -93,16 +93,15 @@ container.appendChild( renderer.domElement );*/
   controls = new THREE.OrbitControls(camera, renderer.domElement);
   loader = new THREE.GLTFLoader();
 
-  //creamos los objetos en orden de capas
-  //fondo
-  f.crearFondo();
-  
-  p.PlanoPrincipal();
+  //creamos los objetos de la escena en forma de capas
+f.crearFondo();
 
+  var p = new PlanoBase();
+  p.PlanoPrincipal();
+  var par = new Parque();
  par.crearParque();
  var i = new Iglesia(40, 30, 0, 0, 0, 0, 0.7, 1, 1);
  i.crearIglesia();
-
  
 
 
@@ -117,6 +116,9 @@ container.appendChild( renderer.domElement );*/
 //insertar un modelo de arbol
  ar.cargarModelo3D('Modelos/arbol2.glb',-100,20,250,0,0,0,1.5,1.5,1.5);
  
+  
+  pi.dibujarPileta();
+
 //CASAS
 
 var ca=new Casas();
