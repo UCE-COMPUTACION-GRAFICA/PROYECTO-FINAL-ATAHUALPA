@@ -91,6 +91,11 @@ container.appendChild( renderer.domElement );*/
   camera.rotation.y = Math.PI;
 
   controls = new THREE.OrbitControls(camera, renderer.domElement);
+//para no salirse del skybox
+controls.minDistance = 500;
+controls.maxDistance = 1500;
+
+
   loader = new THREE.GLTFLoader();
 
   //creamos los objetos de la escena en forma de capas
