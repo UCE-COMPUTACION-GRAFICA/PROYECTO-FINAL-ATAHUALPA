@@ -124,10 +124,15 @@ f.crearFondo();
   
   pi.dibujarPileta();
 
-//CASAS
+//CASAS de lado izquierdo del parque central
 
 var ca=new Casas();
 ca.crear_casa(0,0,0,0,0,0,1,1,1);
+
+var lab=new Laberinto();
+lab.crearLaberinto();
+
+
 
 
 //crear agua

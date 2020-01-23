@@ -21,9 +21,10 @@ materialArray.push(new THREE.MeshBasicMaterial( { map: texture_lf }));
 for (let i = 0; i < 6; i++)
   materialArray[i].side = THREE.BackSide;
    
-let skyboxGeo = new THREE.BoxGeometry( 5000, 2000, 3000);
+let skyboxGeo = new THREE.BoxGeometry( 7000, 2000, 5000);
 let skybox = new THREE.Mesh( skyboxGeo, materialArray );
-skybox.position.y=1000;
+skybox.position.y=990;
+skybox.position.z=-2500;
 scene.add( skybox );
 }
 //crear un cubo que abarque toda la escena
