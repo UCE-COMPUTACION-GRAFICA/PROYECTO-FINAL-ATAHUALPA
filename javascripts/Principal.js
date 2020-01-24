@@ -15,6 +15,7 @@ var figura, material, textura_fig;
 var cubo;
 var sphere;
 var cilindro;
+var semiCilindro;
 var controls;
 var reloj;
 var figura_j;
@@ -51,8 +52,9 @@ baseiglesia = new THREE.Object3D();
 
 //objetos
 
-
+var darColor=false;
 var ci = new Cilindro();
+var sci = new SemiCilindro();
 var cu = new Cubo();
 var t = new Textura();
 var e = new Esfera();
@@ -88,25 +90,25 @@ container.appendChild( renderer.domElement );*/
   material = new THREE.MeshBasicMaterial({ color: 0x00ff0000 });
   camera.position.z = 1000;
   camera.position.y = 100;
-  camera.rotation.y = Math.PI;
+  //camera.rotation.y = Math.PI;
 
-  controls = new THREE.OrbitControls(camera, renderer.domElement);
+ controls = new THREE.OrbitControls(camera, renderer.domElement);
 //para no salirse del skybox
-controls.minDistance = 500;
-controls.maxDistance = 1500;
+//controls.minDistance = 500;
+//controls.maxDistance = 1500;
 
 
   loader = new THREE.GLTFLoader();
 
   //creamos los objetos de la escena en forma de capas
-f.crearFondo();
+//f.crearFondo();
 
   var p = new PlanoBase();
-  p.PlanoPrincipal();
+  //p.PlanoPrincipal();
   var par = new Parque();
  par.crearParque();
- var i = new Iglesia(40, 30, 0, 0, 0, 0, 0.7, 1, 1);
- i.crearIglesia();
+ //var i = new Iglesia(40, 30, 0, 0, 0, 0, 0.7, 1, 1);
+ //i.crearIglesia();
  
 
 
@@ -119,7 +121,7 @@ f.crearFondo();
 
 
 //insertar un modelo de arbol
- ar.cargarModelo3D('Modelos/arbol2.glb',-100,20,250,0,0,0,1.5,1.5,1.5);
+ //ar.cargarModelo3D('Modelos/arbol2.glb',-100,20,250,0,0,0,1.5,1.5,1.5);
  
   
   pi.dibujarPileta();
@@ -127,10 +129,10 @@ f.crearFondo();
 //CASAS de lado izquierdo del parque central
 
 var ca=new Casas();
-ca.crear_casa(0,0,0,0,0,0,1,1,1);
+//ca.crear_casa(0,0,0,0,0,0,1,1,1);
 
 var lab=new Laberinto();
-lab.crearLaberinto();
+//lab.crearLaberinto();
 
 
 
@@ -170,30 +172,35 @@ container.appendChild( stats.domElement );*/
 
 function animacion() {
   requestAnimationFrame(animacion);
-  /* obj_mov=cubo;
+  /* obj_mov=cubo;*/
 
    if(teclado.pressed("up")){
-    obj_mov.position.z-=1; 
+    camera.position.z-=2; 
    }
 
    if(teclado.pressed("down")){
-    obj_mov.position.z+=1; 
+    camera.position.z+=2; 
    }
 
    if(teclado.pressed("right")){
-    obj_mov.position.x+=1; 
+    camera.position.x+=2; 
    }
 
    if(teclado.pressed("left")){
-    obj_mov.position.x-=1; 
-   }*/
-
-  //  controls.target.set(obj_mov.position.x,obj_mov.position.y,obj_mov.position.z );
+    camera.position.x-=2; 
+   }
+   if(teclado.pressed("Q")){
+    camera.position.y+=1; 
+   }
+   if(teclado.pressed("A")){
+    camera.position.y-=1; 
+   }
+//controls.target.set(camera.position.x,camera.position.y,camera.position.z);
   render_modelo();
 }
 
 function render_modelo() {
-  controls.update();
+ controls.update();
  // stats.update();
   renderer.render(scene, camera);
 }

@@ -1,11 +1,13 @@
 class Parque {
   crearParque() {
-    //parque
+    //parque: cuadrado principal que abarca todo el parque  
     t.crear_texturas("texturas/ad.jpg", 5, 5);
-    cu.crear_cubo(180, 10, 500, 1100, 4, 800, textura, false, 0, 0, 0, 1, 1, 1);
+    darColor=true;
+    cu.crear_cubo(180, 10, 500, 1100, 4, 800, null, false, 0, 0, 0, 1, 1, 1,0x6E6E6E);
 
-    //cuadrado
+    //cuadrado central con textura que abarca la pileta 
     t.crear_texturas("texturas/adoquin2.jpg", 10, 20);
+   
     cu.crear_cubo(
       169.7,
       13,
@@ -21,10 +23,21 @@ class Parque {
       1.03,
       1.1,
       1
+      
     );
 
-    t.crear_texturas("texturas/adoquin2.jpg", 9, 3);
+    t.crear_texturas("texturas/adoquin2.jpg", 0.025, 0.05);
+   
+//completa la figura de arriba, 
 
+      a.figuraTextura_parque(-182,
+        13,
+        500,Math.PI/2,0,0,1,1,1,textura,false);
+
+
+//textura de los lados superiores de las calles
+    t.crear_texturas("texturas/adoquin2.jpg", 9, 3);
+    
     cu.crear_cubo(505, 13, 172, 320, 1, 70, textura, false, 0, 0, 0, 0.8, 1, 1);
     cu.crear_cubo(
       -168,
@@ -117,6 +130,7 @@ class Parque {
     cu.crear_cubo(200, 3, 100, 1200, 9, 1600, textura, false, 0, 0, 0, 1, 1, 1);
 
     //gradas
+
     a.parte_parque1(0, 10, 0, 0, 0, 0, 1, 1, 1);
     scene.add(baseiglesia);
 
@@ -128,9 +142,26 @@ class Parque {
     a.lado(660, 10, 0, 0, 0, 0, 1.2, 1, 1);
     scene.add(lado1);
 
+
+
+     //textura de lineas del circulo central
+     darColor=true;
+     ci.crearCilindro(170, 15, 380, 0, 0, 0, 1, 1, 1, 83, 0.1,null, false,0xF4FA58 );
+     //textura de lineas verticales
+     darColor=true;
+    cu.crear_cubo(180,15,200,3,0.1,200,null,false,0,0,0,1,1,1,0xF4FA58);
+//horizontales
+    darColor=true;
+    cu.crear_cubo(480,15,450,3,0.1,200,null,false,0,Math.PI/2,0,1,1,1,0xF4FA58);
+    
+
+    //cu.crear_cubo(200,50,0,10,0.1,50,0,false,0,Math.Pi/2,0,1,1,1,0xF4FA58)
+
     //circulo central
     t.crear_texturas("texturas/piedra.webp", 7, 7);
-    ci.crearCilindro(170, 15, 380, 0, 0, 0, 1, 1, 1, 80, 1, textura, false);
+    ci.crearCilindro(170, 15.5, 380, 0, 0, 0, 1, 1, 1, 80, 0.5, textura, false);
+   
+
     //partes de los jardines
     a.jardines();
    // pi.dibujarPileta();
@@ -582,6 +613,84 @@ class Parque {
     }
   }
 
+
+  figuraTextura_parque(
+    pos_x,
+    pos_y,
+    pos_z,
+    rot_x,
+    rot_y,
+    rot_z,
+    esc_x,
+    esc_y,
+    esc_z,
+    textura,
+    sqr
+  ) {
+    var geometry = new THREE.Geometry();
+
+    var array_extrude = [];
+    var vertices = [
+      [200, 103, 0],
+      [500, 103, 0],
+      [550, 50, 0],
+      [150, 50, 0],
+      [200, 103, 0]
+    ];
+    var vector;
+    var long_vertices = vertices.length;
+    for (var i = 0; i < long_vertices; i++) {
+      var x = vertices[i][0];
+      var y = vertices[i][1];
+      var z = vertices[i][2];
+      vector = new THREE.Vector3(x, y, z);
+      geometry.vertices.push(vector);
+
+      array_extrude.push(vector);
+    }
+    //para dar profundidad
+    var nueva_figura = new THREE.Shape(array_extrude);
+    //excrusion
+    var datos_extrusion = {
+      amount: 5, //cantidad de profundidad
+      bevelEnabled: false, // activando bisel
+      bevelSegments: 1, // segmentos del bisel
+      steps: 10, // "profundidad y N�m. de segmentos que marcan la profundidad�
+      bevelThickness: 100 // grosor del bisel
+    };
+
+    var extrude_geometria = new THREE.ExtrudeGeometry(
+      nueva_figura,
+      datos_extrusion
+    );
+
+    //Material de la figura
+
+    var material = new THREE.MeshBasicMaterial({
+      map: textura,
+      side: THREE.DoubleSide,
+      wireframe: sqr
+    });
+
+    //agregar a malla
+    var  figura_t = new THREE.Mesh(extrude_geometria, material);
+
+    figura_t.position.x = pos_x;
+    figura_t.position.y = pos_y;
+    figura_t.position.z = pos_z;
+
+    figura_t.rotation.x = rot_x;
+    figura_t.rotation.y = rot_y;
+    figura_t.rotation.z = rot_z;
+
+    figura_t.scale.x = esc_x;
+    figura_t.scale.y = esc_y;
+    figura_t.scale.z = esc_z;
+
+    scene.add(figura_t);
+  }
+
+
   figura_jardin(
     pos_x,
     pos_y,
@@ -778,6 +887,7 @@ class Parque {
     lado1.scale.z = esc_z;
   }
 
+  //para la base de la iglesia, y gradas centrales de abajo del parque
   parte_parque1(pos_x, pos_y, pos_z, rot_x, rot_y, rot_z, esc_x, esc_y, esc_z) {
     t.crear_texturas("texturas/piedra.webp", 3, 3);
     cu.crear_cubo(
@@ -798,10 +908,13 @@ class Parque {
     );
     baseiglesia.add(cubo);
     //gradas frente
-    cu.crear_cubo(220, 3, -278, 1000, 5, 800, textura, false, 0, 0, 0, 1, 1, 1);
+    darColor=true;
+    cu.crear_cubo(220, 3, -278, 1000, 5, 800, textura, false, 0, 0, 0, 1, 1, 1, 0x6E6E6E);
     baseiglesia.add(cubo);
-    cu.crear_cubo(220, 6, -286, 1000, 9, 800, textura, false, 0, 0, 0, 1, 1, 1);
+    darColor=true;
+    cu.crear_cubo(220, 6, -286, 1000, 9, 800, textura, false, 0, 0, 0, 1, 1, 1,0x848484);
     baseiglesia.add(cubo);
+    darColor=true;
     cu.crear_cubo(
       220,
       10,
@@ -816,7 +929,8 @@ class Parque {
       0,
       1,
       1,
-      1
+      1,
+      0x6E6E6E
     );
     baseiglesia.add(cubo);
 

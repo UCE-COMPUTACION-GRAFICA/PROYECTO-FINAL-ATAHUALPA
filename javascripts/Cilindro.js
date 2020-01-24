@@ -15,7 +15,8 @@ crearCilindro(pos_x,
   ancho,
   altura,
   text,
-  esq){
+  esq,
+  colorCilindro){
 
  var geometria_cilindro = new THREE.CylinderGeometry(
     ancho,
@@ -24,13 +25,26 @@ crearCilindro(pos_x,
     30,
     30,
     false
+    
   );
 
+
+
+
+
+  if(darColor==true){
   var material = new THREE.MeshBasicMaterial({
-    map: text,
-    side: THREE.DoubleSide,
-    wireframe: esq
-  });
+      color: colorCilindro,
+      wireframe: esq
+    });
+   }else{
+
+    var material = new THREE.MeshBasicMaterial({
+      map: text,
+      side: THREE.DoubleSide,
+      wireframe: esq
+    });
+   }
 
   cilindro = new THREE.Mesh(geometria_cilindro, material);
 
@@ -48,6 +62,7 @@ crearCilindro(pos_x,
 
   //scene.add(pivotPuerta);
   scene.add(cilindro);
+  darColor=false;
 }
   
 }

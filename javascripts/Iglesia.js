@@ -468,13 +468,14 @@ class Iglesia {
   ) {
     //parte de círculo
 
-    cu.crear_cubo(140, 70, -53, 40, 40, 0.5, textura, false, 0, 0, 0, 1, 1, 1);
+    cu.crear_cubo(140, 70, -50, 40, 40, 1, textura, false, 0, 0, 0, 1, 1, 1);
     pivotPuerta.add(cubo);
 
-    ci.crearCilindro(
+    
+    sci.crearSemiCilindro(
       140,
       90,
-      -54,
+      -50,
       0,
       Math.PI / 2,
       Math.PI / 2,
@@ -482,13 +483,13 @@ class Iglesia {
       1,
       1,
       20,
-      0.5,
+      1,
       textura2,
       false
     );
     //cuadrado
 
-    pivotPuerta.add(cilindro);
+    pivotPuerta.add(semiCilindro);
 
     pivotPuerta.position.x = pos_x;
     pivotPuerta.position.y = pos_y;

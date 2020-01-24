@@ -1,4 +1,6 @@
 class Cubo {
+
+  
   crear_cubo(
     pos_x,
     pos_y,
@@ -13,15 +15,33 @@ class Cubo {
     rot_z,
     esc_x,
     esc_y,
-    esc_z
+    esc_z,
+    colorCubo
   ) {
+
+
     var geometry = new THREE.BoxGeometry(x, z, y);
     /* para ancho, largo, profunsdidad*/
+
+    
+     
+   if(darColor==true){
+    var material = new THREE.MeshBasicMaterial({
+      color: colorCubo,
+      wireframe: esq
+    });
+   }else{
+
     var material = new THREE.MeshBasicMaterial({
       map: text,
       side: THREE.DoubleSide,
       wireframe: esq
     });
+   }
+     
+  
+    
+
 
     //var cube=new THREE.Mesh(geometry, material);
     cubo = new THREE.Mesh(geometry, material);
@@ -39,5 +59,6 @@ class Cubo {
 
     scene.add(pivotPoint);
     scene.add(cubo);
+    darColor=false;
   }
 }
