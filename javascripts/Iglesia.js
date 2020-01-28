@@ -1,5 +1,7 @@
 class Iglesia {
   constructor(pos_x, pos_y, pos_z, rot_x, rot_y, rot_z, esc_x, esc_y, esc_z) {
+
+
     this.pos_x = pos_x;
     this.pos_y = pos_y;
     this.pos_z = pos_z;
@@ -352,6 +354,8 @@ class Iglesia {
 
     i.cargar_modelo(480, 0, -355, 0, Math.PI / 2, 0);
     pivotPoint.add(mallaextrusion);
+
+    
 
     pivotPoint.position.x = this.pos_x;
     pivotPoint.position.y = this.pos_y;

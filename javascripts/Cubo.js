@@ -57,7 +57,12 @@ class Cubo {
     cubo.scale.y = esc_y;
     cubo.scale.z = esc_z;
 
+    //Añade los objetos 3D
     scene.add(pivotPoint);
+    scene.add(pil);
+    scene.add(ban);
+
+
     scene.add(cubo);
     darColor=false;
   }

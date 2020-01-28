@@ -24,7 +24,7 @@ for (let i = 0; i < 6; i++)
 let skyboxGeo = new THREE.BoxGeometry( 7000, 2000, 5000);
 let skybox = new THREE.Mesh( skyboxGeo, materialArray );
 skybox.position.y=990;
-skybox.position.z=-2500;
+skybox.position.z=-400;
 scene.add( skybox );
 }
 //crear un cubo que abarque toda la escena

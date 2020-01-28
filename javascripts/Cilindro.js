@@ -60,7 +60,9 @@ crearCilindro(pos_x,
   cilindro.scale.y = esc_y;
   cilindro.scale.z = esc_z;
 
-  //scene.add(pivotPuerta);
+scene.add(flr);
+  scene.add(arbl);
+  scene.add(lmp);
   scene.add(cilindro);
   darColor=false;
 }
