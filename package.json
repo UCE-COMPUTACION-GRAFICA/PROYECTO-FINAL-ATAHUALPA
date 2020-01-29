@@ -18,7 +18,11 @@
     "url": "https://github.com/RickyTB/PROYECTO-FINAL-ATAHUALPA/issues"
   },
   "homepage": "https://github.com/RickyTB/PROYECTO-FINAL-ATAHUALPA#readme",
-  "dependencies": {},
+  "dependencies": {
+    "three": "^0.112.1",
+    "three-window-resize": "^1.0.4",
+    "threex": "^1.0.0"
+  },
   "devDependencies": {
     "clean-webpack-plugin": "^3.0.0",
     "html-webpack-plugin": "^3.2.0",

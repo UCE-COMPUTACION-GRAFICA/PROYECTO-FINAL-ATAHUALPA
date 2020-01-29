@@ -3,9 +3,14 @@ class Modelo3D{
    
     
       
+//luces
+
+
+  
 
     cargarModelo3D(direccion,pos_x, pos_y, pos_z, rot_x, rot_y, rot_z, esc_x, esc_y, esc_z){
 
+      
         loader.load( direccion, function ( gltf ) {
           arbol=gltf.scene;
       
