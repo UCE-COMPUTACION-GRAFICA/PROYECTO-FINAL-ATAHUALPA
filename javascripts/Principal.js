@@ -182,9 +182,9 @@ function texto3(){
   
   var loader = new THREE.FontLoader();
 
-loader.load( 'node_modules/three/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
+loader.load( 'three.js-master/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
 
-var textGeom= new THREE.TextGeometry( 'Hello three.js!', {
+ textGeom= new THREE.TextGeometry( 'Hello three.js!', {
 		font: font,
 		size: 80,
 		height: 5,
@@ -203,7 +203,9 @@ textMaterial=new THREE.MeshBasicMaterial({color: 0xFF0000});
 
   var textMesh = new THREE.Mesh(textGeom, textMaterial );
 
-//	textGeom.computeBoundingBox();
+
+//textGeom.computeBoundingBox();
+
 //var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
 	textMesh.position.set(0,0,0);
  

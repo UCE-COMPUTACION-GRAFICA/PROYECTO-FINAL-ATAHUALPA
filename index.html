@@ -20,45 +20,66 @@
        
         /*overflow:visible;*/
 
-       
-       
 
     </style>
   
+  <script type="text/javascript" src="three.js-master/build/three.min.js"></script>
 
+  <script src="javascripts/libs/Detector.js"></script>
 
+  <script src="javascripts/libs/Stats.js"></script>
 
+<script src="three.js-master/examples/js/loaders/GLTFLoader.js"></script>
 
+<script src="three.js-master/examples/js/controls/OrbitControls.js"></script>
 
-
-
-  
-
-
-
-<script type="text/javascript" src="javascripts/libs/three.min.js"></script>
-<script src="javascripts/libs/Detector.js"></script>
-<script src="javascripts/libs/Stats.js"></script>
-<script src="javascripts/libs/GLTFLoader.js"></script>
-<script type="text/javascript" src="javascripts/libs/OrbitControls.js"></script>
 <script src="javascripts/libs/THREEx.FullScreen.js"></script>
 
 
 
 
 
-
-
-
-
-
-
-
-
-<script type="module" src="node_modules/three/src/geometries/TextGeometry.js"></script> 
-
-
-
+<script type="module">
+  import {
+    BoxGeometry, BoxBufferGeometry,
+    BufferGeometry,
+    CircleGeometry, CircleBufferGeometry,
+    Color,
+    ConeGeometry, ConeBufferGeometry,
+    Curve,
+    CylinderGeometry, CylinderBufferGeometry,
+    DodecahedronGeometry, DodecahedronBufferGeometry,
+    DoubleSide,
+    ExtrudeGeometry, ExtrudeBufferGeometry,
+    Float32BufferAttribute,
+    FontLoader,
+    Group,
+    IcosahedronGeometry, IcosahedronBufferGeometry,
+    LatheGeometry, LatheBufferGeometry,
+    LineSegments,
+    LineBasicMaterial,
+    Mesh,
+    MeshPhongMaterial,
+    OctahedronGeometry, OctahedronBufferGeometry,
+    ParametricGeometry, ParametricBufferGeometry,
+    PerspectiveCamera,
+    PlaneGeometry, PlaneBufferGeometry,
+    PointLight,
+    RingGeometry, RingBufferGeometry,
+    Scene,
+    Shape,
+    ShapeGeometry, ShapeBufferGeometry,
+    SphereGeometry, SphereBufferGeometry,
+    TetrahedronGeometry, TetrahedronBufferGeometry,
+    TextGeometry, TextBufferGeometry,
+    TorusGeometry, TorusBufferGeometry,
+    TorusKnotGeometry, TorusKnotBufferGeometry,
+    TubeGeometry, TubeBufferGeometry,
+    Vector2,
+    Vector3,
+    WireframeGeometry,
+    WebGLRenderer
+  } from "./three.js-master/build/three.module.js";</script> 
 
    
 

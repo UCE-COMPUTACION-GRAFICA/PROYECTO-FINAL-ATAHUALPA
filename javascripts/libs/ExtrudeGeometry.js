@@ -22,12 +22,13 @@
  * }
  */
 
-import { Geometry } from '../core/Geometry.js';
-import { BufferGeometry } from '../core/BufferGeometry.js';
-import { Float32BufferAttribute } from '../core/BufferAttribute.js';
-import { Vector2 } from '../math/Vector2.js';
-import { Vector3 } from '../math/Vector3.js';
-import { ShapeUtils } from '../extras/ShapeUtils.js';
+import { Geometry } from './javascripts/libs/Geometry.js';
+
+import { BufferGeometry } from './javascripts/libs/BufferGeometry.js';
+import { Float32BufferAttribute } from './javascripts/libs/BufferAttribute.js';
+import { Vector2 } from './javascripts/libs/Vector2.js';
+import { Vector3 } from './javascripts/libs/Vector3.js';
+import { ShapeUtils } from './javascripts/libs/ShapeUtils.js';
 
 // ExtrudeGeometry
 
