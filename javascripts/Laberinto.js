@@ -9,22 +9,37 @@ t.crear_texturas("texturas/textura_piso_Mesa de trabajo 1.jpg", 1,1);
 cu.crear_cubo(-2300, 0, 190, 1300, 10,1520, textura, false, 0, 0, 0, 1, 1, 1);
 
 
-    //marco que contiene todo el laberinto
+//gradas
+darColor=true;
+cu.crear_cubo(-2300, 10, -370, 1300, 10,400, null, false, 0, 0, 0, 1, 1, 1, 0xA4A4A4);
+
+darColor=true;
+cu.crear_cubo(-2300, 20, -380, 1300, 10,390, null, false, 0, 0, 0, 1, 1, 1, 0x848484);
+
+darColor=true;
+cu.crear_cubo(-2300, 30, -390, 1300, 10,380, null, false, 0, 0, 0, 1, 1, 1, 0xA4A4A4);
+
+darColor=true;
+cu.crear_cubo(-2300, 40, -400, 1300, 10,370, null, false, 0, 0, 0, 1, 1, 1, 0x848484);
+
+
+
+    //marco que contiene todo el cementerio
     darColor=true;
-    cu.crear_cubo(-2300, 35, -620, 1300, 70,30, null, false, 0, 0, 0, 1, 1, 1, 0xFFFFFF);
+    cu.crear_cubo(-2300, 35, -720, 1300, 70,30, null, false, 0, 0, 0, 1, 1, 1, 0xFFFFFF);
 
     darColor=true;
     cu.crear_cubo(-2300, 35, 920, 1300, 70,30, null, false, 0, 0, 0, 1, 1, 1, 0xFFFFFF);
 
     darColor=true;
-    cu.crear_cubo(-2930, 35, 150, 1600, 70,30, null, false, 0, Math.PI/2, 0, 1, 1, 1, 0xFFFFFF);
+    cu.crear_cubo(-2930, 35, 150, 1650, 70,30, null, false, 0, Math.PI/2, 0, 1, 1, 1, 0xFFFFFF);
 
 
     darColor=true;
     cu.crear_cubo(-1650, 35, -390, 500, 70,30, null, false, 0, Math.PI/2, 0, 1, 1, 1, 0xFFFFFF);
 
     darColor=true;
-    cu.crear_cubo(-1650, 35, 490, 880, 70,30, null, false, 0, Math.PI/2, 0, 1, 1, 1, 0xFFFFFF);
+    cu.crear_cubo(-1650, 35, 490, 900, 70,30, null, false, 0, Math.PI/2, 0, 1, 1, 1, 0xFFFFFF);
 
 
 
@@ -67,8 +82,19 @@ cu.crear_cubo(-2130, 35, 570, 250, 70,130, textura, false, 0, 0, 0, 1, 1, 1);
 
 //derecha
 darColor=true;
-cu.crear_cubo(-2400, 35, -400, 650, 70,200, null, false, 0, 0, 0, 1, 1, 1, 0xFFFFFF);
+cu.crear_cubo(-2100, 50, -210, 650, 100,100, null, false, 0, 0, 0, 1, 1, 1, 0xFAFAFA);
 
+
+darColor=true;
+cu.crear_cubo(-2700, 50, -210, 250, 100,100, null, false, 0, 0, 0, 1, 1, 1, 0xFAFAFA);
+
+
+darColor=true;
+cu.crear_cubo(-2100, 110, -360, 650, 100,100, null, false, 0, 0, 0, 1, 1, 1, 0xF2F2F2);
+
+
+darColor=true;
+cu.crear_cubo(-2700, 110, -360, 250, 100,100, null, false, 0, 0, 0, 1, 1, 1, 0xF2F2F2);
 
 
 }
