@@ -26,12 +26,20 @@ crearLaberinto(){
     //forma de laberinto 1
 t.crear_texturas("texturas/cipresverde.jpg", 2, 2);
 
-cu.crear_cubo(-2400, 35, 350, 700, 70,100, textura, false, 0, Math.PI/2, 0, 1, 1, 1);
+//pasillo cenral 
+cu.crear_cubo(-2400, 35, 150, 250, 70,100, textura, false, 0, Math.PI/2, 0, 1, 1, 1);
+cu.crear_cubo(-2400, 35, 500, 250, 70,100, textura, false, 0, Math.PI/2, 0, 1, 1, 1);
 
-cu.crear_cubo(-2600, 35, 350, 700, 70,100, textura, false, 0, Math.PI/2, 0, 1, 1, 1);
+cu.crear_cubo(-2600, 35, 150, 250, 70,100, textura, false, 0, Math.PI/2, 0, 1, 1, 1);
+cu.crear_cubo(-2600, 35, 500, 250, 70,100, textura, false, 0, Math.PI/2, 0, 1, 1, 1);
 
-//forma 2
+
+
+
+//derecha
 cu.crear_cubo(-2100, 35, 70, 550, 70,100, textura, false, 0, 0, 0, 1, 1, 1);
+//izquierda
+cu.crear_cubo(-2800, 35, 70, 100, 70,100, textura, false, 0, 0, 0, 1, 1, 1);
 
 
 //forma 3
@@ -39,6 +47,7 @@ cu.crear_cubo(-1850, 35, 520, 540, 70,100, textura, false, 0, Math.PI/2, 0, 1, 1
 
 
 cu.crear_cubo(-2100, 35, 770, 550, 70,100, textura, false, 0, 0, 0, 1, 1, 1);
+
 }
 
 
