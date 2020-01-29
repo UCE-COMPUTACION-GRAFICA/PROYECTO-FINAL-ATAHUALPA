@@ -114,3 +114,5 @@ THREEx.KeyboardState.prototype.pressed	= function(keyDesc)
 	};
 	return true;
 }
+
+export default THREEx.KeyboardState;

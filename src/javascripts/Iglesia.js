@@ -1,5 +1,7 @@
 class Iglesia {
   constructor(pos_x, pos_y, pos_z, rot_x, rot_y, rot_z, esc_x, esc_y, esc_z) {
+
+
     this.pos_x = pos_x;
     this.pos_y = pos_y;
     this.pos_z = pos_z;
@@ -353,6 +355,8 @@ class Iglesia {
     i.cargar_modelo(480, 0, -355, 0, Math.PI / 2, 0);
     pivotPoint.add(mallaextrusion);
 
+    
+
     pivotPoint.position.x = this.pos_x;
     pivotPoint.position.y = this.pos_y;
     pivotPoint.position.z = this.pos_z;
@@ -468,13 +472,14 @@ class Iglesia {
   ) {
     //parte de círculo
 
-    cu.crear_cubo(140, 70, -53, 40, 40, 0.5, textura, false, 0, 0, 0, 1, 1, 1);
+    cu.crear_cubo(140, 70, -50, 40, 40, 1, textura, false, 0, 0, 0, 1, 1, 1);
     pivotPuerta.add(cubo);
 
-    ci.crearCilindro(
+    
+    sci.crearSemiCilindro(
       140,
       90,
-      -54,
+      -50,
       0,
       Math.PI / 2,
       Math.PI / 2,
@@ -482,13 +487,13 @@ class Iglesia {
       1,
       1,
       20,
-      0.5,
+      1,
       textura2,
       false
     );
     //cuadrado
 
-    pivotPuerta.add(cilindro);
+    pivotPuerta.add(semiCilindro);
 
     pivotPuerta.position.x = pos_x;
     pivotPuerta.position.y = pos_y;
