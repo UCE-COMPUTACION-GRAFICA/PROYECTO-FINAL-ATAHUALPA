@@ -1,0 +1,29 @@
+{
+  "name": "proyecto-final-atahualpa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --open",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RickyTB/PROYECTO-FINAL-ATAHUALPA.git"
+  },
+  "author": "Estefanía Nicolalde",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/RickyTB/PROYECTO-FINAL-ATAHUALPA/issues"
+  },
+  "homepage": "https://github.com/RickyTB/PROYECTO-FINAL-ATAHUALPA#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  }
+}
