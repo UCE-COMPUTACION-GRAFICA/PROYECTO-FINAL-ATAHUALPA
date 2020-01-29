@@ -38,7 +38,7 @@ cu.crear_cubo(-2100, 35, 70, 550, 70,100, textura, false, 0, 0, 0, 1, 1, 1);
 cu.crear_cubo(-1850, 35, 520, 540, 70,100, textura, false, 0, Math.PI/2, 0, 1, 1, 1);
 
 
-cu.crear_cubo(-2100, 35, 570, 550, 70,100, textura, false, 0, 0, 0, 1, 1, 1);
+cu.crear_cubo(-2100, 35, 770, 550, 70,100, textura, false, 0, 0, 0, 1, 1, 1);
 }
 
 
