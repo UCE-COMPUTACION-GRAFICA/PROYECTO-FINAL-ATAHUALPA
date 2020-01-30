@@ -8,11 +8,11 @@ import SemiEsfera from "./SemiEsfera";
 
 
 
-var t=new Textura();
-var cu,to,ses;
-export var pil=new Object3D();
+var t = new Textura();
+var cu, to, ses;
+export var pil = new Object3D();
 
-var FiguraP,textura;
+var FiguraP, textura;
 
 export default class Pileta {
   constructor(
@@ -26,7 +26,7 @@ export default class Pileta {
     esc_y,
     esc_z,
     scene
-   
+
   ) {
     this.pos_x = pos_x;
     this.pos_y = pos_y;
@@ -39,16 +39,16 @@ export default class Pileta {
     this.esc_x = esc_x;
     this.esc_y = esc_y;
     this.esc_z = esc_z;
-   this.scene=scene;
+    this.scene = scene;
   }
 
   dibujarPileta() {
-  cu=new Cubo(this.scene);
- to=new Torus(this.scene);
- ses=new SemiEsfera(this.scene);
- 
+    cu = new Cubo(this.scene);
+    to = new Torus(this.scene);
+    ses = new SemiEsfera(this.scene);
 
-   textura=t.crear_texturas("texturas/muro3.jpg", 1, 1);
+
+    textura = t.crear_texturas("texturas/muro3.jpg", 1, 1);
     cu.crear_cubo(168, 25, 375, 35, 20, 35, textura, false, 0, 0, 0, 1, 1, 1);
     pil.add(cu.cubo);
     // t.crear_texturas("texturas/piedra.webp", 0.5, 0.5);
@@ -76,7 +76,7 @@ export default class Pileta {
       2.5,
       0x6e6e6e
     );
-    pil.add(to.torus); 
+    pil.add(to.torus);
     // intermedio
     to.crear_toro(
       168,
@@ -234,6 +234,6 @@ var material = new THREE.MeshBasicMaterial({
 
     this.scene.add(FiguraP);
     return FiguraP;
-    
+
   }
 }

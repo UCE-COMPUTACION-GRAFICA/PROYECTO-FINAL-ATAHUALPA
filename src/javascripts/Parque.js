@@ -14,7 +14,8 @@ import Modelo3D from "./Modelo3D";
 import { Object3D } from "three";
 
 var t=new Textura();
-var cu,ci,arb,e,banca,lamp,ar;
+var cu=new Cubo();
+var ci,arb,e,banca,lamp,ar;
 
 
 var textura;
@@ -38,12 +39,13 @@ export default class Parque {
 
   constructor(scene) {
     this.scene = scene;
+    cu = new Cubo(this.scene);
   }
 
 
   
   crearParque() {
-    cu = new Cubo(this.scene);
+cu = new Cubo(this.scene);
 ci = new Cilindro(this.scene);
 arb = new Arbol(this.scene);
 e = new Esfera(this.scene);
@@ -193,8 +195,8 @@ ar = new Modelo3D(this.scene);
     textura = t.crear_texturas("texturas/ad.jpg", 10, 20);
     cu.crear_cubo(200, 3, 100, 1200, 9, 1600, textura, false, 0, 0, 0, 1, 1, 1);
     //gradas
-    this.parte_parque1(0, 10, 0, 0, 0, 0, 1, 1, 1);
-    this.scene.add(baseiglesia);
+   // this.parte_parque1(0, 10, 0, 0, 0, 0, 1, 1, 1);
+    //this.scene.add(baseiglesia);
     //lados
     this.lado(10, 10, 0, 0, 0, 0, 1.2, 1, 1);
     this.scene.add(lado1);
@@ -1104,7 +1106,7 @@ ar = new Modelo3D(this.scene);
   }
 
   lado(pos_x, pos_y, pos_z, rot_x, rot_y, rot_z, esc_x, esc_y, esc_z) {
-    
+    cu = new Cubo(this.scene);
 
     textura = t.crear_texturas("texturas/muro.jpg", 5, 1);
     cu.crear_cubo(-235, 20, 114, 10, 40, 35, textura, false, 0, 0, 0, 1, 1, 1);
@@ -1153,7 +1155,9 @@ ar = new Modelo3D(this.scene);
   parte_parque1(pos_x, pos_y, pos_z, rot_x, rot_y, rot_z, esc_x, esc_y, esc_z) {
    
     cu = new Cubo(this.scene);
-   
+    console.log(this.scene);
+    console.log(cu);
+
 
     textura = t.crear_texturas("texturas/piedra.webp", 3, 3);
     cu.crear_cubo(
