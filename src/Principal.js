@@ -99,7 +99,7 @@ function inicio() {
   //i.crearIglesia();
   pi = new Pileta(0, 0, 30, 0, 0, 0, 1, 1, 1, scene);
   pi.dibujarPileta();
-  par.crearParque();
+  //par.crearParque();
   
   //CASAS de lado izquierdo del parque central
   ca.crear_casa(0, 0, 0, 0, 0, 0, 1, 1, 1);
