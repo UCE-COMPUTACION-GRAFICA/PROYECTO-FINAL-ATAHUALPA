@@ -1,13 +1,12 @@
-//import { darColor, scene, lamp,ci, cilindro, ses,semisphere } from "../Principal";
+
 import { Object3D } from "three";
 import Cilindro from "./Cilindro";
 import SemiEsfera from "./SemiEsfera";
 
-var ci=new Cilindro(this.scene);
-var ses=new SemiEsfera(this.scene);
+var ci,ses;
 
 
-var lmp,
+export var lmp,
   lmp1,
   lmp2,
   lmp3,
@@ -50,6 +49,8 @@ export default class Lamparas {
 
   }
   crearLamparas() {
+   
+
     //las 4 primeras en forma en fila
     this.figurasLampara(0, 0, 110, 0, 0, 0, 1, 1, 1);
     lmp = lmp1;
@@ -164,6 +165,10 @@ export default class Lamparas {
     esc_y,
     esc_z
   ) {
+
+     
+    ci=new Cilindro(this.scene);
+    ses=new SemiEsfera(this.scene);
     //cilindro, correspondiente al palo principal
     ci.darColor = true;
     ci.crearCilindro(

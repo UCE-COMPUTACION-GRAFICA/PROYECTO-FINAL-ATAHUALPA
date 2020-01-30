@@ -1,7 +1,9 @@
 import * as THREE from 'three';
+import { Object3D } from "three";
 import Cilindro from './Cilindro';
+import Textura from './Textura';
 
-var arbl,arbl1, arbl2,arbl3=new Object3D();
+export var arbl,arbl1, arbl2,arbl3=new Object3D();
 //objetos
 var t=new Textura();
 var ci;

@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { Object3D, Sphere } from 'three';
 import Cubo from "./Cubo";
 import Textura from "./Textura";
 import Torus from "./Torus";
@@ -6,11 +7,11 @@ import SemiEsfera from "./SemiEsfera";
 //import { pil, cu, cubo, t, textura,to, torus,ses,semisphere } from "../Principal";
 
 
-var cu=new Cubo(this.scene);
+
 var t=new Textura();
-var to=new Torus(this.scene);
-var ses=new SemiEsfera(this.scene);
-var pil=new Object3D(this.scene);
+var cu,to,ses;
+export var pil=new Object3D();
+
 var FiguraP,textura;
 
 export default class Pileta {
@@ -42,17 +43,22 @@ export default class Pileta {
   }
 
   dibujarPileta() {
+  cu=new Cubo(this.scene);
+ to=new Torus(this.scene);
+ ses=new SemiEsfera(this.scene);
+ 
+
    textura=t.crear_texturas("texturas/muro3.jpg", 1, 1);
     cu.crear_cubo(168, 25, 375, 35, 20, 35, textura, false, 0, 0, 0, 1, 1, 1);
-    pil.add(cubo);
+    pil.add(cu.cubo);
     // t.crear_texturas("texturas/piedra.webp", 0.5, 0.5);
     cu.crear_cubo(168, 35, 375, 40, 3, 36, textura, false, 0, 0, 0, 1, 1, 1);
-    pil.add(cubo);
+    pil.add(cu.cubo);
     //arriba
     cu.crear_cubo(170, 75, 375, 15, 4, 20, textura, false, 0, 0, 0, 1, 1, 1);
-    pil.add(cubo);
+    pil.add(cu.cubo);
     cu.crear_cubo(170, 77, 375, 10, 4, 15, textura, false, 0, 0, 0, 1, 1, 1);
-    pil.add(cubo);
+    pil.add(cu.cubo);
     //para crear el torus que formara la pila
     to.crear_toro(
       168,
@@ -70,7 +76,7 @@ export default class Pileta {
       2.5,
       0x6e6e6e
     );
-    pil.add(torus); 
+    pil.add(to.torus); 
     // intermedio
     to.crear_toro(
       168,
@@ -88,7 +94,7 @@ export default class Pileta {
       1.1,
       0x585858
     );
-    pil.add(torus);
+    pil.add(to.torus);
     to.crear_toro(
       168,
       15,
@@ -105,9 +111,9 @@ export default class Pileta {
       1.2,
       0x6e6e6e
     );
-    pil.add(torus);
+    pil.add(to.torus);
 
-    this.cargar_figuraPileta(152, 35, 363, 0, 0, 0, 1, 1, 1, 25, 0x585858);
+    this.cargar_figuraPileta(152, 35, 333, 0, 0, 0, 1, 1, 1, 25, 0x585858);
 
     pil.add(FiguraP);
 
@@ -131,7 +137,7 @@ export default class Pileta {
       0,
       1.1
     );
-    pil.add(semisphere);
+    pil.add(ses.semisphere);
 
     pil.position.x = this.pos_x;
     pil.position.y = this.pos_y;
@@ -173,7 +179,7 @@ export default class Pileta {
       [-3, 0, 0]
     ];
     var long_vertices = vertices.length;
-    for (i = 0; i < long_vertices; i++) {
+    for (var i = 0; i < long_vertices; i++) {
       var x = vertices[i][0];
       var y = vertices[i][1];
       var z = vertices[i][2];

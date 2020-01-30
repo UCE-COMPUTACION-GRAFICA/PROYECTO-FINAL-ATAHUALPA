@@ -1,12 +1,9 @@
 import * as THREE from 'three';
-import Arbol from './Arbol';
-import Parque from './Parque';
-import Iglesia from './Iglesia';
+import {arbl} from './Arbol';
+import {flr} from './Parque';
+import {pivotPoint} from './Iglesia';
 
 var sphere;
-var a=new Arbol(this.scene);
-var p=new Parque(this.scene);
-var i=new Iglesia(this.scene);
 
 var darColor=false;
 
@@ -31,6 +28,7 @@ export default class Esfera {
     par,
     colorEsfera
   ) {
+    
     var geometry = new THREE.SphereGeometry(t, par, par);
 
     if(darColor==true){
@@ -60,9 +58,9 @@ export default class Esfera {
     sphere.scale.y = esc_y;
     sphere.scale.z = esc_z;
 
-    this.scene.add(i.pivotPoint);
-    this.scene.add(a.arbl);
-    this.scene.add(p.flr);    
+    this.scene.add(pivotPoint);
+    this.scene.add(arbl);
+    this.scene.add(flr);    
     this.scene.add(sphere);
 
     return sphere, darColor=false;

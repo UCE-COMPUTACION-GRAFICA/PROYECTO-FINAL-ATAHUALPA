@@ -3,16 +3,16 @@ import { Object3D, Sphere } from 'three';
 import Textura from './Textura';
 import Cilindro from './Cilindro';
 import SemiCilindro from './SemiCilindro';
+import Cubo from './Cubo';
 
 
-var pivotPoint,pivotPuerta, pivotPuerta2, pivotPuerta3, pivotPuerta4, pivotPuerta5, ventana1,ventana2,ventana3,
+export var pivotPoint,pivotPuerta, pivotPuerta2, pivotPuerta3, pivotPuerta4, pivotPuerta5, ventana1,ventana2,ventana3,
 ventana4,Puertapeque1,Puertapeque2=new Object3D();
 
 var t=new Textura();
-var cu=new Cubo(this.scene);
-var ci=new Cilindro(this.scene);
-var e=new Sphere(this.scene);
-var sci=new SemiCilindro(this.scene);
+var cu,ci,e,sci;
+
+
 
 var textura, textura2;
 
@@ -36,6 +36,10 @@ export default class Iglesia {
   }
 
   crearIglesia() {
+     cu=new Cubo(this.scene);
+ci=new Cilindro(this.scene);
+e=new Sphere(this.scene);
+sci=new SemiCilindro(this.scene);
     //iglesia
     //parte baja
     textura=t.crear_texturas("texturas/muro.jpg", 10, 5);
@@ -364,6 +368,10 @@ export default class Iglesia {
   }
 
   partealta(posx_a) {
+    cu=new Cubo(this.scene);
+ci=new Cilindro(this.scene);
+e=new Sphere(this.scene);
+ sci=new SemiCilindro(this.scene);
     //izquierda
     textura=t.crear_texturas("texturas/amarillo_2.jpg", 1, 1);
     ci.crearCilindro(
@@ -459,6 +467,11 @@ export default class Iglesia {
     textura,
     textura2
   ) {
+
+    cu=new Cubo(this.scene);
+    ci=new Cilindro(this.scene);
+    e=new Sphere(this.scene);
+     sci=new SemiCilindro(this.scene);
     //parte de círculo
 
     cu.crear_cubo(140, 70, -50, 40, 40, 1, textura, false, 0, 0, 0, 1, 1, 1);

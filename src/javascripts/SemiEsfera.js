@@ -1,9 +1,10 @@
 import * as THREE from 'three';
-import Lamparas from './Lamparas';
+import {lmp} from './Lamparas';
 //import {darColor,scene,lmp} from '../Principal';
 
-var l=new Lamparas();
+
 var darColor=false;
+var semisphere;
 
 export default class SemiEsfera {
   constructor(scene){
@@ -31,6 +32,8 @@ export default class SemiEsfera {
     tl,
     colorSemiEsfera
   ) {
+   
+
     var geometry = new THREE.SphereGeometry(radio, ws, hs, ps, pl, ts, tl);
 
     if (darColor == true) {
@@ -60,7 +63,7 @@ export default class SemiEsfera {
     semisphere.scale.y = esc_y;
     semisphere.scale.z = esc_z;
 
-    this.scene.add(l.lmp);
+    this.scene.add(lmp);
     this.scene.add(semisphere);
      return semisphere, 
      darColor = false;

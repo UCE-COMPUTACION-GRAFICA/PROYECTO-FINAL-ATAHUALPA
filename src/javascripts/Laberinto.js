@@ -1,7 +1,7 @@
 import Cubo from "./Cubo";
 import Textura from "./Textura";
 
-var cu=new Cubo(this.scene);
+var cu;
 var t=new Textura();
 var textura;
 
@@ -11,6 +11,7 @@ export default class Laberinto {
 
   }
   crearLaberinto() {
+    cu=new Cubo(this.scene);
     //piso
     textura=t.crear_texturas("texturas/textura_piso_Mesa de trabajo 1.jpg", 1, 1);
     cu.crear_cubo(

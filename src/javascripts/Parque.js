@@ -1,30 +1,27 @@
-import Textura from './Textura';
-import Cubo from './Cubo';
-import Cilindro from './Cilindro';
-import Arbol from './Arbol';
-import Esfera from './Esfera';
-import Bancas from './Bancas';
-import Lamparas from './Lamparas';
-import Modelo3D from './Modelo3D';
+
+import * as THREE from "three";
+
+import Textura from "./Textura";
+import Cubo from "./Cubo";
+import Cilindro from "./Cilindro";
+import Arbol from "./Arbol";
+import Esfera from "./Esfera";
+import Bancas from "./Bancas";
+import Lamparas from "./Lamparas";
+import Modelo3D from "./Modelo3D";
 
 
 import { Object3D } from "three";
 
 var t=new Textura();
-var cu=new Cubo(this.scene);
-var ci=new Cilindro(this.scene);
-var arb=new Arbol(this.scene);
-var e=new Esfera(this.scene);
-var banca =new Bancas(this.scene);
-var lamp=new Lamparas(this.scene);
-var ar=new Modelo3D(this.scene);
+var cu,ci,arb,e,banca,lamp,ar;
+
 
 var textura;
 
-
 //creacion de objetos 3d a usarse
 
-  var lado1,
+export var lado1,
   lado2,
   baseiglesia,
   flr,
@@ -32,19 +29,30 @@ var textura;
   flr2,
   flr3,
   fl4,
-  flr5= new Object3D();
-
+  flr5 = new Object3D();
+  
 
 export default class Parque {
-constructor(scene){
-  this.scene=scene;
-}
+ 
+ 
+
+  constructor(scene) {
+    this.scene = scene;
+  }
 
 
+  
   crearParque() {
+    cu = new Cubo(this.scene);
+ci = new Cilindro(this.scene);
+arb = new Arbol(this.scene);
+e = new Esfera(this.scene);
+banca = new Bancas(this.scene);
+lamp = new Lamparas(this.scene);
+ar = new Modelo3D(this.scene);
     //parque: cuadrado principal que abarca todo el parque
-    textura=t.crear_texturas("texturas/ad.jpg", 5, 5);
-    cu.darColor=true;
+    textura = t.crear_texturas("texturas/ad.jpg", 5, 5);
+    cu.darColor = true;
     cu.crear_cubo(
       180,
       10,
@@ -64,7 +72,7 @@ constructor(scene){
     );
 
     //cuadrado central con textura que abarca la pileta
-    textura=t.crear_texturas("texturas/adoquin2.jpg", 10, 20);
+    textura = t.crear_texturas("texturas/adoquin2.jpg", 10, 20);
     cu.crear_cubo(
       169.7,
       13,
@@ -81,7 +89,7 @@ constructor(scene){
       1.1,
       1
     );
-    textura=t.crear_texturas("texturas/adoquin2.jpg", 0.025, 0.05);
+    textura = t.crear_texturas("texturas/adoquin2.jpg", 0.025, 0.05);
     //completa la figura de arriba,
     this.figuraTextura_parque(
       -182,
@@ -97,7 +105,7 @@ constructor(scene){
       false
     );
     //textura de los lados superiores de las calles
-    textura=t.crear_texturas("texturas/adoquin2.jpg", 9, 3);
+    textura = t.crear_texturas("texturas/adoquin2.jpg", 9, 3);
     cu.crear_cubo(505, 13, 172, 320, 1, 70, textura, false, 0, 0, 0, 0.8, 1, 1);
     cu.crear_cubo(
       -168,
@@ -182,7 +190,7 @@ constructor(scene){
       1,
       1
     );
-    textura=t.crear_texturas("texturas/ad.jpg", 10, 20);
+    textura = t.crear_texturas("texturas/ad.jpg", 10, 20);
     cu.crear_cubo(200, 3, 100, 1200, 9, 1600, textura, false, 0, 0, 0, 1, 1, 1);
     //gradas
     this.parte_parque1(0, 10, 0, 0, 0, 0, 1, 1, 1);
@@ -308,7 +316,7 @@ constructor(scene){
     );
     //cu.crear_cubo(200,50,0,10,0.1,50,0,false,0,Math.Pi/2,0,1,1,1,0xF4FA58)
     //circulo central
-    textura=t.crear_texturas("texturas/piedra.webp", 7, 7);
+    textura = t.crear_texturas("texturas/piedra.webp", 7, 7);
     ci.crearCilindro(167, 15.5, 405, 0, 0, 0, 1, 1, 1, 80, 0.5, textura, false);
     //partes de los jardines
     this.jardines();
@@ -368,13 +376,16 @@ constructor(scene){
     semicir.scale.z = esc_z;
 
     this.scene.add(semicir);
+    return semicir;
 
     // console.log(semicir);
   }
 
   jardines(pos_x, pos_y, pos_z, rot_x, rot_y, rot_z, esc_x, esc_y, esc_z) {
+   
+  
     //dere
-    textura=t.crear_texturas("texturas/adoquin_calle.jpg", 15, 15);
+    textura = t.crear_texturas("texturas/adoquin_calle.jpg", 15, 15);
     cu.crear_cubo(
       502,
       15,
@@ -392,7 +403,7 @@ constructor(scene){
       1
     );
 
-    textura=t.crear_texturas("texturas/cesped.jpg", 5, 5);
+    textura = t.crear_texturas("texturas/cesped.jpg", 5, 5);
     cu.crear_cubo(
       502,
       19,
@@ -410,7 +421,7 @@ constructor(scene){
       1
     );
     //izq
-    textura=t.crear_texturas("texturas/adoquin_calle.jpg", 15, 15);
+    textura = t.crear_texturas("texturas/adoquin_calle.jpg", 15, 15);
     cu.crear_cubo(
       -163,
       15,
@@ -427,7 +438,7 @@ constructor(scene){
       1,
       1
     );
-    textura=t.crear_texturas("texturas/cesped.jpg", 5, 5);
+    textura = t.crear_texturas("texturas/cesped.jpg", 5, 5);
     cu.crear_cubo(
       -163,
       19,
@@ -447,7 +458,7 @@ constructor(scene){
 
     //figuras
     //derecha
-    textura=t.crear_texturas("texturas/adoquin_calle.jpg", 15, 15);
+    textura = t.crear_texturas("texturas/adoquin_calle.jpg", 15, 15);
     this.figura_jardin(
       375,
       14,
@@ -462,7 +473,7 @@ constructor(scene){
       false
     );
 
-    textura=t.crear_texturas("texturas/cesped.jpg", 0.05, 0.05);
+    textura = t.crear_texturas("texturas/cesped.jpg", 0.05, 0.05);
     this.figura_jardin(
       375,
       19,
@@ -478,7 +489,7 @@ constructor(scene){
     );
 
     //izquierda
-    textura=t.crear_texturas("texturas/adoquin_calle.jpg", 15, 15);
+    textura = t.crear_texturas("texturas/adoquin_calle.jpg", 15, 15);
     this.figura_jardin(
       -40,
       14,
@@ -493,7 +504,7 @@ constructor(scene){
       false
     );
 
-    textura=t.crear_texturas("texturas/cesped.jpg", 0.05, 0.05);
+    textura = t.crear_texturas("texturas/cesped.jpg", 0.05, 0.05);
     this.figura_jardin(
       -40,
       19,
@@ -509,7 +520,7 @@ constructor(scene){
     );
 
     //centrales
-    textura=t.crear_texturas("texturas/adoquin_calle.jpg", 15, 15);
+    textura = t.crear_texturas("texturas/adoquin_calle.jpg", 15, 15);
     this.figura_jardin2(
       26,
       9,
@@ -524,7 +535,7 @@ constructor(scene){
       false
     );
 
-    textura=t.crear_texturas("texturas/cesped.jpg", 0.05, 0.05);
+    textura = t.crear_texturas("texturas/cesped.jpg", 0.05, 0.05);
     this.figura_jardin2(
       26,
       14,
@@ -539,7 +550,7 @@ constructor(scene){
       false
     );
 
-    textura=t.crear_texturas("texturas/adoquin_calle.jpg", 15, 15);
+    textura = t.crear_texturas("texturas/adoquin_calle.jpg", 15, 15);
     this.figura_jardin2(
       304,
       15,
@@ -553,7 +564,7 @@ constructor(scene){
       textura,
       false
     );
-    textura=t.crear_texturas("texturas/cesped.jpg", 0.05, 0.05);
+    textura = t.crear_texturas("texturas/cesped.jpg", 0.05, 0.05);
     this.figura_jardin2(
       304,
       20,
@@ -1093,15 +1104,17 @@ constructor(scene){
   }
 
   lado(pos_x, pos_y, pos_z, rot_x, rot_y, rot_z, esc_x, esc_y, esc_z) {
-    textura=t.crear_texturas("texturas/muro.jpg", 5, 1);
+    
+
+    textura = t.crear_texturas("texturas/muro.jpg", 5, 1);
     cu.crear_cubo(-235, 20, 114, 10, 40, 35, textura, false, 0, 0, 0, 1, 1, 1);
-    lado1.add(cubo);
+    lado1.add(cu.cubo);
     cu.crear_cubo(-45, 20, 114, 10, 40, 35, textura, false, 0, 0, 0, 1, 1, 1);
-    lado1.add(cubo);
+    lado1.add(cu.cubo);
     cu.crear_cubo(-140, 10, 125, 200, 20, 15, textura, false, 0, 0, 0, 1, 1, 1);
-    lado1.add(cubo);
+    lado1.add(cu.cubo);
     //cesped
-    textura=t.crear_texturas("texturas/cesped.jpg", 5, 1);
+    textura = t.crear_texturas("texturas/cesped.jpg", 5, 1);
     cu.crear_cubo(
       -141,
       20,
@@ -1118,10 +1131,10 @@ constructor(scene){
       1,
       1
     );
-    lado1.add(cubo);
-    textura=t.crear_texturas("texturas/muro.jpg", 5, 1);
+    lado1.add(cu.cubo);
+    textura = t.crear_texturas("texturas/muro.jpg", 5, 1);
     cu.crear_cubo(-140, 30, 95, 200, 20, 15, textura, false, 0, 0, 0, 1, 1, 1);
-    lado1.add(cubo);
+    lado1.add(cu.cubo);
 
     lado1.position.x = pos_x;
     lado1.position.y = pos_y;
@@ -1138,7 +1151,11 @@ constructor(scene){
 
   //para la base de la iglesia, y gradas centrales de abajo del parque
   parte_parque1(pos_x, pos_y, pos_z, rot_x, rot_y, rot_z, esc_x, esc_y, esc_z) {
-    textura=t.crear_texturas("texturas/piedra.webp", 3, 3);
+   
+    cu = new Cubo(this.scene);
+   
+
+    textura = t.crear_texturas("texturas/piedra.webp", 3, 3);
     cu.crear_cubo(
       220,
       10,
@@ -1155,7 +1172,8 @@ constructor(scene){
       1,
       1
     );
-    baseiglesia.add(cubo);
+
+    baseiglesia.add(cu.cubo);
     //gradas frente
     cu.darColor = true;
     cu.crear_cubo(
@@ -1175,7 +1193,7 @@ constructor(scene){
       1,
       0x6e6e6e
     );
-    baseiglesia.add(cubo);
+    baseiglesia.add(cu.cubo);
     cu.darColor = true;
     cu.crear_cubo(
       220,
@@ -1194,7 +1212,7 @@ constructor(scene){
       1,
       0x848484
     );
-    baseiglesia.add(cubo);
+    baseiglesia.add(cu.cubo);
     cu.darColor = true;
     cu.crear_cubo(
       220,
@@ -1213,7 +1231,7 @@ constructor(scene){
       1,
       0x6e6e6e
     );
-    baseiglesia.add(cubo);
+    baseiglesia.add(cu.cubo);
 
     baseiglesia.position.x = pos_x;
     baseiglesia.position.y = pos_y;
@@ -1226,16 +1244,21 @@ constructor(scene){
     baseiglesia.scale.x = esc_x;
     baseiglesia.scale.y = esc_y;
     baseiglesia.scale.z = esc_z;
+
+    return baseiglesia;
+
   }
 
   mostrarArboles() {
+   
+  
     //PARTE DEL PARQUE 1
     arb.crearArboles();
     var light2 = new THREE.PointLight(0x66ff00, 1);
     light2.position.x = -70;
     light2.position.y = 40;
     light2.position.z = 350;
-    scene.add(light2);
+    this.scene.add(light2);
     //insertar un modelo de arbol
     ar.cargarModelo3D("Modelos/arbol2.glb", -70, 20, 310, 0, 0, 0, 1.5, 1.5, 2);
     this.flores(-60, 20, 100, 0, 0, 0, 1.1, 1, 1.1);
@@ -1248,6 +1271,8 @@ constructor(scene){
   }
 
   flores(pos_x, pos_y, pos_z, rot_x, rot_y, rot_z, esc_x, esc_y, esc_z) {
+  
+    
     e.darColor = true;
     e.crear_esfera(
       0,
@@ -1267,7 +1292,7 @@ constructor(scene){
       0x00ff11
     );
 
-    flr.add(sphere);
+    flr.add(e.sphere);
 
     ci.darColor = true;
     ci.crearCilindro(
@@ -1286,7 +1311,7 @@ constructor(scene){
       false,
       0xff0011
     );
-    flr.add(cilindro);
+    flr.add(ci.cilindro);
 
     ci.darColor = true;
     ci.crearCilindro(
@@ -1305,7 +1330,7 @@ constructor(scene){
       false,
       0xff0011
     );
-    flr.add(cilindro);
+    flr.add(ci.cilindro);
 
     ci.darColor = true;
     ci.crearCilindro(
@@ -1324,7 +1349,7 @@ constructor(scene){
       false,
       0xff0011
     );
-    flr.add(cilindro);
+    flr.add(ci.cilindro);
 
     ci.darColor = true;
     ci.crearCilindro(
@@ -1343,7 +1368,7 @@ constructor(scene){
       false,
       0xff0011
     );
-    flr.add(cilindro);
+    flr.add(ci.cilindro);
 
     flr.position.x = pos_x;
     flr.position.y = pos_y;

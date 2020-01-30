@@ -1,12 +1,12 @@
 import * as THREE from 'three';
-import Parque from './Parque';
-import Arbol from './Arbol';
-import Lamparas from './Lamparas';
+import {flr} from './Parque';
+import {arbl} from './Arbol';
+import {lmp} from './Lamparas';
 //import {darColor,cilindro,flr,arbl,lmp} from '../Principal';
 
 var darColor=false;
-var p,a,l;
 
+var cilindro;
 
 export default class Cilindro {
 
@@ -30,10 +30,7 @@ export default class Cilindro {
     esq,
     colorCilindro
   ) {
-     p=new Parque(this.scene);
-     a=new Arbol(this.scene);
-     l=new Lamparas(this.scene);
-
+    
 
     var geometria_cilindro = new THREE.CylinderGeometry(
       ancho,
@@ -71,9 +68,9 @@ export default class Cilindro {
     cilindro.scale.y = esc_y;
     cilindro.scale.z = esc_z;
 
-    this.scene.add(p.flr);
-    this.scene.add(a.arbl);
-    this.scene.add(l.lmp);
+    this.scene.add(flr);
+    this.scene.add(arbl);
+    this.scene.add(lmp);
     this.scene.add(cilindro);
     return cilindro,darColor = false;
   }

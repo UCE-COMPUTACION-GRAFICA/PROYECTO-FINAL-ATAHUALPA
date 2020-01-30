@@ -71,7 +71,7 @@ function inicio() {
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(ancho, largo);
   document.body.appendChild(renderer.domElement);
-  material = new THREE.MeshBasicMaterial({ color: 0x00ff0000 });
+  var material = new THREE.MeshBasicMaterial({ color: 0x00ff0000 });
   //CAMARAS
   camera.position.z = 1000;
   camera.position.y = 100;
@@ -82,7 +82,7 @@ function inicio() {
   //para no salirse del skybox
   //controls.minDistance = 500;
   //controls.maxDistance = 1500;
-  
+
   // STATS corresponde a los fotogramas por segundo
   stats = new Stats();
   stats.domElement.style.position = "absolute";
@@ -95,11 +95,12 @@ function inicio() {
   //creamos los objetos de la escena en forma de capas
   f.crearFondo();
   p.PlanoPrincipal();
-  par.crearParque();
-  i = new Iglesia(40, 30, 0, 0, 0, 0, 0.7, 1, 1, scene);
-  i.crearIglesia();
+  //i = new Iglesia(40, 30, 0, 0, 0, 0, 0.7, 1, 1, scene);
+  //i.crearIglesia();
   pi = new Pileta(0, 0, 30, 0, 0, 0, 1, 1, 1, scene);
   pi.dibujarPileta();
+  par.crearParque();
+  
   //CASAS de lado izquierdo del parque central
   ca.crear_casa(0, 0, 0, 0, 0, 0, 1, 1, 1);
   lab.crearLaberinto();
@@ -140,85 +141,7 @@ function texto3() {
   //textMesh.rotation.x = -Math.PI / 4;
   scene.add(textMesh);
 }
-/*
-function hacerObjetos3D() {
-  //Iglesia
-  pivotPoint,
-    pivotPuerta,
-    pivotPuerta2,
-    pivotPuerta3,
-    pivotPuerta4,
-    (pivotPuerta5 = new THREE.Object3D());
-  //ventanas y figuras de los lados de la iglesia y base de la misma
-  Puertapeque1,
-   Puertapeque2,
-    ventana1,
-    ventana2,
-    ventana3,
-    ventana4,
-    lado1,
-    lado2,
-    (baseiglesia = new THREE.Object3D());
-  //pileta y las diferentes bancas
-  pil,
-    ban,
-    ban1,
-    ban2,
-    ban3,
-    ban4,
-    ban6,
-    ban7,
-    ban8,
-    (ban9 = new THREE.Object3D());
-  //las diferentes lamparas
-  lmp,
-    lmp1,
-    lmp2,
-    lmp3,
-    lmp4,
-    lmp5,
-    lmp6,
-    lmp7,
-    lmp8,
-    lmp9,
-    lmp10,
-    lmp11,
-    lmp12,
-    lmp13,
-    lmp14,
-    lmp15,
-    lmp16,
-    lmp17,
-    lmp18,
-    lmp19,
-    lmp20,
-    lmp21,
-    lmp22,
-    lmp23,
-    lmp24,
-    lmp25,
-    lmp26,
-    lmp27,
-    lmp28,
-    lmp29,
-    lmp30,
-    lmp31,
-    lmp32,
-    lmp33,
-    (lmp34 = new THREE.Object3D());
-  //arboles y flores
-  arbl,
-  arbl1,
-    arbl2,
-    arbl3,
-    flr,
-    flr1,
-    flr2,
-    flr3,
-    flr4,
-    (flr5 = new THREE.Object3D());
-}
-*/
+
 
 function animacion() {
   requestAnimationFrame(animacion);

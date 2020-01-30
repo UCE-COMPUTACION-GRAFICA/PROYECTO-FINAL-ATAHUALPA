@@ -2,9 +2,7 @@ import { Object3D } from "three";
 import Textura from "./Textura";
 import Cubo from "./Cubo";
 
-//import { t, cu, darColor, banca,cubo,textura } from "../Principal";
-
-var 
+export var 
   ban,
   ban1,
   ban2,
@@ -16,7 +14,7 @@ var
   ban9=new Object3D();
 
   var t=new Textura();
-  var cu=new Cubo(this.scene);
+  var cu;
   var textura;
 export default class Bancas {
 constructor(scene){
@@ -48,6 +46,7 @@ constructor(scene){
   }
 
   FigurasBanca(pos_x, pos_y, pos_z, rot_x, rot_y, rot_z, esc_x, esc_y, esc_z) {
+    cu=new Cubo(this.scene);
     //crear la parte superior, se tomara un cubo
     textura=t.crear_texturas("texturas/muro2.jpg", 0.5, 0.5);
     cu.crear_cubo(360, 40, 500, 10, 5, 45, textura, false, 0, 0, 0, 1, 1, 1);

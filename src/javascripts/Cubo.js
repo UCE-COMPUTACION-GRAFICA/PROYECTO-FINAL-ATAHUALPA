@@ -1,14 +1,12 @@
 import * as THREE from 'three';
-import Pileta from './Pileta';
-import Bancas from './Bancas';
-import Iglesia from './Iglesia';
+import {pil} from './Pileta';
+import {ban} from './Bancas';
+import {pivotPoint} from './Iglesia';
+
 
 var darColor=false;
 var cubo;
 
-var pi=new Pileta(this.scene);
-var b=new Bancas(this.scene);
-var i=new Iglesia(this.scene);
 
 
 
@@ -34,6 +32,8 @@ export default class Cubo {
     esc_z,
     colorCubo
   ) {
+
+ 
     var geometry = new THREE.BoxGeometry(x, z, y);   
 
    if(darColor==true){
@@ -63,9 +63,12 @@ export default class Cubo {
     cubo.scale.z = esc_z;
 
     //Añade los objetos 3D
-    this.scene.add(i.pivotPoint);
-    this.scene.add(pi.pil);
-    this.scene.add(b.ban);
+
+    this.scene.add(pivotPoint);
+    this.scene.add(pil);
+    this.scene.add(ban);
+
+    
     this.scene.add(cubo);
 
     return cubo,darColor=false;

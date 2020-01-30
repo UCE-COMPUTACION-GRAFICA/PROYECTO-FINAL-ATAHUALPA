@@ -1,8 +1,8 @@
 import Textura from "./Textura";
-
+import Cubo from "./Cubo";
 //import { t, cu, darColor,textura } from "../Principal";
 var t=new Textura();
-var cu=new Cubo(this.scene);
+var cu;
 var textura;
 
 export default class Casas {
@@ -22,6 +22,7 @@ constructor(scene){
   }
 
   suelo() {
+    cu=new Cubo(this.scene);
     //suelo
     textura=t.crear_texturas("texturas/adoquin2.jpg", 15, 15);
     cu.crear_cubo(
@@ -42,6 +43,7 @@ constructor(scene){
     );
   }
   casa1() {
+    cu=new Cubo(this.scene);
     //casa blanca
     // t.crear_texturas("texturas/ad_blanco.jpg", 15, 15);
     //parte cubo de base blanco
@@ -66,6 +68,7 @@ constructor(scene){
     //textura de piedra de abajo
   }
   casa2() {
+    cu=new Cubo(this.scene);
     //patio
     textura=t.crear_texturas("texturas/ad_blanco.jpg", 15, 15);
     cu.crear_cubo(
@@ -139,6 +142,7 @@ constructor(scene){
     );
   }
   casa3() {
+    cu=new Cubo(this.scene);
     //t.crear_texturas("texturas/muro3.jpg", 15, 15);
     cu.crear_cubo(
       1450,
@@ -159,6 +163,7 @@ constructor(scene){
     );
   }
   casa4() {
+    cu=new Cubo(this.scene);
     cu.crear_cubo(
       1450,
       70,
@@ -178,6 +183,7 @@ constructor(scene){
     );
   }
   casa5() {
+    cu=new Cubo(this.scene);
     cu.crear_cubo(
       1450,
       70,
@@ -198,6 +204,7 @@ constructor(scene){
   }
 
   casa6() {
+    cu=new Cubo(this.scene);
     cu.crear_cubo(
       1450,
       70,
@@ -218,6 +225,7 @@ constructor(scene){
   }
 
   casa7() {
+    cu=new Cubo(this.scene);
     cu.crear_cubo(
       1450,
       70,

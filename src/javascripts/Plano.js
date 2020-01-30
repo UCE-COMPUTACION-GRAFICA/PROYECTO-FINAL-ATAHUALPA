@@ -1,5 +1,5 @@
 import * as THREE from "three";
-var terriorio;
+var territorio;
 export default class Plano {
 
   constructor(scene){
@@ -26,6 +26,6 @@ this.scene=scene;
     territorio.rotation.x = rotx;
 
     this.scene.add(territorio);
-    return terriorio;
+    return territorio;
   }
 }

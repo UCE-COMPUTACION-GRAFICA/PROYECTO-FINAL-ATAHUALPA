@@ -9,6 +9,7 @@ export default class Fondo {
   }
   //Para esto se va autilizar un skybox
   crearFondo() {
+  
     let materialArray = [];
     let texture_ft = new THREE.TextureLoader().load(
       "ImagenesFondo/paze_ft.jpg"
