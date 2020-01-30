@@ -1,7 +1,21 @@
+import * as THREE from 'three';
+import Parque from './Parque';
+import Arbol from './Arbol';
+import Lamparas from './Lamparas';
+//import {darColor,cilindro,flr,arbl,lmp} from '../Principal';
+
+var darColor=false;
+var p,a,l;
+
+
 export default class Cilindro {
 
+  constructor(scene){
+    this.scene=scene;
+  }
 
-  crearCilindro(pos_x,
+  crearCilindro(
+    pos_x,
     pos_y,
     pos_z,
     rot_x,
@@ -14,7 +28,12 @@ export default class Cilindro {
     altura,
     text,
     esq,
-    colorCilindro) {
+    colorCilindro
+  ) {
+     p=new Parque(this.scene);
+     a=new Arbol(this.scene);
+     l=new Lamparas(this.scene);
+
 
     var geometria_cilindro = new THREE.CylinderGeometry(
       ancho,
@@ -23,12 +42,7 @@ export default class Cilindro {
       30,
       30,
       false
-
     );
-
-
-
-
 
     if (darColor == true) {
       var material = new THREE.MeshBasicMaterial({
@@ -36,7 +50,6 @@ export default class Cilindro {
         wireframe: esq
       });
     } else {
-
       var material = new THREE.MeshBasicMaterial({
         map: text,
         side: THREE.DoubleSide,
@@ -58,11 +71,10 @@ export default class Cilindro {
     cilindro.scale.y = esc_y;
     cilindro.scale.z = esc_z;
 
-    scene.add(flr);
-    scene.add(arbl);
-    scene.add(lmp);
-    scene.add(cilindro);
-    darColor = false;
+    this.scene.add(p.flr);
+    this.scene.add(a.arbl);
+    this.scene.add(l.lmp);
+    this.scene.add(cilindro);
+    return cilindro,darColor = false;
   }
-
 }

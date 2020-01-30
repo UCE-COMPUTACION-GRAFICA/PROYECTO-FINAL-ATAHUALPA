@@ -1,8 +1,50 @@
-class Parque {
+import Textura from './Textura';
+import Cubo from './Cubo';
+import Cilindro from './Cilindro';
+import Arbol from './Arbol';
+import Esfera from './Esfera';
+import Bancas from './Bancas';
+import Lamparas from './Lamparas';
+import Modelo3D from './Modelo3D';
+
+
+import { Object3D } from "three";
+
+var t=new Textura();
+var cu=new Cubo(this.scene);
+var ci=new Cilindro(this.scene);
+var arb=new Arbol(this.scene);
+var e=new Esfera(this.scene);
+var banca =new Bancas(this.scene);
+var lamp=new Lamparas(this.scene);
+var ar=new Modelo3D(this.scene);
+
+var textura;
+
+
+//creacion de objetos 3d a usarse
+
+  var lado1,
+  lado2,
+  baseiglesia,
+  flr,
+  flr1,
+  flr2,
+  flr3,
+  fl4,
+  flr5= new Object3D();
+
+
+export default class Parque {
+constructor(scene){
+  this.scene=scene;
+}
+
+
   crearParque() {
     //parque: cuadrado principal que abarca todo el parque
-    t.crear_texturas("texturas/ad.jpg", 5, 5);
-    darColor = true;
+    textura=t.crear_texturas("texturas/ad.jpg", 5, 5);
+    cu.darColor=true;
     cu.crear_cubo(
       180,
       10,
@@ -22,8 +64,7 @@ class Parque {
     );
 
     //cuadrado central con textura que abarca la pileta
-    t.crear_texturas("texturas/adoquin2.jpg", 10, 20);
-
+    textura=t.crear_texturas("texturas/adoquin2.jpg", 10, 20);
     cu.crear_cubo(
       169.7,
       13,
@@ -40,14 +81,9 @@ class Parque {
       1.1,
       1
     );
-
-    //1.1 
-    //13
-    t.crear_texturas("texturas/adoquin2.jpg", 0.025, 0.05);
-
+    textura=t.crear_texturas("texturas/adoquin2.jpg", 0.025, 0.05);
     //completa la figura de arriba,
-
-    a.figuraTextura_parque(
+    this.figuraTextura_parque(
       -182,
       13,
       500,
@@ -60,10 +96,8 @@ class Parque {
       textura,
       false
     );
-
     //textura de los lados superiores de las calles
-    t.crear_texturas("texturas/adoquin2.jpg", 9, 3);
-
+    textura=t.crear_texturas("texturas/adoquin2.jpg", 9, 3);
     cu.crear_cubo(505, 13, 172, 320, 1, 70, textura, false, 0, 0, 0, 0.8, 1, 1);
     cu.crear_cubo(
       -168,
@@ -81,7 +115,6 @@ class Parque {
       1,
       1
     );
-
     cu.crear_cubo(
       -168,
       13,
@@ -99,7 +132,6 @@ class Parque {
       1
     );
     cu.crear_cubo(505, 13, 400, 320, 1, 70, textura, false, 0, 0, 0, 0.8, 1, 1);
-
     //frente
     cu.crear_cubo(
       165,
@@ -117,7 +149,6 @@ class Parque {
       1,
       1
     );
-
     //laterales
     cu.crear_cubo(
       -142,
@@ -151,25 +182,19 @@ class Parque {
       1,
       1
     );
-
-    t.crear_texturas("texturas/ad.jpg", 10, 20);
+    textura=t.crear_texturas("texturas/ad.jpg", 10, 20);
     cu.crear_cubo(200, 3, 100, 1200, 9, 1600, textura, false, 0, 0, 0, 1, 1, 1);
-
     //gradas
-
-    a.parte_parque1(0, 10, 0, 0, 0, 0, 1, 1, 1);
-    scene.add(baseiglesia);
-
+    this.parte_parque1(0, 10, 0, 0, 0, 0, 1, 1, 1);
+    this.scene.add(baseiglesia);
     //lados
-
-    a.lado(10, 10, 0, 0, 0, 0, 1.2, 1, 1);
-    scene.add(lado1);
+    this.lado(10, 10, 0, 0, 0, 0, 1.2, 1, 1);
+    this.scene.add(lado1);
     lado1 = lado2;
-    a.lado(660, 10, 0, 0, 0, 0, 1.2, 1, 1);
-    scene.add(lado1);
-
+    this.lado(660, 10, 0, 0, 0, 0, 1.2, 1, 1);
+    this.scene.add(lado1);
     //textura de lineas del circulo central
-    darColor = true;
+    cu.darColor = true;
     ci.crearCilindro(
       167,
       15,
@@ -188,7 +213,7 @@ class Parque {
     );
     //textura de lineas verticales
     //arriba
-    darColor = true;
+    cu.darColor = true;
     cu.crear_cubo(
       170,
       14,
@@ -207,7 +232,7 @@ class Parque {
       0xf4fa58
     );
     //abajo
-    darColor = true;
+    cu.darColor = true;
     cu.crear_cubo(
       170,
       14,
@@ -225,9 +250,8 @@ class Parque {
       1,
       0xf4fa58
     );
-
     //laterales
-    darColor = true;
+    cu.darColor = true;
     cu.crear_cubo(
       170,
       14,
@@ -245,7 +269,7 @@ class Parque {
       1,
       0xf4fa58
     );
-    darColor = true;
+    cu.darColor = true;
     cu.crear_cubo(
       170,
       14,
@@ -263,9 +287,8 @@ class Parque {
       1,
       0xf4fa58
     );
-
     //lineas horizontales
-    darColor = true;
+    cu.darColor = true;
     cu.crear_cubo(
       170,
       14,
@@ -283,18 +306,17 @@ class Parque {
       1,
       0xf4fa58
     );
-
     //cu.crear_cubo(200,50,0,10,0.1,50,0,false,0,Math.Pi/2,0,1,1,1,0xF4FA58)
-
     //circulo central
-    t.crear_texturas("texturas/piedra.webp", 7, 7);
+    textura=t.crear_texturas("texturas/piedra.webp", 7, 7);
     ci.crearCilindro(167, 15.5, 405, 0, 0, 0, 1, 1, 1, 80, 0.5, textura, false);
-
     //partes de los jardines
-    a.jardines();
-    // pi.dibujarPileta();
-
-    a.mostrarArboles();
+    this.jardines();
+    this.mostrarArboles();
+    //crear bancas del parque
+    banca.crearBancas();
+    //lamparas
+    lamp.crearLamparas();
   }
 
   Lineacirculo(
@@ -345,14 +367,14 @@ class Parque {
     semicir.scale.y = esc_y;
     semicir.scale.z = esc_z;
 
-    scene.add(semicir);
+    this.scene.add(semicir);
 
     // console.log(semicir);
   }
 
   jardines(pos_x, pos_y, pos_z, rot_x, rot_y, rot_z, esc_x, esc_y, esc_z) {
     //dere
-    t.crear_texturas("texturas/adoquin_calle.jpg", 15, 15);
+    textura=t.crear_texturas("texturas/adoquin_calle.jpg", 15, 15);
     cu.crear_cubo(
       502,
       15,
@@ -370,7 +392,7 @@ class Parque {
       1
     );
 
-    t.crear_texturas("texturas/cesped.jpg", 5, 5);
+    textura=t.crear_texturas("texturas/cesped.jpg", 5, 5);
     cu.crear_cubo(
       502,
       19,
@@ -387,9 +409,8 @@ class Parque {
       1,
       1
     );
-
     //izq
-    t.crear_texturas("texturas/adoquin_calle.jpg", 15, 15);
+    textura=t.crear_texturas("texturas/adoquin_calle.jpg", 15, 15);
     cu.crear_cubo(
       -163,
       15,
@@ -406,7 +427,7 @@ class Parque {
       1,
       1
     );
-    t.crear_texturas("texturas/cesped.jpg", 5, 5);
+    textura=t.crear_texturas("texturas/cesped.jpg", 5, 5);
     cu.crear_cubo(
       -163,
       19,
@@ -426,8 +447,8 @@ class Parque {
 
     //figuras
     //derecha
-    t.crear_texturas("texturas/adoquin_calle.jpg", 15, 15);
-    a.figura_jardin(
+    textura=t.crear_texturas("texturas/adoquin_calle.jpg", 15, 15);
+    this.figura_jardin(
       375,
       14,
       440,
@@ -441,8 +462,8 @@ class Parque {
       false
     );
 
-    t.crear_texturas("texturas/cesped.jpg", 0.05, 0.05);
-    a.figura_jardin(
+    textura=t.crear_texturas("texturas/cesped.jpg", 0.05, 0.05);
+    this.figura_jardin(
       375,
       19,
       440,
@@ -457,8 +478,8 @@ class Parque {
     );
 
     //izquierda
-    t.crear_texturas("texturas/adoquin_calle.jpg", 15, 15);
-    a.figura_jardin(
+    textura=t.crear_texturas("texturas/adoquin_calle.jpg", 15, 15);
+    this.figura_jardin(
       -40,
       14,
       440,
@@ -472,8 +493,8 @@ class Parque {
       false
     );
 
-    t.crear_texturas("texturas/cesped.jpg", 0.05, 0.05);
-    a.figura_jardin(
+    textura=t.crear_texturas("texturas/cesped.jpg", 0.05, 0.05);
+    this.figura_jardin(
       -40,
       19,
       440,
@@ -488,14 +509,38 @@ class Parque {
     );
 
     //centrales
-    t.crear_texturas("texturas/adoquin_calle.jpg", 15, 15);
-    a.figura_jardin2(26, 9, 570, -Math.PI / 2, 0, 0, 1, 1, 1, textura, false);
+    textura=t.crear_texturas("texturas/adoquin_calle.jpg", 15, 15);
+    this.figura_jardin2(
+      26,
+      9,
+      570,
+      -Math.PI / 2,
+      0,
+      0,
+      1,
+      1,
+      1,
+      textura,
+      false
+    );
 
-    t.crear_texturas("texturas/cesped.jpg", 0.05, 0.05);
-    a.figura_jardin2(26, 14, 570, -Math.PI / 2, 0, 0, 1, 1, 1, textura, false);
+    textura=t.crear_texturas("texturas/cesped.jpg", 0.05, 0.05);
+    this.figura_jardin2(
+      26,
+      14,
+      570,
+      -Math.PI / 2,
+      0,
+      0,
+      1,
+      1,
+      1,
+      textura,
+      false
+    );
 
-    t.crear_texturas("texturas/adoquin_calle.jpg", 15, 15);
-    a.figura_jardin2(
+    textura=t.crear_texturas("texturas/adoquin_calle.jpg", 15, 15);
+    this.figura_jardin2(
       304,
       15,
       570,
@@ -508,8 +553,8 @@ class Parque {
       textura,
       false
     );
-    t.crear_texturas("texturas/cesped.jpg", 0.05, 0.05);
-    a.figura_jardin2(
+    textura=t.crear_texturas("texturas/cesped.jpg", 0.05, 0.05);
+    this.figura_jardin2(
       304,
       20,
       570,
@@ -523,7 +568,7 @@ class Parque {
       false
     );
 
-    a.vallas();
+    this.vallas();
   }
 
   vallas() {
@@ -531,69 +576,91 @@ class Parque {
 
     /*izq 1*/
     for (var i = 0; i < 63; i++) {
-      a.Lineacirculo(-39 - 4 * i, 17, 211, 0, 0, 0, 1, 5, 1, 2);
-      a.Lineacirculo(-39 - 4 * i, 17, 210.9, 0, 0, 0, 1, 5, 1, 2);
+      this.Lineacirculo(-39 - 4 * i, 17, 211, 0, 0, 0, 1, 5, 1, 2);
+      this.Lineacirculo(-39 - 4 * i, 17, 210.9, 0, 0, 0, 1, 5, 1, 2);
       //central
-      a.Lineacirculo(-39 - 4 * i, 18, 211, 0, 0, 0, 1, 1, 1, 2);
-      a.Lineacirculo(-39 - 4 * i, 18, 210.9, 0, 0, 0, 1, 1, 1, 2);
+      this.Lineacirculo(-39 - 4 * i, 18, 211, 0, 0, 0, 1, 1, 1, 2);
+      this.Lineacirculo(-39 - 4 * i, 18, 210.9, 0, 0, 0, 1, 1, 1, 2);
     }
     for (var i = 0; i < 38; i++) {
-      a.Lineacirculo(-289, 17, 212 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
-      a.Lineacirculo(-289, 17, 211.9 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
+      this.Lineacirculo(-289, 17, 212 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
+      this.Lineacirculo(-289, 17, 211.9 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
       //central
-      a.Lineacirculo(-289, 18, 212 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
-      a.Lineacirculo(-289, 18, 211.9 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
+      this.Lineacirculo(-289, 18, 212 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
+      this.Lineacirculo(-289, 18, 211.9 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
     }
 
     for (var i = 0; i < 38; i++) {
-      a.Lineacirculo(-38, 17, 212 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
-      a.Lineacirculo(-38, 17, 211.9 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
+      this.Lineacirculo(-38, 17, 212 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
+      this.Lineacirculo(-38, 17, 211.9 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
       //central
-      a.Lineacirculo(-38, 18, 212 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
-      a.Lineacirculo(-38, 18, 211.9 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
+      this.Lineacirculo(-38, 18, 212 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
+      this.Lineacirculo(-38, 18, 211.9 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
     }
     for (var i = 0; i < 63; i++) {
-      a.Lineacirculo(-39 - 4 * i, 17, 362, 0, 0, 0, 1, 5, 1, 2);
-      a.Lineacirculo(-39 - 4 * i, 17, 361.9, 0, 0, 0, 1, 5, 1, 2);
+      this.Lineacirculo(-39 - 4 * i, 17, 362, 0, 0, 0, 1, 5, 1, 2);
+      this.Lineacirculo(-39 - 4 * i, 17, 361.9, 0, 0, 0, 1, 5, 1, 2);
       //central
 
-      a.Lineacirculo(-39 - 4 * i, 18, 362, 0, 0, 0, 1, 1, 1, 2);
-      a.Lineacirculo(-39 - 4 * i, 18, 361.9, 0, 0, 0, 1, 1, 1, 2);
+      this.Lineacirculo(-39 - 4 * i, 18, 362, 0, 0, 0, 1, 1, 1, 2);
+      this.Lineacirculo(-39 - 4 * i, 18, 361.9, 0, 0, 0, 1, 1, 1, 2);
     }
 
     //3 abajo izquierda
     for (var i = 0; i < 29; i++) {
-      a.Lineacirculo(127 - 4 * i, 17, 610, 0, 0, 0, 1, 5, 1, 2);
-      a.Lineacirculo(127 - 4 * i, 17, 609.9, 0, 0, 0, 1, 5, 1, 2);
+      this.Lineacirculo(127 - 4 * i, 17, 610, 0, 0, 0, 1, 5, 1, 2);
+      this.Lineacirculo(127 - 4 * i, 17, 609.9, 0, 0, 0, 1, 5, 1, 2);
       //central
 
-      a.Lineacirculo(127 - 4 * i, 18, 610, 0, 0, 0, 1, 1, 1, 2);
-      a.Lineacirculo(127 - 4 * i, 18, 609.9, 0, 0, 0, 1, 1, 1, 2);
+      this.Lineacirculo(127 - 4 * i, 18, 610, 0, 0, 0, 1, 1, 1, 2);
+      this.Lineacirculo(127 - 4 * i, 18, 609.9, 0, 0, 0, 1, 1, 1, 2);
     }
 
     for (var i = 0; i < 94; i++) {
-      a.Lineacirculo(125 - 4 * i, 17, 840, 0, 0, 0, 1, 5, 1, 2);
-      a.Lineacirculo(125 - 4 * i, 17, 839.9, 0, 0, 0, 1, 5, 1, 2);
+      this.Lineacirculo(125 - 4 * i, 17, 840, 0, 0, 0, 1, 5, 1, 2);
+      this.Lineacirculo(125 - 4 * i, 17, 839.9, 0, 0, 0, 1, 5, 1, 2);
       //central
 
-      a.Lineacirculo(125 - 4 * i, 18, 840, 0, 0, 0, 1, 1, 1, 2);
-      a.Lineacirculo(125 - 4 * i, 18, 839.9, 0, 0, 0, 1, 1, 1, 2);
+      this.Lineacirculo(125 - 4 * i, 18, 840, 0, 0, 0, 1, 1, 1, 2);
+      this.Lineacirculo(125 - 4 * i, 18, 839.9, 0, 0, 0, 1, 1, 1, 2);
     }
 
     for (var i = 0; i < 58; i++) {
-      a.Lineacirculo(127, 17, 612 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
-      a.Lineacirculo(127, 17, 611.9 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
+      this.Lineacirculo(127, 17, 612 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
+      this.Lineacirculo(127, 17, 611.9 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
       //central
-      a.Lineacirculo(127, 18, 612 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
-      a.Lineacirculo(127, 18, 611.9 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
+      this.Lineacirculo(127, 18, 612 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
+      this.Lineacirculo(127, 18, 611.9 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
     }
 
     for (var i = 0; i < 59; i++) {
-      a.Lineacirculo(-249 + 4.62 * i, 17, 839 - 4 * i, 0, 0, 0, 1, 5, 1, 2);
-      a.Lineacirculo(-248.9 + 4.62 * i, 17, 838.9 - 4 * i, 0, 0, 0, 1, 5, 1, 2);
+      this.Lineacirculo(-249 + 4.62 * i, 17, 839 - 4 * i, 0, 0, 0, 1, 5, 1, 2);
+      this.Lineacirculo(
+        -248.9 + 4.62 * i,
+        17,
+        838.9 - 4 * i,
+        0,
+        0,
+        0,
+        1,
+        5,
+        1,
+        2
+      );
       //central
-      a.Lineacirculo(-249 + 4.62 * i, 17, 839 - 4 * i, 0, 0, 0, 1, 1, 1, 2);
-      a.Lineacirculo(-248.9 + 4.62 * i, 17, 838.9 - 4 * i, 0, 0, 0, 1, 1, 1, 2);
+      this.Lineacirculo(-249 + 4.62 * i, 17, 839 - 4 * i, 0, 0, 0, 1, 1, 1, 2);
+      this.Lineacirculo(
+        -248.9 + 4.62 * i,
+        17,
+        838.9 - 4 * i,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        2
+      );
     }
 
     /**** */
@@ -601,143 +668,198 @@ class Parque {
     /* 2 izquierdo*/
 
     for (var i = 0; i < 83; i++) {
-      a.Lineacirculo(-290, 17, 442 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
-      a.Lineacirculo(-290, 17, 441.9 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
+      this.Lineacirculo(-290, 17, 442 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
+      this.Lineacirculo(-290, 17, 441.9 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
 
       //central
-      a.Lineacirculo(-290, 18, 442 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
-      a.Lineacirculo(-290, 18, 441.9 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
+      this.Lineacirculo(-290, 18, 442 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
+      this.Lineacirculo(-290, 18, 441.9 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
     }
 
     for (var i = 0; i < 30; i++) {
-      a.Lineacirculo(-40, 17, 442 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
-      a.Lineacirculo(-40, 17, 441.9 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
+      this.Lineacirculo(-40, 17, 442 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
+      this.Lineacirculo(-40, 17, 441.9 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
       //central
 
-      a.Lineacirculo(-40, 18, 442 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
-      a.Lineacirculo(-40, 18, 441.9 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
+      this.Lineacirculo(-40, 18, 442 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
+      this.Lineacirculo(-40, 18, 441.9 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
     }
 
     for (var i = 0; i < 63; i++) {
-      a.Lineacirculo(-40 - 4 * i, 17, 440, 0, 0, 0, 1, 5, 1, 2);
-      a.Lineacirculo(-40 - 4 * i, 17, 439.9, 0, 0, 0, 1, 5, 1, 2);
+      this.Lineacirculo(-40 - 4 * i, 17, 440, 0, 0, 0, 1, 5, 1, 2);
+      this.Lineacirculo(-40 - 4 * i, 17, 439.9, 0, 0, 0, 1, 5, 1, 2);
 
       //central
-      a.Lineacirculo(-40 - 4 * i, 18, 440, 0, 0, 0, 1, 1, 1, 2);
-      a.Lineacirculo(-40 - 4 * i, 18, 439.9, 0, 0, 0, 1, 1, 1, 2);
+      this.Lineacirculo(-40 - 4 * i, 18, 440, 0, 0, 0, 1, 1, 1, 2);
+      this.Lineacirculo(-40 - 4 * i, 18, 439.9, 0, 0, 0, 1, 1, 1, 2);
     }
 
     for (var i = 0; i < 52; i++) {
-      a.Lineacirculo(-287 + 4.78 * i, 17, 769 - 4 * i, 0, 0, 0, 1, 5, 1, 2);
-      a.Lineacirculo(-286.9 + 4.78 * i, 17, 768.9 - 4 * i, 0, 0, 0, 1, 5, 1, 2);
+      this.Lineacirculo(-287 + 4.78 * i, 17, 769 - 4 * i, 0, 0, 0, 1, 5, 1, 2);
+      this.Lineacirculo(
+        -286.9 + 4.78 * i,
+        17,
+        768.9 - 4 * i,
+        0,
+        0,
+        0,
+        1,
+        5,
+        1,
+        2
+      );
       //central
-      a.Lineacirculo(-287 + 4.78 * i, 17, 769 - 4 * i, 0, 0, 0, 1, 1, 1, 2);
-      a.Lineacirculo(-286.9 + 4.78 * i, 17, 768.9 - 4 * i, 0, 0, 0, 1, 1, 1, 2);
+      this.Lineacirculo(-287 + 4.78 * i, 17, 769 - 4 * i, 0, 0, 0, 1, 1, 1, 2);
+      this.Lineacirculo(
+        -286.9 + 4.78 * i,
+        17,
+        768.9 - 4 * i,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        2
+      );
     }
 
     //derecha
 
     /* 1 derecha*/
     for (var i = 0; i < 63; i++) {
-      a.Lineacirculo(379 + 4 * i, 17, 211, 0, 0, 0, 1, 5, 1, 2);
-      a.Lineacirculo(379 + 4 * i, 17, 210.9, 0, 0, 0, 1, 5, 1, 2);
+      this.Lineacirculo(379 + 4 * i, 17, 211, 0, 0, 0, 1, 5, 1, 2);
+      this.Lineacirculo(379 + 4 * i, 17, 210.9, 0, 0, 0, 1, 5, 1, 2);
       //central
-      a.Lineacirculo(379 + 4 * i, 18, 211, 0, 0, 0, 1, 1, 1, 2);
-      a.Lineacirculo(379 + 4 * i, 18, 210.9, 0, 0, 0, 1, 1, 1, 2);
+      this.Lineacirculo(379 + 4 * i, 18, 211, 0, 0, 0, 1, 1, 1, 2);
+      this.Lineacirculo(379 + 4 * i, 18, 210.9, 0, 0, 0, 1, 1, 1, 2);
     }
     for (var i = 0; i < 63; i++) {
-      a.Lineacirculo(379 + 4 * i, 17, 362, 0, 0, 0, 1, 5, 1, 2);
-      a.Lineacirculo(379 + 4 * i, 17, 361.9, 0, 0, 0, 1, 5, 1, 2);
+      this.Lineacirculo(379 + 4 * i, 17, 362, 0, 0, 0, 1, 5, 1, 2);
+      this.Lineacirculo(379 + 4 * i, 17, 361.9, 0, 0, 0, 1, 5, 1, 2);
       //central
-      a.Lineacirculo(379 + 4 * i, 18, 362, 0, 0, 0, 1, 1, 1, 2);
-      a.Lineacirculo(379 + 4 * i, 18, 361.9, 0, 0, 0, 1, 1, 1, 2);
+      this.Lineacirculo(379 + 4 * i, 18, 362, 0, 0, 0, 1, 1, 1, 2);
+      this.Lineacirculo(379 + 4 * i, 18, 361.9, 0, 0, 0, 1, 1, 1, 2);
     }
 
     for (var i = 0; i < 38; i++) {
-      a.Lineacirculo(377, 17, 212 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
-      a.Lineacirculo(377, 17, 211.9 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
+      this.Lineacirculo(377, 17, 212 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
+      this.Lineacirculo(377, 17, 211.9 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
       //central
-      a.Lineacirculo(377, 18, 212 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
-      a.Lineacirculo(377, 18, 211.9 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
+      this.Lineacirculo(377, 18, 212 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
+      this.Lineacirculo(377, 18, 211.9 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
     }
 
     for (var i = 0; i < 38; i++) {
-      a.Lineacirculo(628, 17, 212 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
-      a.Lineacirculo(628, 17, 211.9 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
+      this.Lineacirculo(628, 17, 212 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
+      this.Lineacirculo(628, 17, 211.9 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
       //central
-      a.Lineacirculo(628, 18, 212 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
-      a.Lineacirculo(628, 18, 211.9 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
+      this.Lineacirculo(628, 18, 212 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
+      this.Lineacirculo(628, 18, 211.9 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
     }
 
     /*2derecha*/
 
     for (var i = 0; i < 63; i++) {
-      a.Lineacirculo(377 + 4 * i, 17, 440, 0, 0, 0, 1, 5, 1, 2);
-      a.Lineacirculo(377 + 4 * i, 17, 439.9, 0, 0, 0, 1, 5, 1, 2);
+      this.Lineacirculo(377 + 4 * i, 17, 440, 0, 0, 0, 1, 5, 1, 2);
+      this.Lineacirculo(377 + 4 * i, 17, 439.9, 0, 0, 0, 1, 5, 1, 2);
       //central
-      a.Lineacirculo(377 + 4 * i, 18, 440, 0, 0, 0, 1, 1, 1, 2);
-      a.Lineacirculo(377 + 4 * i, 18, 439.9, 0, 0, 0, 1, 1, 1, 2);
+      this.Lineacirculo(377 + 4 * i, 18, 440, 0, 0, 0, 1, 1, 1, 2);
+      this.Lineacirculo(377 + 4 * i, 18, 439.9, 0, 0, 0, 1, 1, 1, 2);
     }
 
     for (var i = 0; i < 30; i++) {
-      a.Lineacirculo(375, 17, 441 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
-      a.Lineacirculo(375, 17, 440.9 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
+      this.Lineacirculo(375, 17, 441 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
+      this.Lineacirculo(375, 17, 440.9 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
       //central
 
-      a.Lineacirculo(375, 18, 441 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
-      a.Lineacirculo(375, 18, 440.9 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
+      this.Lineacirculo(375, 18, 441 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
+      this.Lineacirculo(375, 18, 440.9 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
     }
 
     for (var i = 0; i < 83; i++) {
-      a.Lineacirculo(626, 17, 441 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
-      a.Lineacirculo(626, 17, 440.9 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
+      this.Lineacirculo(626, 17, 441 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
+      this.Lineacirculo(626, 17, 440.9 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
       //central
 
-      a.Lineacirculo(626, 18, 441 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
-      a.Lineacirculo(626, 18, 440.9 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
+      this.Lineacirculo(626, 18, 441 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
+      this.Lineacirculo(626, 18, 440.9 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
     }
 
     for (var i = 0; i < 53; i++) {
-      a.Lineacirculo(374 + 4.8 * i, 17, 561 + 4 * i, 0, 0, 0, 1, 5, 1, 2);
-      a.Lineacirculo(373.9 + 4.8 * i, 17, 560.9 + 4 * i, 0, 0, 0, 1, 5, 1, 2);
+      this.Lineacirculo(374 + 4.8 * i, 17, 561 + 4 * i, 0, 0, 0, 1, 5, 1, 2);
+      this.Lineacirculo(
+        373.9 + 4.8 * i,
+        17,
+        560.9 + 4 * i,
+        0,
+        0,
+        0,
+        1,
+        5,
+        1,
+        2
+      );
       //central
 
-      a.Lineacirculo(374 + 4.8 * i, 18, 561 + 4 * i, 0, 0, 0, 1, 1, 1, 2);
-      a.Lineacirculo(373.9 + 4.8 * i, 18, 560.9 + 4 * i, 0, 0, 0, 1, 1, 1, 2);
+      this.Lineacirculo(374 + 4.8 * i, 18, 561 + 4 * i, 0, 0, 0, 1, 1, 1, 2);
+      this.Lineacirculo(
+        373.9 + 4.8 * i,
+        18,
+        560.9 + 4 * i,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        2
+      );
     }
 
     /* 3 derecha*/
 
     for (var i = 0; i < 26; i++) {
-      a.Lineacirculo(206 + 4 * i, 17, 610, 0, 0, 0, 1, 5, 1, 2);
-      a.Lineacirculo(206 + 4 * i, 17, 609.9, 0, 0, 0, 1, 5, 1, 2);
+      this.Lineacirculo(206 + 4 * i, 17, 610, 0, 0, 0, 1, 5, 1, 2);
+      this.Lineacirculo(206 + 4 * i, 17, 609.9, 0, 0, 0, 1, 5, 1, 2);
 
       //central
-      a.Lineacirculo(206 + 4 * i, 18, 610, 0, 0, 0, 1, 1, 1, 2);
-      a.Lineacirculo(206 + 4 * i, 18, 609.9, 0, 0, 0, 1, 1, 1, 2);
+      this.Lineacirculo(206 + 4 * i, 18, 610, 0, 0, 0, 1, 1, 1, 2);
+      this.Lineacirculo(206 + 4 * i, 18, 609.9, 0, 0, 0, 1, 1, 1, 2);
     }
 
     for (var i = 0; i < 94; i++) {
-      a.Lineacirculo(206 + 4 * i, 17, 840, 0, 0, 0, 1, 5, 1, 2);
-      a.Lineacirculo(206 + 4 * i, 17, 839.9, 0, 0, 0, 1, 5, 1, 2);
+      this.Lineacirculo(206 + 4 * i, 17, 840, 0, 0, 0, 1, 5, 1, 2);
+      this.Lineacirculo(206 + 4 * i, 17, 839.9, 0, 0, 0, 1, 5, 1, 2);
       //central
 
-      a.Lineacirculo(206 + 4 * i, 18, 840, 0, 0, 0, 1, 1, 1, 2);
-      a.Lineacirculo(206 + 4 * i, 18, 839.9, 0, 0, 0, 1, 1, 1, 2);
+      this.Lineacirculo(206 + 4 * i, 18, 840, 0, 0, 0, 1, 1, 1, 2);
+      this.Lineacirculo(206 + 4 * i, 18, 839.9, 0, 0, 0, 1, 1, 1, 2);
     }
 
     for (var i = 0; i < 58; i++) {
-      a.Lineacirculo(204, 17, 610 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
-      a.Lineacirculo(204, 17, 609.9 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
+      this.Lineacirculo(204, 17, 610 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
+      this.Lineacirculo(204, 17, 609.9 + 4 * i, 0, Math.PI / 2, 0, 1, 5, 1, 2);
       //central
 
-      a.Lineacirculo(204, 18, 610 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
-      a.Lineacirculo(204, 18, 609.9 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
+      this.Lineacirculo(204, 18, 610 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
+      this.Lineacirculo(204, 18, 609.9 + 4 * i, 0, Math.PI / 2, 0, 1, 1, 1, 2);
     }
     //lateral
     for (var i = 0; i < 56; i++) {
-      a.Lineacirculo(315 + 4.6 * i, 17, 610 + 4 * i, 0, 0, 0, 1, 5, 1, 2);
-      a.Lineacirculo(314.9 + 4.6 * i, 17, 609.9 + 4 * i, 0, 0, 0, 1, 5, 1, 2);
+      this.Lineacirculo(315 + 4.6 * i, 17, 610 + 4 * i, 0, 0, 0, 1, 5, 1, 2);
+      this.Lineacirculo(
+        314.9 + 4.6 * i,
+        17,
+        609.9 + 4 * i,
+        0,
+        0,
+        0,
+        1,
+        5,
+        1,
+        2
+      );
       //central
     }
   }
@@ -815,7 +937,7 @@ class Parque {
     figura_t.scale.y = esc_y;
     figura_t.scale.z = esc_z;
 
-    scene.add(figura_t);
+    this.scene.add(figura_t);
   }
 
   figura_jardin(
@@ -877,7 +999,7 @@ class Parque {
     });
 
     //agregar a malla
-    figura_j = new THREE.Mesh(extrude_geometria, material);
+    var figura_j = new THREE.Mesh(extrude_geometria, material);
 
     figura_j.position.x = pos_x;
     figura_j.position.y = pos_y;
@@ -891,7 +1013,7 @@ class Parque {
     figura_j.scale.y = esc_y;
     figura_j.scale.z = esc_z;
 
-    scene.add(figura_j);
+    this.scene.add(figura_j);
   }
 
   figura_jardin2(
@@ -953,7 +1075,7 @@ class Parque {
     });
 
     //agregar a malla
-    figura_j = new THREE.Mesh(extrude_geometria, material);
+    var figura_j = new THREE.Mesh(extrude_geometria, material);
 
     figura_j.position.x = pos_x;
     figura_j.position.y = pos_y;
@@ -967,11 +1089,11 @@ class Parque {
     figura_j.scale.y = esc_y;
     figura_j.scale.z = esc_z;
 
-    scene.add(figura_j);
+    this.scene.add(figura_j);
   }
 
   lado(pos_x, pos_y, pos_z, rot_x, rot_y, rot_z, esc_x, esc_y, esc_z) {
-    t.crear_texturas("texturas/muro.jpg", 5, 1);
+    textura=t.crear_texturas("texturas/muro.jpg", 5, 1);
     cu.crear_cubo(-235, 20, 114, 10, 40, 35, textura, false, 0, 0, 0, 1, 1, 1);
     lado1.add(cubo);
     cu.crear_cubo(-45, 20, 114, 10, 40, 35, textura, false, 0, 0, 0, 1, 1, 1);
@@ -979,7 +1101,7 @@ class Parque {
     cu.crear_cubo(-140, 10, 125, 200, 20, 15, textura, false, 0, 0, 0, 1, 1, 1);
     lado1.add(cubo);
     //cesped
-    t.crear_texturas("texturas/cesped.jpg", 5, 1);
+    textura=t.crear_texturas("texturas/cesped.jpg", 5, 1);
     cu.crear_cubo(
       -141,
       20,
@@ -997,7 +1119,7 @@ class Parque {
       1
     );
     lado1.add(cubo);
-    t.crear_texturas("texturas/muro.jpg", 5, 1);
+    textura=t.crear_texturas("texturas/muro.jpg", 5, 1);
     cu.crear_cubo(-140, 30, 95, 200, 20, 15, textura, false, 0, 0, 0, 1, 1, 1);
     lado1.add(cubo);
 
@@ -1016,7 +1138,7 @@ class Parque {
 
   //para la base de la iglesia, y gradas centrales de abajo del parque
   parte_parque1(pos_x, pos_y, pos_z, rot_x, rot_y, rot_z, esc_x, esc_y, esc_z) {
-    t.crear_texturas("texturas/piedra.webp", 3, 3);
+    textura=t.crear_texturas("texturas/piedra.webp", 3, 3);
     cu.crear_cubo(
       220,
       10,
@@ -1035,7 +1157,7 @@ class Parque {
     );
     baseiglesia.add(cubo);
     //gradas frente
-    darColor = true;
+    cu.darColor = true;
     cu.crear_cubo(
       220,
       3,
@@ -1054,7 +1176,7 @@ class Parque {
       0x6e6e6e
     );
     baseiglesia.add(cubo);
-    darColor = true;
+    cu.darColor = true;
     cu.crear_cubo(
       220,
       6,
@@ -1073,7 +1195,7 @@ class Parque {
       0x848484
     );
     baseiglesia.add(cubo);
-    darColor = true;
+    cu.darColor = true;
     cu.crear_cubo(
       220,
       10,
@@ -1108,54 +1230,120 @@ class Parque {
 
   mostrarArboles() {
     //PARTE DEL PARQUE 1
-
     arb.crearArboles();
-    
-
     var light2 = new THREE.PointLight(0x66ff00, 1);
     light2.position.x = -70;
     light2.position.y = 40;
     light2.position.z = 350;
     scene.add(light2);
     //insertar un modelo de arbol
-    //ar.cargarModelo3D("Modelos/arbol2.glb", -70, 20, 310, 0, 0, 0, 1.5, 1.5, 2);
-    this.flores(-60,20,100,0,0,0,1.1,1,1.1);
-    flr=flr1;
-    this.flores(-60,30,80,0,0,0,1.1,1,1.1);
-    flr=flr2;
-    this.flores(-60,40,95,0,0,0,1.1,1,1.1);
-    flr=flr3;
-    this.flores(-80,40,100,0,0,0,1.1,1,1.1);
-
-
-
+    ar.cargarModelo3D("Modelos/arbol2.glb", -70, 20, 310, 0, 0, 0, 1.5, 1.5, 2);
+    this.flores(-60, 20, 100, 0, 0, 0, 1.1, 1, 1.1);
+    flr = flr1;
+    this.flores(-60, 30, 80, 0, 0, 0, 1.1, 1, 1.1);
+    flr = flr2;
+    this.flores(-60, 40, 95, 0, 0, 0, 1.1, 1, 1.1);
+    flr = flr3;
+    this.flores(-80, 40, 100, 0, 0, 0, 1.1, 1, 1.1);
   }
 
-  flores(pos_x,pos_y,pos_z, rot_x,rot_y,rot_z,esc_x,esc_y,esc_z) {
-    
-    darColor=true;
-    e.crear_esfera(0,30,200,0,0,0,1,1,1,null,false,1,10,10,0x00FF11);
+  flores(pos_x, pos_y, pos_z, rot_x, rot_y, rot_z, esc_x, esc_y, esc_z) {
+    e.darColor = true;
+    e.crear_esfera(
+      0,
+      30,
+      200,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      null,
+      false,
+      1,
+      10,
+      10,
+      0x00ff11
+    );
 
     flr.add(sphere);
 
-    darColor=true;
-    ci.crearCilindro(2,30,200,0,0,0,1,1,0.7,2,1,null,false,0xFF0011);
+    ci.darColor = true;
+    ci.crearCilindro(
+      2,
+      30,
+      200,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0.7,
+      2,
+      1,
+      null,
+      false,
+      0xff0011
+    );
     flr.add(cilindro);
 
-
-    darColor=true;
-    ci.crearCilindro(-2,30,200,0,0,0,1,1,0.7,2,1,null,false,0xFF0011);
+    ci.darColor = true;
+    ci.crearCilindro(
+      -2,
+      30,
+      200,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0.7,
+      2,
+      1,
+      null,
+      false,
+      0xff0011
+    );
     flr.add(cilindro);
 
-
-    darColor=true;
-    ci.crearCilindro(0,30,202,0,Math.PI/2,0,1,1,0.7,2,1,null,false,0xFF0011);
+    ci.darColor = true;
+    ci.crearCilindro(
+      0,
+      30,
+      202,
+      0,
+      Math.PI / 2,
+      0,
+      1,
+      1,
+      0.7,
+      2,
+      1,
+      null,
+      false,
+      0xff0011
+    );
     flr.add(cilindro);
 
-    darColor=true;
-    ci.crearCilindro(0,30,198,0,Math.PI/2,0,1,1,0.7,2,1,null,false,0xFF0011);
+    ci.darColor = true;
+    ci.crearCilindro(
+      0,
+      30,
+      198,
+      0,
+      Math.PI / 2,
+      0,
+      1,
+      1,
+      0.7,
+      2,
+      1,
+      null,
+      false,
+      0xff0011
+    );
     flr.add(cilindro);
-
 
     flr.position.x = pos_x;
     flr.position.y = pos_y;
@@ -1168,8 +1356,5 @@ class Parque {
     flr.scale.x = esc_x;
     flr.scale.y = esc_y;
     flr.scale.z = esc_z;
-
-
-
   }
 }

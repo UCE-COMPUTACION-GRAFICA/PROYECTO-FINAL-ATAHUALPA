@@ -1,4 +1,20 @@
-class Esfera {
+import * as THREE from 'three';
+import Arbol from './Arbol';
+import Parque from './Parque';
+import Iglesia from './Iglesia';
+
+var sphere;
+var a=new Arbol(this.scene);
+var p=new Parque(this.scene);
+var i=new Iglesia(this.scene);
+
+var darColor=false;
+
+export default class Esfera {
+
+  constructor(scene){
+    this.scene=scene;
+  }
   crear_esfera(
     pos_x,
     pos_y,
@@ -12,15 +28,23 @@ class Esfera {
     textura,
     esq,
     t,
-    par
+    par,
+    colorEsfera
   ) {
     var geometry = new THREE.SphereGeometry(t, par, par);
 
-    var material = new THREE.MeshBasicMaterial({
-      map: textura,
-      side: THREE.DoubleSide,
-      wireframe: esq
-    });
+    if(darColor==true){
+      var material = new THREE.MeshBasicMaterial({
+        color: colorEsfera,
+        wireframe: esq
+      });
+     }else{
+      var material = new THREE.MeshBasicMaterial({
+        map: textura,
+        side: THREE.DoubleSide,
+        wireframe: esq
+      });
+     }
 
     sphere = new THREE.Mesh(geometry, material);
 
@@ -36,12 +60,12 @@ class Esfera {
     sphere.scale.y = esc_y;
     sphere.scale.z = esc_z;
 
+    this.scene.add(i.pivotPoint);
+    this.scene.add(a.arbl);
+    this.scene.add(p.flr);    
+    this.scene.add(sphere);
 
-    scene.add(pivotPoint);
-    scene.add(arbl);
-    scene.add(flr);
-  
-    
-    scene.add(sphere);
+    return sphere, darColor=false;
+
   }
 }

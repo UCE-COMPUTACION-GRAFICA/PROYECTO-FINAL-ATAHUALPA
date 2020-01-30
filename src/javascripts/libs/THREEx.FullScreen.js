@@ -106,3 +106,4 @@ THREEx.FullScreen.bindKey	= function(opts){
 		}
 	};
 }
+export default THREEx.FullScreen;

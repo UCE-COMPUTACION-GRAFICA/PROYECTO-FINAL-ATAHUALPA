@@ -1,36 +1,49 @@
-class Fondo{
+import * as THREE from "three";
+//import { scene } from "../Principal";
 
-//Para esto se va autilizar un skybox
 
-crearFondo(){
-let materialArray = [];
-let texture_ft = new THREE.TextureLoader().load( 'ImagenesFondo/paze_ft.jpg');
-let texture_bk = new THREE.TextureLoader().load( 'ImagenesFondo/paze_bk.jpg');
-let texture_up = new THREE.TextureLoader().load( 'ImagenesFondo/paze_up.jpg');
-let texture_dn = new THREE.TextureLoader().load( 'ImagenesFondo/paze_dn.jpg');
-let texture_rt = new THREE.TextureLoader().load( 'ImagenesFondo/paze_rt.jpg');
-let texture_lf = new THREE.TextureLoader().load( 'ImagenesFondo/paze_lf.jpg');
+export default class Fondo {
+
+  constructor(scene){
+    this.scene=scene;
+  }
+  //Para esto se va autilizar un skybox
+  crearFondo() {
+    let materialArray = [];
+    let texture_ft = new THREE.TextureLoader().load(
+      "ImagenesFondo/paze_ft.jpg"
+    );
+    let texture_bk = new THREE.TextureLoader().load(
+      "ImagenesFondo/paze_bk.jpg"
+    );
+    let texture_up = new THREE.TextureLoader().load(
+      "ImagenesFondo/paze_up.jpg"
+    );
+    let texture_dn = new THREE.TextureLoader().load(
+      "ImagenesFondo/paze_dn.jpg"
+    );
+    let texture_rt = new THREE.TextureLoader().load(
+      "ImagenesFondo/paze_rt.jpg"
+    );
+    let texture_lf = new THREE.TextureLoader().load(
+      "ImagenesFondo/paze_lf.jpg"
+    );
+
+    materialArray.push(new THREE.MeshBasicMaterial({ map: texture_ft }));
+    materialArray.push(new THREE.MeshBasicMaterial({ map: texture_bk }));
+    materialArray.push(new THREE.MeshBasicMaterial({ map: texture_up }));
+    materialArray.push(new THREE.MeshBasicMaterial({ map: texture_dn }));
+    materialArray.push(new THREE.MeshBasicMaterial({ map: texture_rt }));
+    materialArray.push(new THREE.MeshBasicMaterial({ map: texture_lf }));
+
+    for (let i = 0; i < 6; i++) materialArray[i].side = THREE.BackSide;
+
+    let skyboxGeo = new THREE.BoxGeometry(7000, 2000, 5000);
+    let skybox = new THREE.Mesh(skyboxGeo, materialArray);
+    skybox.position.y = 990;
+    skybox.position.z = -400;
+
+    this.scene.add(skybox);
+  }
   
-materialArray.push(new THREE.MeshBasicMaterial( { map: texture_ft }));
-materialArray.push(new THREE.MeshBasicMaterial( { map: texture_bk }));
-materialArray.push(new THREE.MeshBasicMaterial( { map: texture_up }));
-materialArray.push(new THREE.MeshBasicMaterial( { map: texture_dn }));
-materialArray.push(new THREE.MeshBasicMaterial( { map: texture_rt }));
-materialArray.push(new THREE.MeshBasicMaterial( { map: texture_lf }));
-   
-for (let i = 0; i < 6; i++)
-  materialArray[i].side = THREE.BackSide;
-   
-let skyboxGeo = new THREE.BoxGeometry( 7000, 2000, 5000);
-let skybox = new THREE.Mesh( skyboxGeo, materialArray );
-skybox.position.y=990;
-skybox.position.z=-400;
-scene.add( skybox );
 }
-//crear un cubo que abarque toda la escena
-
-
-}
-
-
-    

@@ -1,6 +1,22 @@
-class Cubo {
+import * as THREE from 'three';
+import Pileta from './Pileta';
+import Bancas from './Bancas';
+import Iglesia from './Iglesia';
 
-  
+var darColor=false;
+var cubo;
+
+var pi=new Pileta(this.scene);
+var b=new Bancas(this.scene);
+var i=new Iglesia(this.scene);
+
+
+
+export default class Cubo {
+
+  constructor(scene){
+    this.scene=scene;
+  }
   crear_cubo(
     pos_x,
     pos_y,
@@ -18,32 +34,21 @@ class Cubo {
     esc_z,
     colorCubo
   ) {
+    var geometry = new THREE.BoxGeometry(x, z, y);   
 
-
-    var geometry = new THREE.BoxGeometry(x, z, y);
-    /* para ancho, largo, profunsdidad*/
-
-    
-     
    if(darColor==true){
     var material = new THREE.MeshBasicMaterial({
       color: colorCubo,
       wireframe: esq
     });
    }else{
-
-    var material = new THREE.MeshBasicMaterial({
+ var material = new THREE.MeshBasicMaterial({
       map: text,
       side: THREE.DoubleSide,
       wireframe: esq
     });
    }
      
-  
-    
-
-
-    //var cube=new THREE.Mesh(geometry, material);
     cubo = new THREE.Mesh(geometry, material);
     cubo.position.x = pos_x;
     cubo.position.y = pos_y;
@@ -58,12 +63,12 @@ class Cubo {
     cubo.scale.z = esc_z;
 
     //Añade los objetos 3D
-    scene.add(pivotPoint);
-    scene.add(pil);
-    scene.add(ban);
+    this.scene.add(i.pivotPoint);
+    this.scene.add(pi.pil);
+    this.scene.add(b.ban);
+    this.scene.add(cubo);
 
+    return cubo,darColor=false;
 
-    scene.add(cubo);
-    darColor=false;
   }
 }
