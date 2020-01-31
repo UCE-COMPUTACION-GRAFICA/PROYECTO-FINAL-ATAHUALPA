@@ -95,8 +95,8 @@ function inicio() {
   f.crearFondo();
   p.PlanoPrincipal();
   a.crearParque();
- // var i = new Iglesia(40, 30, 0, 0, 0, 0, 0.7, 1, 1);
-  //i.crearIglesia();
+ var i = new Iglesia(40, 30, 0, 0, 0, 0, 0.7, 1, 1);
+  i.crearIglesia();
 
   var pi = new Pileta(0, 0, 30, 0, 0, 0, 1, 1, 1);
   pi.dibujarPileta();
