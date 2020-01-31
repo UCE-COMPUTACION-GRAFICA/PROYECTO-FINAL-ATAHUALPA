@@ -1,7 +1,22 @@
+//Iglesia
+var pivotPoint = new THREE.Object3D();
+var pivotPuerta = new THREE.Object3D();
+var pivotPuerta2 = new THREE.Object3D();
+var pivotPuerta3 = new THREE.Object3D();
+var pivotPuerta4 = new THREE.Object3D();
+var pivotPuerta5 = new THREE.Object3D();
+var Puertapeque1 = new THREE.Object3D();
+var Puertapeque2 = new THREE.Object3D();
+var ventana1 = new THREE.Object3D();
+var ventana2 = new THREE.Object3D();
+var ventana3 = new THREE.Object3D();
+var ventana4 = new THREE.Object3D();
+var lado1 = new THREE.Object3D();
+var lado2 = new THREE.Object3D();
+var baseiglesia = new THREE.Object3D();
+
 class Iglesia {
   constructor(pos_x, pos_y, pos_z, rot_x, rot_y, rot_z, esc_x, esc_y, esc_z) {
-
-
     this.pos_x = pos_x;
     this.pos_y = pos_y;
     this.pos_z = pos_z;
@@ -176,7 +191,7 @@ class Iglesia {
     t.crear_texturas("texturas/puerta.png", 1, 0.6);
     textura2 = textura;
     t.crear_texturas("texturas/puerta.png", 1, 1);
-    
+
     i.puertas(-66, -55, 0, 0, 0, 0, 1.9, 1.55, 1, textura2, textura);
 
     pivotPoint.add(pivotPuerta);
@@ -355,8 +370,6 @@ class Iglesia {
     i.cargar_modelo(480, 0, -355, 0, Math.PI / 2, 0);
     pivotPoint.add(mallaextrusion);
 
-    
-
     pivotPoint.position.x = this.pos_x;
     pivotPoint.position.y = this.pos_y;
     pivotPoint.position.z = this.pos_z;
@@ -475,7 +488,6 @@ class Iglesia {
     cu.crear_cubo(140, 70, -50, 40, 40, 1, textura, false, 0, 0, 0, 1, 1, 1);
     pivotPuerta.add(cubo);
 
-    
     sci.crearSemiCilindro(
       140,
       90,

@@ -1,3 +1,43 @@
+ //las diferentes lamparas
+ lmp = new THREE.Object3D();
+ lmp1 = new THREE.Object3D();
+ lmp2 = new THREE.Object3D();
+ lmp3 = new THREE.Object3D();
+ lmp4 = new THREE.Object3D();
+ lmp5 = new THREE.Object3D();
+ lmp6 = new THREE.Object3D();
+ lmp7 = new THREE.Object3D();
+ lmp8 = new THREE.Object3D();
+ lmp9 = new THREE.Object3D();
+ lmp10 = new THREE.Object3D();
+
+ lmp11 = new THREE.Object3D();
+ lmp12 = new THREE.Object3D();
+ lmp13 = new THREE.Object3D();
+ lmp14 = new THREE.Object3D();
+ lmp15 = new THREE.Object3D();
+
+ lmp16 = new THREE.Object3D();
+ lmp17 = new THREE.Object3D();
+ lmp18 = new THREE.Object3D();
+
+ lmp19 = new THREE.Object3D();
+ lmp20 = new THREE.Object3D();
+ lmp21 = new THREE.Object3D();
+ lmp22 = new THREE.Object3D();
+ lmp23 = new THREE.Object3D();
+
+ lmp24 = new THREE.Object3D();
+ lmp25 = new THREE.Object3D();
+ lmp26 = new THREE.Object3D();
+ lmp27 = new THREE.Object3D();
+ lmp28 = new THREE.Object3D();
+ lmp29 = new THREE.Object3D();
+ lmp30 = new THREE.Object3D();
+ lmp31 = new THREE.Object3D();
+ lmp32 = new THREE.Object3D();
+ lmp33 = new THREE.Object3D();
+ lmp34 = new THREE.Object3D();
 class Lamparas {
   crearLamparas() {
 

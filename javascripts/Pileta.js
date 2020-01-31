@@ -1,3 +1,6 @@
+//pileta
+pil = new THREE.Object3D();
+ 
 class Pileta {
 
   constructor(pos_x, pos_y, pos_z, rot_x, rot_y, rot_z, esc_x, esc_y, esc_z) {

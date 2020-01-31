@@ -1,3 +1,12 @@
+
+  //flores
+  flr = new THREE.Object3D();
+  flr1 = new THREE.Object3D();
+  flr2 = new THREE.Object3D();
+  flr3 = new THREE.Object3D();
+  fl4 = new THREE.Object3D();
+  flr5 = new THREE.Object3D();
+
 class Parque {
   crearParque() {
     //parque: cuadrado principal que abarca todo el parque
@@ -41,8 +50,6 @@ class Parque {
       1
     );
 
-    //1.1 
-    //13
     t.crear_texturas("texturas/adoquin2.jpg", 0.025, 0.05);
 
     //completa la figura de arriba,
@@ -1108,9 +1115,7 @@ class Parque {
 
   mostrarArboles() {
     //PARTE DEL PARQUE 1
-
     arb.crearArboles();
-    
 
     var light2 = new THREE.PointLight(0x66ff00, 1);
     light2.position.x = -70;
@@ -1119,43 +1124,112 @@ class Parque {
     scene.add(light2);
     //insertar un modelo de arbol
     //ar.cargarModelo3D("Modelos/arbol2.glb", -70, 20, 310, 0, 0, 0, 1.5, 1.5, 2);
-    this.flores(-60,20,100,0,0,0,1.1,1,1.1);
-    flr=flr1;
-    this.flores(-60,30,80,0,0,0,1.1,1,1.1);
-    flr=flr2;
-    this.flores(-60,40,95,0,0,0,1.1,1,1.1);
-    flr=flr3;
-    this.flores(-80,40,100,0,0,0,1.1,1,1.1);
-
-
-
+    this.flores(-60, 20, 100, 0, 0, 0, 1.1, 0.8, 1.1,0xF781F3);
+    flr = flr1;
+    this.flores(-60, 30, 80, 0, 0, 0, 1.1, 0.8, 1.1,0xF5A9E1);
+    flr = flr2;
+    this.flores(-60, 40, 95, 0, 0, 0, 1.1, 0.8, 1.1,0xF781F3);
+    flr = flr3;
+    this.flores(-80, 40, 100, 0, 0, 0, 1.1, 0.8, 1.1,0xF5A9E1);
   }
 
-  flores(pos_x,pos_y,pos_z, rot_x,rot_y,rot_z,esc_x,esc_y,esc_z) {
-    
-    darColor=true;
-    e.crear_esfera(0,30,200,0,0,0,1,1,1,null,false,1,10,10,0x00FF11);
+  flores(pos_x, pos_y, pos_z, rot_x, rot_y, rot_z, esc_x, esc_y, esc_z,color) {
+    darColor = true;
+    e.crear_esfera(
+      0,
+      30,
+      200,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      null,
+      false,
+      1,
+      10,
+      10,
+      color
+    );
 
     flr.add(sphere);
 
-    darColor=true;
-    ci.crearCilindro(2,30,200,0,0,0,1,1,0.7,2,1,null,false,0xFF0011);
+    darColor = true;
+    ci.crearCilindro(
+      2,
+      30,
+      200,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0.7,
+      2,
+      1,
+      null,
+      false,
+      color
+    );
     flr.add(cilindro);
 
-
-    darColor=true;
-    ci.crearCilindro(-2,30,200,0,0,0,1,1,0.7,2,1,null,false,0xFF0011);
+    darColor = true;
+    ci.crearCilindro(
+      -2,
+      30,
+      200,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0.7,
+      2,
+      1,
+      null,
+      false,
+      color
+    );
     flr.add(cilindro);
 
-
-    darColor=true;
-    ci.crearCilindro(0,30,202,0,Math.PI/2,0,1,1,0.7,2,1,null,false,0xFF0011);
+    darColor = true;
+    ci.crearCilindro(
+      0,
+      30,
+      202,
+      0,
+      Math.PI / 2,
+      0,
+      1,
+      1,
+      0.7,
+      2,
+      1,
+      null,
+      false,
+      color
+    );
     flr.add(cilindro);
 
-    darColor=true;
-    ci.crearCilindro(0,30,198,0,Math.PI/2,0,1,1,0.7,2,1,null,false,0xFF0011);
+    darColor = true;
+    ci.crearCilindro(
+      0,
+      30,
+      198,
+      0,
+      Math.PI / 2,
+      0,
+      1,
+      1,
+      0.7,
+      2,
+      1,
+      null,
+      false,
+      color
+    );
     flr.add(cilindro);
-
 
     flr.position.x = pos_x;
     flr.position.y = pos_y;
@@ -1168,8 +1242,5 @@ class Parque {
     flr.scale.x = esc_x;
     flr.scale.y = esc_y;
     flr.scale.z = esc_z;
-
-
-
   }
 }
