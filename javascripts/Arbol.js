@@ -14,13 +14,14 @@ class Arbol {
     arb.FiguraArbol(-330, 15, 160, 0, 0, 0, 0.7, 1.4, 0.8,"texturas/cipresverde.jpg",3,3);
     arbl = arbl2;
 
-    arb.FiguraArbol(-200, 15, 460, 0, 0, 0, 0.7, 1.4, 0.8,"texturas/arbolHojas.jfif",1,1);
+    arb.FiguraArbol(-200, 15, 460, 0, 0, 0, 0.7, 1.4, 0.8,"texturas/hojas.jpg",4,4);
     arbl = arbl3;
     arb.FiguraArbol(330, 15, 200, 0, 0, 0, 0.7, 1.4, 0.8,"texturas/cipres.jpg",3,3);
     arbl = arbl4;
     arb.FiguraArbol(50, 15, 600, 0, 0, 0, 0.7, 1.4, 0.8,"texturas/cipres.jpg",3,3);
+    //arbusto
     arbl = arbl5;
-    arb.FiguraArbol(340, 15, 600, 0, 0, 0, 0.7, 0.5, 0.8,"texturas/cipres.jpg",3,3);
+    arb.FiguraArbol(370, 15, 500, 0, 0, 0, 2, 0.5, 2,"texturas/cipres.jpg",3,3);
   }
 
   FiguraArbol(pos_x, pos_y, pos_z, rot_x, rot_y, rot_z, esc_x, esc_y, esc_z,texturaArbol,pa,pb) {
