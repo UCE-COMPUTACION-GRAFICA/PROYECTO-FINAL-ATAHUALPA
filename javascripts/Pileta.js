@@ -1,11 +1,8 @@
 //pileta
 pil = new THREE.Object3D();
- 
+
 class Pileta {
-
   constructor(pos_x, pos_y, pos_z, rot_x, rot_y, rot_z, esc_x, esc_y, esc_z) {
-
-    
     this.pos_x = pos_x;
     this.pos_y = pos_y;
     this.pos_z = pos_z;
@@ -38,6 +35,7 @@ class Pileta {
     pil.add(cubo);
 
     //para crear el torus que formara la pila
+    darColor = true;
     to.crear_toro(
       168,
       25,
@@ -52,10 +50,12 @@ class Pileta {
       1,
       1,
       2.5,
+      null,
       0x6e6e6e
     );
     pil.add(torus);
     // intermedio
+    darColor = true;
     to.crear_toro(
       168,
       15.5,
@@ -70,9 +70,11 @@ class Pileta {
       1.1,
       1.1,
       1.1,
+      null,
       0x585858
     );
     pil.add(torus);
+    darColor = true;
     to.crear_toro(
       168,
       15,
@@ -87,16 +89,16 @@ class Pileta {
       1.2,
       1.2,
       1.2,
+      null,
       0x6e6e6e
     );
     pil.add(torus);
 
-    
     pi.cargar_figuraPileta(152, 35, 363, 0, 0, 0, 1, 1, 1, 25, 0x585858);
 
     pil.add(FiguraP);
 
-    
+    t.crear_texturas("texturas/muro2.jpg", 1, 1);
     ses.cargar_semiesfera(
       170,
       98,
@@ -119,8 +121,6 @@ class Pileta {
     );
     pil.add(semisphere);
 
-
-
     pil.position.x = this.pos_x;
     pil.position.y = this.pos_y;
     pil.position.z = this.pos_z;
@@ -132,8 +132,6 @@ class Pileta {
     pil.scale.x = this.esc_x;
     pil.scale.y = this.esc_y;
     pil.scale.z = this.esc_z;
-
-
   }
 
   cargar_figuraPileta(
@@ -201,8 +199,6 @@ var material = new THREE.MeshBasicMaterial({
     FiguraP = new THREE.Mesh(extrude_geometria, Material);
     // agregamos la partícula al escenario
 
-   
-
     FiguraP.position.x = pos_x;
     FiguraP.position.y = pos_y;
     FiguraP.position.z = pos_z;
@@ -215,13 +211,6 @@ var material = new THREE.MeshBasicMaterial({
     FiguraP.scale.y = esc_y;
     FiguraP.scale.z = esc_z;
 
-  
     scene.add(FiguraP);
   }
-
- 
-
-
-
-
 }

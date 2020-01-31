@@ -14,19 +14,29 @@ class Torus{
     esc_x,
     esc_y,
     esc_z,
+    text,
     colort
   ) {
     var geometry = new THREE.TorusGeometry(a,b,c,d);
     /* para ancho, largo, profunsdidad*/
-    var material = new THREE.MeshBasicMaterial({
-    
-      color: colort,
-     
-      
-     
-      
-    });
+ 
+
+
+    if(darColor==true){
+      var material = new THREE.MeshBasicMaterial({
+        color: colort,
+       
+      });
+     }else{
   
+      var material = new THREE.MeshBasicMaterial({
+        map: text,
+        side: THREE.DoubleSide,
+        wireframe: false
+      });
+     }
+ 
+     
     torus = new THREE.Mesh(geometry, material);
   
     torus.position.x = pos_x;
@@ -42,6 +52,7 @@ class Torus{
     torus.scale.z = esc_z;
    
     scene.add(torus);
+    darColor=false;
   
   }
 

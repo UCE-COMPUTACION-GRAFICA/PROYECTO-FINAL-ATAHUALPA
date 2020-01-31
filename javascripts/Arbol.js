@@ -6,22 +6,71 @@ var arbl2 = new THREE.Object3D();
 var arbl3 = new THREE.Object3D();
 var arbl4=new THREE.Object3D();
 var arbl5=new THREE.Object3D();
+var arbl6=new THREE.Object3D();
+var arbl7=new THREE.Object3D();
+var arbl8=new THREE.Object3D();
+var arbl9=new THREE.Object3D();
+var arbl10=new THREE.Object3D();
+var arbl11=new THREE.Object3D();
+var arbl12=new THREE.Object3D();
+var arbl13=new THREE.Object3D();
+
+var arbl14=new THREE.Object3D();
+var arbl15=new THREE.Object3D();
 
 class Arbol {
   crearArboles() {
+      //arboles de la primera seccion izquierda superior 
     arb.FiguraArbol(-230, 15, 100, 0, 0, 0, 1.5, 1.2, 1.5,"texturas/cipresverde.jpg",3,3);
     arbl = arbl1;
     arb.FiguraArbol(-330, 15, 160, 0, 0, 0, 0.7, 1.4, 0.8,"texturas/cipresverde.jpg",3,3);
     arbl = arbl2;
-
+//arboles de la seccion izquierda bajo la anterior
     arb.FiguraArbol(-200, 15, 460, 0, 0, 0, 0.7, 1.4, 0.8,"texturas/hojas.jpg",4,4);
     arbl = arbl3;
-    arb.FiguraArbol(330, 15, 200, 0, 0, 0, 0.7, 1.4, 0.8,"texturas/cipres.jpg",3,3);
+
+    arb.FiguraArbol(-150, 0, 410, 0, 0, 0, 0.4, 1.8, 0.5,"texturas/cipres.jpg",3,5);
     arbl = arbl4;
-    arb.FiguraArbol(50, 15, 600, 0, 0, 0, 0.7, 1.4, 0.8,"texturas/cipres.jpg",3,3);
-    //arbusto
+ 
+    arb.FiguraArbol(-280, 0, 480, 0, 0, 0, 0.7, 1.7, 0.7,"texturas/hojas.jpg",3,5);
+    arbl = arbl9;
+
+//arboles de abajo 
+    
+
+    arb.FiguraArbol(-50, 15, 660, 0, 0, 0, 0.7, 1.4, 0.8,"texturas/cipres.jpg",3,3);
+    arbl = arbl6;
+
+//arbol arriba derecha
+    arb.FiguraArbol(330, 15, 200, 0, 0, 0, 0.7, 1.4, 0.8,"texturas/cipresverde.jpg",3,3);
     arbl = arbl5;
-    arb.FiguraArbol(370, 15, 500, 0, 0, 0, 2, 0.5, 2,"texturas/cipres.jpg",3,3);
+    //Arbustos
+    //arriba derecha
+    arb.FiguraArbol(370, 10, 200, 0, 0, 0, 1, 0.5, 0.7,"texturas/hojas.jpg",3,3);
+    arbl = arbl7;
+    //abajo
+    arb.FiguraArbol(420, 10, 200, 0, 0, 0, 1, 0.5, 0.7,"texturas/hojas.jpg",3,3);
+    arbl = arbl8;
+
+    arb.FiguraArbol(170, 10, 750, 0, 0, 0, 1, 0.5, 0.7,"texturas/hojas.jpg",3,3);
+    arbl = arbl9;
+
+    //arboles de la derecha abajo
+    arb.FiguraArbol(450, 15, 500, 0, 0, 0, 0.7, 1.2, 0.8,"texturas/cipresverde.jpg",3,3);
+    arbl = arbl13;
+
+    arb.FiguraArbol(200, 15, 600, 0, 0, 0, 0.7, 1.1, 0.8,"texturas/cipres.jpg",3,3);
+    arbl = arbl11;
+
+    arb.FiguraArbol(-40, 15, 700, 0, 0, 0, 0.9, 1.2, 0.8,"texturas/cipresverde.jpg",3,3);
+    arbl = arbl12;
+    //arbustos circulares
+    t.crear_texturas("texturas/hojas.jpg", 4, 4);
+    to.crear_toro(370,20,760,10, 3, 16, 100 ,Math.PI/2,0,0,4,2,5,textura);
+
+    
+
+
   }
 
   FiguraArbol(pos_x, pos_y, pos_z, rot_x, rot_y, rot_z, esc_x, esc_y, esc_z,texturaArbol,pa,pb) {
