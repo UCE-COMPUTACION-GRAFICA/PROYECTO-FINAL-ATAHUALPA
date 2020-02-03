@@ -16,6 +16,7 @@ lavaTexture.repeat.set( 0.05, 0.05 );
 var lavaMaterial = new THREE.MeshBasicMaterial( { map: lavaTexture } );
 
 var materialArray = [ lavaMaterial, chromeMaterial ];
+
 var textGeom = new THREE.TextGeometry( "Textures!", 
 {
     size: 30, height: 4, curveSegments: 3,

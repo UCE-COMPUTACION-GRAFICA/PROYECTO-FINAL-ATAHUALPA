@@ -1,11 +1,10 @@
-
-  //flores
-  flr = new THREE.Object3D();
-  flr1 = new THREE.Object3D();
-  flr2 = new THREE.Object3D();
-  flr3 = new THREE.Object3D();
-  fl4 = new THREE.Object3D();
-  flr5 = new THREE.Object3D();
+//flores
+flr = new THREE.Object3D();
+flr1 = new THREE.Object3D();
+flr2 = new THREE.Object3D();
+flr3 = new THREE.Object3D();
+fl4 = new THREE.Object3D();
+flr5 = new THREE.Object3D();
 
 class Parque {
   crearParque() {
@@ -299,9 +298,10 @@ class Parque {
 
     //partes de los jardines
     a.jardines();
-    // pi.dibujarPileta();
-
     a.mostrarArboles();
+    //parte alta de las letras
+    t.crear_texturas("texturas/piedra.webp", 7, 7);
+    cu.crear_cubo(450, 20, 815, 150, 20, 20, textura, false, 0, 0, 0, 1, 1, 1);
   }
 
   Lineacirculo(
@@ -1123,74 +1123,28 @@ class Parque {
     light2.position.z = 350;
     scene.add(light2);
     //insertar un modelo de arbol
-    //ar.cargarModelo3D("Modelos/arbol2.glb", -70, 20, 310, 0, 0, 0, 1.5, 1.5, 2);
-    this.flores(-60, 20, 100, 0, 0, 0, 1.1, 0.8, 1.1,0xF781F3);
+    ar.cargarModelo3D("Modelos/arbol2.glb", -70, 20, 310, 0, 0, 0, 1.5, 1.5, 2);
+    this.flores(-60, 20, 100, 0, 0, 0, 1.1, 0.8, 1.1, 0xf781f3);
     flr = flr1;
-    this.flores(-60, 30, 80, 0, 0, 0, 1.1, 0.8, 1.1,0xF5A9E1);
+    this.flores(-60, 30, 80, 0, 0, 0, 1.1, 0.8, 1.1, 0xf5a9e1);
     flr = flr2;
-    this.flores(-60, 40, 95, 0, 0, 0, 1.1, 0.8, 1.1,0xF781F3);
+    this.flores(-60, 40, 95, 0, 0, 0, 1.1, 0.8, 1.1, 0xf781f3);
     flr = flr3;
-    this.flores(-80, 40, 100, 0, 0, 0, 1.1, 0.8, 1.1,0xF5A9E1);
+    this.flores(-80, 40, 100, 0, 0, 0, 1.1, 0.8, 1.1, 0xf5a9e1);
   }
 
-  flores(pos_x, pos_y, pos_z, rot_x, rot_y, rot_z, esc_x, esc_y, esc_z,color) {
+  flores(pos_x, pos_y, pos_z, rot_x, rot_y, rot_z, esc_x, esc_y, esc_z, color) {
     darColor = true;
-    e.crear_esfera(
-      0,
-      30,
-      200,
-      0,
-      0,
-      0,
-      1,
-      1,
-      1,
-      null,
-      false,
-      1,
-      10,
-      10,
-      color
-    );
+    e.crear_esfera(0, 30, 200, 0, 0, 0, 1, 1, 1, null, false, 1, 10, 10, color);
 
     flr.add(sphere);
 
     darColor = true;
-    ci.crearCilindro(
-      2,
-      30,
-      200,
-      0,
-      0,
-      0,
-      1,
-      1,
-      0.7,
-      2,
-      1,
-      null,
-      false,
-      color
-    );
+    ci.crearCilindro(2, 30, 200, 0, 0, 0, 1, 1, 0.7, 2, 1, null, false, color);
     flr.add(cilindro);
 
     darColor = true;
-    ci.crearCilindro(
-      -2,
-      30,
-      200,
-      0,
-      0,
-      0,
-      1,
-      1,
-      0.7,
-      2,
-      1,
-      null,
-      false,
-      color
-    );
+    ci.crearCilindro(-2, 30, 200, 0, 0, 0, 1, 1, 0.7, 2, 1, null, false, color);
     flr.add(cilindro);
 
     darColor = true;

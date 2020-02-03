@@ -55,6 +55,8 @@ var p = new PlanoBase();
 var banca = new Bancas();
 var ca = new Casas();
 var lab = new Laberinto();
+var cm=new CasasMercado();
+
 
 /****************************llamado de funciones************************/
 inicio();
@@ -69,7 +71,8 @@ function inicio() {
   document.body.appendChild(renderer.domElement);
   material = new THREE.MeshBasicMaterial({ color: 0x00ff0000 });
   //CAMARAS
-  camera.position.z = 1000;
+  camera.position.x = 100;
+  camera.position.z = 800;
   camera.position.y = 100;
   //camera.rotation.y = Math.PI;
 
@@ -98,10 +101,16 @@ function inicio() {
  var i = new Iglesia(40, 30, 0, 0, 0, 0, 0.7, 1, 1);
   i.crearIglesia();
 
-  var pi = new Pileta(0, 0, 30, 0, 0, 0, 1, 1, 1);
+ var pi = new Pileta(0, 0, 30, 0, 0, 0, 1, 1, 1);
   pi.dibujarPileta();
 
-  
+t.crear_texturas("texturas/piedra.webp", 0.1, 0.1);
+var lt=new Letras(-9,-10,-81,0,0,0,1,1,1,textura);
+lt.crearLetras(); 
+
+cm.crearCasas();
+
+
   banca.crearBancas();
   //lamparas
   lamp.crearLamparas();
@@ -134,10 +143,11 @@ function texto3() {
     }
   );
 
-  textMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+  textMaterial = new THREE.MeshBasicMaterial({ color: 0x808000 });
 
   var textMesh = new THREE.Mesh(textGeom, textMaterial);
 
+  scene.add(textGeom);
   //textGeom.computeBoundingBox();
 
   //var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;

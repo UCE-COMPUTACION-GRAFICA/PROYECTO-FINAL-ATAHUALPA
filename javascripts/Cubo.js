@@ -39,10 +39,6 @@ class Cubo {
     });
    }
      
-  
-    
-
-
     //var cube=new THREE.Mesh(geometry, material);
     cubo = new THREE.Mesh(geometry, material);
     cubo.position.x = pos_x;
@@ -61,9 +57,12 @@ class Cubo {
     scene.add(pivotPoint);
     scene.add(pil);
     scene.add(ban);
-
-
+    scene.add(atahualpa);
+    scene.add(tu);
+    scene.add(casas);
     scene.add(cubo);
+    
+    
     darColor=false;
   }
 }

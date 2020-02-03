@@ -15,7 +15,8 @@ crearSemiCilindro(pos_x,
   ancho,
   altura,
   text,
-  esq){
+  esq,
+  colorCilindro){
 
  var geometria_cilindro = new THREE.CylinderGeometry(
     ancho,
@@ -31,11 +32,22 @@ crearSemiCilindro(pos_x,
 
 
 
-  var material = new THREE.MeshBasicMaterial({
-    map: text,
-    side: THREE.DoubleSide,
-    wireframe: esq
-  });
+    
+  if(darColor==true){
+    var material = new THREE.MeshBasicMaterial({
+      color: colorCilindro,
+      wireframe: esq
+    });
+   }else{
+
+    var material = new THREE.MeshBasicMaterial({
+      map: text,
+      side: THREE.DoubleSide,
+      wireframe: esq
+    });
+   }
+
+  
 
   semiCilindro = new THREE.Mesh(geometria_cilindro, material);
 
