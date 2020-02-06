@@ -35,6 +35,9 @@ var textMaterial;
 var container, stats;
 var trasladaZ=600;
 var trasladaX=210;
+var trasladaY=15;
+var girarZ=Math.PI;
+var numcam=1;
 
 var aabjo,arriba;
 //DECLARACION DE OBJETOS
@@ -73,15 +76,16 @@ function inicio() {
   document.body.appendChild(renderer.domElement);
   material = new THREE.MeshBasicMaterial({ color: 0x00ff0000 });
   //CAMARAS
-  camera.position.x = 100;
-  camera.position.z = 800;
-  camera.position.y = 100;
+  //camara que sigue al objeto
+  camera.position.x = trasladaX;
+  camera.position.z = trasladaZ-15;
+  camera.position.y = trasladaY+30;
   //camera.rotation.y = Math.PI;
 
   // EVENTS
   THREEx.WindowResize(renderer, camera);
   THREEx.FullScreen.bindKey({ charCode: "m".charCodeAt(0) });
-  controls = new THREE.OrbitControls(camera, renderer.domElement);
+  //controls = new THREE.OrbitControls(camera, renderer.domElement);
   //para no salirse del skybox
   //controls.minDistance = 500;
   //controls.maxDistance = 1500;
@@ -95,93 +99,138 @@ function inicio() {
 
   //LLAMADO Y EJECUCION DE LOS DIFERENTES ELEMENTOS
   //creamos los objetos de la escena en forma de capas
-  //Crea un SkyBox
- // f.crearFondo();
-  p.PlanoPrincipal();
- // a.crearParque();
-  //var i = new Iglesia(40, 30, 0, 0, 0, 0, 0.7, 1, 1);
- // i.crearIglesia();
+ CargarScenario();
 
-  var pi = new Pileta(0, 0, 30, 0, 0, 0, 1, 1, 1);
-  pi.dibujarPileta();
+}
 
-  t.crear_texturas("texturas/piedra.webp", 0.1, 0.1);
-  var lt = new Letras(-9, -10, -81, 0, 0, 0, 1, 1, 1, textura);
-  lt.crearLetras();
 
-  cm.crearCasas();
+function CargarScenario(){
+ //Crea un SkyBox
+ f.crearFondo();
+ p.PlanoPrincipal();
+a.crearParque();
+ var i = new Iglesia(40, 30, 0, 0, 0, 0, 0.7, 1, 1);
+i.crearIglesia();
 
-  banca.crearBancas();
-  //lamparas
-  lamp.crearLamparas();
+ var pi = new Pileta(0, 0, 30, 0, 0, 0, 1, 1, 1);
+ pi.dibujarPileta();
 
-  //CASAS de lado izquierdo del parque central
-  ca.crear_casa(0, 0, 0, 0, 0, 0, 1, 1, 1);
-  lab.crearLaberinto();
+ t.crear_texturas("texturas/piedra.webp", 0.1, 0.1);
+ var lt = new Letras(-9, -10, -81, 0, 0, 0, 1, 1, 1, textura);
+ lt.crearLetras();
 
-  //Crear Avatar 
-  var light3 = new THREE.PointLight(0xB18904, 3);
-  light3.position.x =trasladaX;
-  light3.position.y = 20;
-  light3.position.z =trasladaZ;
-  scene.add(light3);
+ cm.crearCasas();
 
- ar.cargarModelo3D("Modelos/Dog.glb", trasladaX, 20, trasladaZ,0, Math.PI,  0, 4, 4, 4);
+ banca.crearBancas();
+ //lamparas
+ lamp.crearLamparas();
+
+ //CASAS de lado izquierdo del parque central
+ ca.crear_casa(0, 0, 0, 0, 0, 0, 1, 1, 1);
+ lab.crearLaberinto();
+
+ //Crear Avatar 
+ var light3 = new THREE.PointLight(0x8A4B08, 3);
+ light3.position.x =trasladaX;
+ light3.position.y = 20;
+ light3.position.z =trasladaZ;
+ scene.add(light3);
+numcam=1;
+ar.cargarModelo3D("Modelos/Dog.glb", trasladaX, trasladaY, trasladaZ,0, Math.PI,  0, 4, 4, 4);
+
 
 }
 
 function animacion() {
   requestAnimationFrame(animacion);
   /* obj_mov=cubo;*/
-  if (teclado.pressed("up")) {
-    camera.position.z -= 2;
-  }
 
-  if (teclado.pressed("down")) {
-    camera.position.z += 2;
-  }
+  if (numcam == 1) {
+    //sigue al perrito
 
-  if (teclado.pressed("right")) {
-    camera.position.x += 2;
-  }
-
-  if (teclado.pressed("left")) {
-    camera.position.x -= 2;
-  }
-  if (teclado.pressed("Q")) {
-    camera.position.y += 1;
-  }
-  if (teclado.pressed("A")) {
-    camera.position.y -= 1;
-  }
-//arriba
-  if (teclado.pressed("P")) {
-    trasladaZ += 0.5;
-   arriba=true;
-
-  }
-  //abajo
-  if (teclado.pressed("l")) {
-    trasladaZ -= 0.5;
+    //camera.lookAt(arbol.position.x+10,arbol.position.y+10,arbol.position.z-20);
     
+
+    camera.position.x = arbol.position.x;
+    camera.position.z = arbol.position.z+20;
+    camera.position.y = arbol.position.y+14;
+if (arriba=true){
+  camera.rotation.y=0;
+}else{
+  if(abajo=true){
+   // camera.rotation.y=-Math.PI;
   }
-  if (teclado.pressed("O")) {
-    trasladaX += 0.5;
+}
     
-  }
-  if (teclado.pressed("K")) {
-    trasladaX -= 0.5;
+
+
   }
   //controls.target.set(camera.position.x,camera.position.y,camera.position.z);
+  Teclado();
   render_modelo();
 }
 
-function render_modelo() {
-  controls.update();
-  stats.update();
+
+function Teclado(){
+  if (teclado.pressed("up")) {
+    // camera.position.z -= 2;
+     trasladaZ-=0.5;
+     girarZ=Math.PI;
+ arriba=true;
  
-  arbol.position.x=trasladaX;
+   }
+ 
+   if (teclado.pressed("down")) {
+   //  camera.position.z += 2;
+     trasladaZ+=0.5;
+     girarZ=0;
+     abajo=true;
+   }
+ 
+   if (teclado.pressed("right")) {
+  //   camera.position.x += 2;
+     trasladaX+=0.5;
+     
+     girarZ=Math.PI/2;
+   }
+ 
+   if (teclado.pressed("left")) {
+   //  camera.position.x -= 2;
+     trasladaX-=0.5;
+     girarZ=-Math.PI/2;
+   }
+   if (teclado.pressed("Q")) {
+   //  camera.position.y += 1;
+     trasladaY+=0.5;
+   
+   }
+   if (teclado.pressed("A")) {
+    // camera.position.y -= 1;
+     trasladaY-=0.5;
+     
+   }
+ 
+}
+
+function render_modelo() {
+ // controls.update();
+  stats.update();
+
+  
+ 
+arbol.position.x=trasladaX;
+arbol.position.y=trasladaY;
 arbol.position.z=trasladaZ;
+
+arbol.rotation.y=girarZ;
+
+//para que siga al objeto hacer ojo
+/*camera.position.x = trasladaX;
+camera.position.z = trasladaZ+15;
+camera.position.y = trasladaY+10;*/
+
+
+
 
 //light3.position.x =trasladaX;
 //light3.position.z =trasladaZ;
