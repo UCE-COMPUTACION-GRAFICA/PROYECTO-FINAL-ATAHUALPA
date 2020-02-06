@@ -158,7 +158,7 @@ if (arriba=true){
   camera.rotation.y=0;
 }else{
   if(abajo=true){
-   // camera.rotation.y=-Math.PI;
+   camera.rotation.y=Math.PI;
   }
 }
     
