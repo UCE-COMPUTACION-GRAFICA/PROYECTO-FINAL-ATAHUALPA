@@ -33,7 +33,10 @@ var darColor = false;
 var textGeom;
 var textMaterial;
 var container, stats;
+var trasladaZ=600;
+var trasladaX=210;
 
+var aabjo,arriba;
 //DECLARACION DE OBJETOS
 var ci = new Cilindro();
 var sci = new SemiCilindro();
@@ -55,8 +58,7 @@ var p = new PlanoBase();
 var banca = new Bancas();
 var ca = new Casas();
 var lab = new Laberinto();
-var cm=new CasasMercado();
-
+var cm = new CasasMercado();
 
 /****************************llamado de funciones************************/
 inicio();
@@ -93,23 +95,21 @@ function inicio() {
 
   //LLAMADO Y EJECUCION DE LOS DIFERENTES ELEMENTOS
   //creamos los objetos de la escena en forma de capas
-  texto3();
- //Crea un SkyBox
-  f.crearFondo();
+  //Crea un SkyBox
+ // f.crearFondo();
   p.PlanoPrincipal();
-  a.crearParque();
- var i = new Iglesia(40, 30, 0, 0, 0, 0, 0.7, 1, 1);
-  i.crearIglesia();
+ // a.crearParque();
+  //var i = new Iglesia(40, 30, 0, 0, 0, 0, 0.7, 1, 1);
+ // i.crearIglesia();
 
- var pi = new Pileta(0, 0, 30, 0, 0, 0, 1, 1, 1);
+  var pi = new Pileta(0, 0, 30, 0, 0, 0, 1, 1, 1);
   pi.dibujarPileta();
 
-t.crear_texturas("texturas/piedra.webp", 0.1, 0.1);
-var lt=new Letras(-9,-10,-81,0,0,0,1,1,1,textura);
-lt.crearLetras(); 
+  t.crear_texturas("texturas/piedra.webp", 0.1, 0.1);
+  var lt = new Letras(-9, -10, -81, 0, 0, 0, 1, 1, 1, textura);
+  lt.crearLetras();
 
-cm.crearCasas();
-
+  cm.crearCasas();
 
   banca.crearBancas();
   //lamparas
@@ -119,44 +119,16 @@ cm.crearCasas();
   ca.crear_casa(0, 0, 0, 0, 0, 0, 1, 1, 1);
   lab.crearLaberinto();
 
-  // var nuevoTexto=new Texto();
-  // nuevoTexto.crearTexto();
+  //Crear Avatar 
+  var light3 = new THREE.PointLight(0xB18904, 3);
+  light3.position.x =trasladaX;
+  light3.position.y = 20;
+  light3.position.z =trasladaZ;
+  scene.add(light3);
+
+ ar.cargarModelo3D("Modelos/Dog.glb", trasladaX, 20, trasladaZ,0, Math.PI,  0, 4, 4, 4);
+
 }
-
-function texto3() {
-  var loader = new THREE.FontLoader();
-
-  loader.load(
-    "three.js-master/examples/fonts/helvetiker_regular.typeface.json",
-    function(font) {
-      textGeom = new THREE.TextGeometry("Hello three.js!", {
-        font: font,
-        size: 80,
-        height: 5,
-        curveSegments: 12,
-        bevelEnabled: true,
-        bevelThickness: 10,
-        bevelSize: 8,
-        bevelOffset: 0,
-        bevelSegments: 5
-      });
-    }
-  );
-
-  textMaterial = new THREE.MeshBasicMaterial({ color: 0x808000 });
-
-  var textMesh = new THREE.Mesh(textGeom, textMaterial);
-
-  scene.add(textGeom);
-  //textGeom.computeBoundingBox();
-
-  //var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
-  textMesh.position.set(0, 0, 0);
-
-  //textMesh.rotation.x = -Math.PI / 4;
-  scene.add(textMesh);
-}
-
 
 function animacion() {
   requestAnimationFrame(animacion);
@@ -182,6 +154,24 @@ function animacion() {
   if (teclado.pressed("A")) {
     camera.position.y -= 1;
   }
+//arriba
+  if (teclado.pressed("P")) {
+    trasladaZ += 0.5;
+   arriba=true;
+
+  }
+  //abajo
+  if (teclado.pressed("l")) {
+    trasladaZ -= 0.5;
+    
+  }
+  if (teclado.pressed("O")) {
+    trasladaX += 0.5;
+    
+  }
+  if (teclado.pressed("K")) {
+    trasladaX -= 0.5;
+  }
   //controls.target.set(camera.position.x,camera.position.y,camera.position.z);
   render_modelo();
 }
@@ -189,5 +179,12 @@ function animacion() {
 function render_modelo() {
   controls.update();
   stats.update();
+ 
+  arbol.position.x=trasladaX;
+arbol.position.z=trasladaZ;
+
+//light3.position.x =trasladaX;
+//light3.position.z =trasladaZ;
+
   renderer.render(scene, camera);
 }

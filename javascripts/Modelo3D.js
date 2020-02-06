@@ -26,11 +26,16 @@ class Modelo3D {
         arbol.position.y = pos_y;
         arbol.position.z = pos_z;
 
+        arbol.rotation.x = rot_x;
+        arbol.rotation.y = rot_y;
+        arbol.rotation.z = rot_z;
+
         arbol.scale.x = esc_x;
         arbol.scale.y = esc_y;
         arbol.scale.z = esc_z;
 
         scene.add(arbol);
+        return arbol;
       },
       undefined,
       function(error) {
