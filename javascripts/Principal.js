@@ -38,8 +38,8 @@ var trasladaX=210;
 var trasladaY=15;
 var girarZ=Math.PI;
 var numcam=1;
+var abajo=false,arriba=false,izquierda=false,derecha=false;
 
-var aabjo,arriba;
 //DECLARACION DE OBJETOS
 var ci = new Cilindro();
 var sci = new SemiCilindro();
@@ -151,16 +151,19 @@ function animacion() {
     //camera.lookAt(arbol.position.x+10,arbol.position.y+10,arbol.position.z-20);
     
 
-    camera.position.x = arbol.position.x;
-    camera.position.z = arbol.position.z+20;
-    camera.position.y = arbol.position.y+14;
 if (arriba=true){
-  camera.rotation.y=0;
-}else{
-  if(abajo=true){
-   camera.rotation.y=Math.PI;
-  }
+  camera.position.x = arbol.position.x;
+  camera.position.z = arbol.position.z+20;
+  camera.position.y = arbol.position.y+14;
 }
+  if(izquierda=true){
+    camera.rotation.y=Math.PI/2;
+    camera.position.x = arbol.position.x;
+  camera.position.z = arbol.position.z+20;
+  camera.position.y = arbol.position.y+14;
+
+  }
+
     
 
 
@@ -177,6 +180,9 @@ function Teclado(){
      trasladaZ-=0.5;
      girarZ=Math.PI;
  arriba=true;
+ abajo=false;
+ izquierda=false;
+ derecha=false;
  
    }
  
@@ -184,7 +190,11 @@ function Teclado(){
    //  camera.position.z += 2;
      trasladaZ+=0.5;
      girarZ=0;
-     abajo=true;
+    
+arriba=false;
+ abajo=true;
+ izquierda=false;
+ derecha=false;
    }
  
    if (teclado.pressed("right")) {
@@ -198,6 +208,12 @@ function Teclado(){
    //  camera.position.x -= 2;
      trasladaX-=0.5;
      girarZ=-Math.PI/2;
+
+     arriba=false;
+ abajo=false;
+ izquierda=true;
+ derecha=false;
+     
    }
    if (teclado.pressed("Q")) {
    //  camera.position.y += 1;
