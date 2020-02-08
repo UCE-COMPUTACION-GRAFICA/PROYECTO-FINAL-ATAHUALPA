@@ -42,6 +42,7 @@ var subir = true;
 var bajar = false;
 var limite_sup = 20;
 var limite_inf = 14;
+var pil;
 
 //DECLARACION DE OBJETOS
 var ci = new Cilindro();
@@ -66,7 +67,7 @@ var ca = new Casas();
 var lab = new Laberinto();
 var cm = new CasasMercado();
 
-var light3 ;
+var light3;
 /****************************llamado de funciones************************/
 inicio();
 animacion();
@@ -81,9 +82,9 @@ function inicio() {
   material = new THREE.MeshBasicMaterial({ color: 0x00ff0000 });
   //CAMARAS
   //camara que sigue al objeto
-  camera.position.x = trasladaX;
-  camera.position.z = trasladaZ - 15;
-  camera.position.y = trasladaY + 30;
+  camera.position.x = 0;
+  camera.position.z = 500;
+  camera.position.y = 0;
   //camera.rotation.y = Math.PI;
 
   // EVENTS
@@ -131,8 +132,8 @@ function CargarScenario() {
   ca.crear_casa(0, 0, 0, 0, 0, 0, 1, 1, 1);
   lab.crearLaberinto();
 
- light3 = new THREE.PointLight(0x8a4b08, 3);
-  numcam = 1;
+  light3 = new THREE.PointLight(0x8a4b08, 3);
+  
 
   ar.cargarModelo3D(
     "Modelos/Dog.glb",
@@ -148,19 +149,36 @@ function CargarScenario() {
   );
 }
 
-
 function animacion() {
   requestAnimationFrame(animacion);
-
+  //Camara numero 1 es para poder visualizar el avatar que realizará el recorrido virtual
   if (numcam == 1) {
     //sigue al perrito
 
-    //camera.lookAt(arbol.position.x+10,arbol.position.y+10,arbol.position.z-20);
-    camera.position.x = arbol.position.x;
-    camera.position.z = arbol.position.z + 20;
-    camera.position.y = arbol.position.y + 14;
+    camera.lookAt(arbol.position.x,arbol.position.y+10,arbol.position.z-50);
+     camera.position.x = arbol.position.x;
+    camera.position.z =arbol.position.z + 20;
+    camera.position.y =arbol.position.y + 14;
+  }
+  //camara panoramica de todo el escenario
+  if (numcam == 2) {
+  
+  camera.rotation.set(-0.1965,0.04098,0.008156);
+  camera.position.x=-458.52;
+  camera.position.y=659.86;
+  camera.position.z=2964.6417;
+    
+  }
+  //camara estática para ver el parque desde la aprte superior de la iglesia
+  if(numcam==3){
+
+    camera.rotation.set(-2.3,0.014,3.12);
+    camera.position.x=189;
+    camera.position.y=580;
+    camera.position.z=-211;
   }
 
+  console.log(camera);
   //controls.target.set(camera.position.x,camera.position.y,camera.position.z);
   Teclado();
   render_modelo();
@@ -176,7 +194,7 @@ function Teclado() {
   if (teclado.pressed("down")) {
     //  camera.position.z += 2;
     trasladaZ += 2;
-    girarZ=0;
+    girarZ = 0;
   }
 
   if (teclado.pressed("right")) {
@@ -199,6 +217,26 @@ function Teclado() {
     // camera.position.y -= 1;
     trasladaY -= 2;
   }
+  //CAMARAS
+  if (teclado.pressed("1")) {
+    numcam = 1;
+  }
+
+  if (teclado.pressed("2")) {
+    numcam = 2;
+  }
+
+  if (teclado.pressed("3")) {
+    numcam = 3;
+  }
+
+  if (teclado.pressed("4")) {
+    numcam = 4;
+  }
+
+  if (teclado.pressed("5")) {
+    numcam = 5;
+  }
 }
 
 function render_modelo() {
@@ -220,25 +258,22 @@ function render_modelo() {
     bajar = true;
     trasladaY -= 0.5;
 
-  if (trasladaY < limite_inf && subir == true) {
+    if (trasladaY < limite_inf && subir == true) {
       trasladaY += 0.5;
       bajar = false;
-     // limite_sup -= 1;
+      // limite_sup -= 1;
     }
- }
+  }
 
- //luces para el perrito
+  //luces para el perrito
 
- 
   //Crear Avatar
- 
+
   light3.position.x = trasladaX;
-  light3.position.y = trasladaY+5;
-  light3.position.z = trasladaZ+10;
+  light3.position.y = trasladaY + 5;
+  light3.position.z = trasladaZ + 10;
   scene.add(light3);
 
   console.log(trasladaY);
   renderer.render(scene, camera);
 }
-
-

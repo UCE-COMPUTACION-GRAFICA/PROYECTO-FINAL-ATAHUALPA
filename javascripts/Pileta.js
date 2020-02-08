@@ -132,6 +132,7 @@ class Pileta {
     pil.scale.x = this.esc_x;
     pil.scale.y = this.esc_y;
     pil.scale.z = this.esc_z;
+    return pil;
   }
 
   cargar_figuraPileta(
