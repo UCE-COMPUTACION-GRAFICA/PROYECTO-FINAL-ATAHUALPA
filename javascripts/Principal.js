@@ -33,12 +33,15 @@ var darColor = false;
 var textGeom;
 var textMaterial;
 var container, stats;
-var trasladaZ=600;
-var trasladaX=210;
-var trasladaY=15;
-var girarZ=Math.PI;
-var numcam=1;
-var abajo=false,arriba=false,izquierda=false,derecha=false;
+var trasladaZ = 600;
+var trasladaX = 210;
+var trasladaY = 14;
+var girarZ = Math.PI;
+var numcam = 1;
+var subir = true;
+var bajar = false;
+var limite_sup = 20;
+var limite_inf = 14;
 
 //DECLARACION DE OBJETOS
 var ci = new Cilindro();
@@ -63,6 +66,7 @@ var ca = new Casas();
 var lab = new Laberinto();
 var cm = new CasasMercado();
 
+var light3 ;
 /****************************llamado de funciones************************/
 inicio();
 animacion();
@@ -78,8 +82,8 @@ function inicio() {
   //CAMARAS
   //camara que sigue al objeto
   camera.position.x = trasladaX;
-  camera.position.z = trasladaZ-15;
-  camera.position.y = trasladaY+30;
+  camera.position.z = trasladaZ - 15;
+  camera.position.y = trasladaY + 30;
   //camera.rotation.y = Math.PI;
 
   // EVENTS
@@ -99,157 +103,142 @@ function inicio() {
 
   //LLAMADO Y EJECUCION DE LOS DIFERENTES ELEMENTOS
   //creamos los objetos de la escena en forma de capas
- CargarScenario();
-
+  CargarScenario();
 }
 
+function CargarScenario() {
+  //Crea un SkyBox
+  f.crearFondo();
+  p.PlanoPrincipal();
+  a.crearParque();
+  var i = new Iglesia(40, 30, 0, 0, 0, 0, 0.7, 1, 1);
+  i.crearIglesia();
 
-function CargarScenario(){
- //Crea un SkyBox
- f.crearFondo();
- p.PlanoPrincipal();
-a.crearParque();
- var i = new Iglesia(40, 30, 0, 0, 0, 0, 0.7, 1, 1);
-i.crearIglesia();
+  var pi = new Pileta(0, 0, 30, 0, 0, 0, 1, 1, 1);
+  pi.dibujarPileta();
 
- var pi = new Pileta(0, 0, 30, 0, 0, 0, 1, 1, 1);
- pi.dibujarPileta();
+  t.crear_texturas("texturas/blanco_abstracto.jpg", 0.2, 0.8);
+  var lt = new Letras(-9, -10, -81, 0, 0, 0, 1, 1, 1, textura);
+  lt.crearLetras();
 
- t.crear_texturas("texturas/piedra.webp", 0.1, 0.1);
- var lt = new Letras(-9, -10, -81, 0, 0, 0, 1, 1, 1, textura);
- lt.crearLetras();
+  cm.crearCasas();
 
- cm.crearCasas();
+  banca.crearBancas();
+  //lamparas
+  lamp.crearLamparas();
 
- banca.crearBancas();
- //lamparas
- lamp.crearLamparas();
+  //CASAS de lado izquierdo del parque central
+  ca.crear_casa(0, 0, 0, 0, 0, 0, 1, 1, 1);
+  lab.crearLaberinto();
 
- //CASAS de lado izquierdo del parque central
- ca.crear_casa(0, 0, 0, 0, 0, 0, 1, 1, 1);
- lab.crearLaberinto();
+ light3 = new THREE.PointLight(0x8a4b08, 3);
+  numcam = 1;
 
- //Crear Avatar 
- var light3 = new THREE.PointLight(0x8A4B08, 3);
- light3.position.x =trasladaX;
- light3.position.y = 20;
- light3.position.z =trasladaZ;
- scene.add(light3);
-numcam=1;
-ar.cargarModelo3D("Modelos/Dog.glb", trasladaX, trasladaY, trasladaZ,0, Math.PI,  0, 4, 4, 4);
-
-
+  ar.cargarModelo3D(
+    "Modelos/Dog.glb",
+    trasladaX,
+    trasladaY,
+    trasladaZ,
+    0,
+    Math.PI,
+    0,
+    4,
+    4,
+    4
+  );
 }
+
 
 function animacion() {
   requestAnimationFrame(animacion);
-  /* obj_mov=cubo;*/
 
   if (numcam == 1) {
     //sigue al perrito
 
     //camera.lookAt(arbol.position.x+10,arbol.position.y+10,arbol.position.z-20);
-    
-
-if (arriba=true){
-  camera.position.x = arbol.position.x;
-  camera.position.z = arbol.position.z+20;
-  camera.position.y = arbol.position.y+14;
-}
-  if(izquierda=true){
-    camera.rotation.y=Math.PI/2;
     camera.position.x = arbol.position.x;
-  camera.position.z = arbol.position.z+20;
-  camera.position.y = arbol.position.y+14;
-
+    camera.position.z = arbol.position.z + 20;
+    camera.position.y = arbol.position.y + 14;
   }
 
-    
-
-
-  }
   //controls.target.set(camera.position.x,camera.position.y,camera.position.z);
   Teclado();
   render_modelo();
 }
 
-
-function Teclado(){
+function Teclado() {
   if (teclado.pressed("up")) {
     // camera.position.z -= 2;
-     trasladaZ-=0.5;
-     girarZ=Math.PI;
- arriba=true;
- abajo=false;
- izquierda=false;
- derecha=false;
- 
-   }
- 
-   if (teclado.pressed("down")) {
-   //  camera.position.z += 2;
-     trasladaZ+=0.5;
-     girarZ=0;
-    
-arriba=false;
- abajo=true;
- izquierda=false;
- derecha=false;
-   }
- 
-   if (teclado.pressed("right")) {
-  //   camera.position.x += 2;
-     trasladaX+=0.5;
-     
-     girarZ=Math.PI/2;
-   }
- 
-   if (teclado.pressed("left")) {
-   //  camera.position.x -= 2;
-     trasladaX-=0.5;
-     girarZ=-Math.PI/2;
+    trasladaZ -= 2;
+    girarZ = Math.PI;
+  }
 
-     arriba=false;
- abajo=false;
- izquierda=true;
- derecha=false;
-     
-   }
-   if (teclado.pressed("Q")) {
-   //  camera.position.y += 1;
-     trasladaY+=0.5;
-   
-   }
-   if (teclado.pressed("A")) {
+  if (teclado.pressed("down")) {
+    //  camera.position.z += 2;
+    trasladaZ += 2;
+    girarZ=0;
+  }
+
+  if (teclado.pressed("right")) {
+    //   camera.position.x += 2;
+    trasladaX += 2;
+
+    girarZ = Math.PI / 2;
+  }
+
+  if (teclado.pressed("left")) {
+    //  camera.position.x -= 2;
+    trasladaX -= 2;
+    girarZ = -Math.PI / 2;
+  }
+  if (teclado.pressed("Q")) {
+    //  camera.position.y += 1;
+    trasladaY += 2;
+  }
+  if (teclado.pressed("A")) {
     // camera.position.y -= 1;
-     trasladaY-=0.5;
-     
-   }
- 
+    trasladaY -= 2;
+  }
 }
 
 function render_modelo() {
- // controls.update();
+  // controls.update();
   stats.update();
 
-  
+  //movimiento del perrito
+  arbol.position.x = trasladaX;
+  arbol.position.y = trasladaY;
+  arbol.position.z = trasladaZ;
+  arbol.rotation.y = girarZ;
+
+  //colision del perrito para que salte
+  if (trasladaY < limite_sup && bajar == false) {
+    trasladaY += 0.5;
+    bajar = false;
+    subir = true;
+  } else {
+    bajar = true;
+    trasladaY -= 0.5;
+
+  if (trasladaY < limite_inf && subir == true) {
+      trasladaY += 0.5;
+      bajar = false;
+     // limite_sup -= 1;
+    }
+ }
+
+ //luces para el perrito
+
  
-arbol.position.x=trasladaX;
-arbol.position.y=trasladaY;
-arbol.position.z=trasladaZ;
+  //Crear Avatar
+ 
+  light3.position.x = trasladaX;
+  light3.position.y = trasladaY+5;
+  light3.position.z = trasladaZ+10;
+  scene.add(light3);
 
-arbol.rotation.y=girarZ;
-
-//para que siga al objeto hacer ojo
-/*camera.position.x = trasladaX;
-camera.position.z = trasladaZ+15;
-camera.position.y = trasladaY+10;*/
-
-
-
-
-//light3.position.x =trasladaX;
-//light3.position.z =trasladaZ;
-
+  console.log(trasladaY);
   renderer.render(scene, camera);
 }
+
+

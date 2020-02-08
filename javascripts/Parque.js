@@ -1117,13 +1117,13 @@ class Parque {
     //PARTE DEL PARQUE 1
     arb.crearArboles();
 
-    var light2 = new THREE.PointLight(0x8A4B08, 1);
+   /* var light2 = new THREE.PointLight(0x8A4B08, 1);
     light2.position.x = -70;
     light2.position.y = 40;
     light2.position.z = 350;
     scene.add(light2);
     //insertar un modelo de arbol
-    ar.cargarModelo3D("Modelos/arbol2.glb", -70, 20, 310, 0, 0, 0, 1.5, 1.5, 2);
+    ar.cargarModelo3D("Modelos/arbol2.glb", -70, 20, 310, 0, 0, 0, 1.5, 1.5, 2);*/
     
     this.flores(-60, 20, 100, 0, 0, 0, 1.1, 0.8, 1.1, 0xf781f3);
     flr = flr1;
