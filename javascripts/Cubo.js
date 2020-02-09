@@ -40,7 +40,14 @@ class Cubo {
    }
      
     //var cube=new THREE.Mesh(geometry, material);
-    cubo = new THREE.Mesh(geometry, material);
+   // cubo = new THREE.Mesh(geometry, material);
+   cubo= new Physijs.BoxMesh(geometry,material);
+   cubo.addEventListener( 'collision', function( arbol, relative_velocity, relative_rotation, contact_normal ) {
+    
+    
+    // `this` has collided with `other_object` with an impact speed of `relative_velocity` and a rotational force of `relative_rotation` and at normal `contact_normal`
+});
+    //
     cubo.position.x = pos_x;
     cubo.position.y = pos_y;
     cubo.position.z = pos_z;

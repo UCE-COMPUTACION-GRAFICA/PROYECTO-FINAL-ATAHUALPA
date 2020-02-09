@@ -1,5 +1,12 @@
 //CREACION DE LA ESCENA
-var scene = new THREE.Scene();
+
+"use strict";
+
+Physijs.scripts.worker = "javascripts/libs/physijs_worker.js";
+Physijs.scripts.ammo = "javascripts/libs/ammo.js";
+
+//var scene = new THREE.Scene();
+var scene = new Physijs.Scene();
 var ancho = window.innerWidth,
   largo = window.innerHeight;
 var angulo = 45,
@@ -40,9 +47,11 @@ var girarZ = Math.PI;
 var numcam = 1;
 var subir = true;
 var bajar = false;
-var limite_sup = 20;
+var limite_sup = 16;
 var limite_inf = 14;
 var pil;
+var abajo = false;
+var delta=0,delta2=0,seno,coseno,seno2,coseno2,radio=10;
 
 //DECLARACION DE OBJETOS
 var ci = new Cilindro();
@@ -84,13 +93,13 @@ function inicio() {
   //camara que sigue al objeto
   camera.position.x = 0;
   camera.position.z = 500;
-  camera.position.y = 0;
+  camera.position.y = 15;
   //camera.rotation.y = Math.PI;
 
   // EVENTS
   THREEx.WindowResize(renderer, camera);
   THREEx.FullScreen.bindKey({ charCode: "m".charCodeAt(0) });
-  //controls = new THREE.OrbitControls(camera, renderer.domElement);
+  // controls = new THREE.OrbitControls(camera, renderer.domElement);
   //para no salirse del skybox
   //controls.minDistance = 500;
   //controls.maxDistance = 1500;
@@ -113,7 +122,7 @@ function CargarScenario() {
   p.PlanoPrincipal();
   a.crearParque();
   var i = new Iglesia(40, 30, 0, 0, 0, 0, 0.7, 1, 1);
-  i.crearIglesia();
+   i.crearIglesia();
 
   var pi = new Pileta(0, 0, 30, 0, 0, 0, 1, 1, 1);
   pi.dibujarPileta();
@@ -132,8 +141,7 @@ function CargarScenario() {
   ca.crear_casa(0, 0, 0, 0, 0, 0, 1, 1, 1);
   lab.crearLaberinto();
 
-  light3 = new THREE.PointLight(0x8a4b08, 3);
-  
+  light3 = new THREE.PointLight(0x8a4b08, 5);
 
   ar.cargarModelo3D(
     "Modelos/Dog.glb",
@@ -154,31 +162,65 @@ function animacion() {
   //Camara numero 1 es para poder visualizar el avatar que realizará el recorrido virtual
   if (numcam == 1) {
     //sigue al perrito
+    camera.lookAt(
+      arbol.position.x,
+      arbol.position.y + 10,
+      arbol.position.z - 50
+    );
+    camera.position.x = arbol.position.x;
+    camera.position.z = arbol.position.z + 20;
+    camera.position.y = arbol.position.y + 14;
 
-    camera.lookAt(arbol.position.x,arbol.position.y+10,arbol.position.z-50);
-     camera.position.x = arbol.position.x;
-    camera.position.z =arbol.position.z + 20;
-    camera.position.y =arbol.position.y + 14;
+
   }
   //camara panoramica de todo el escenario
   if (numcam == 2) {
-  
-  camera.rotation.set(-0.1965,0.04098,0.008156);
-  camera.position.x=-458.52;
-  camera.position.y=659.86;
-  camera.position.z=2964.6417;
-    
+    camera.rotation.set(-0.1965, 0.04098, 0.008156);
+    camera.position.x = -458.52;
+    camera.position.y = 659.86;
+    camera.position.z = 2964.6417;
   }
   //camara estática para ver el parque desde la aprte superior de la iglesia
-  if(numcam==3){
+  if (numcam == 3) {
+    camera.rotation.set(-2.3, 0.014, 3.12);
+    camera.position.x = 189;
+    camera.position.y = 580;
+    camera.position.z = -211;
+  }
+//mueve en forma eliptica
 
-    camera.rotation.set(-2.3,0.014,3.12);
-    camera.position.x=189;
-    camera.position.y=580;
-    camera.position.z=-211;
+if(numcam==4){
+    
+  camera.lookAt(
+    arbol.position.x,
+    arbol.position.y,
+    arbol.position.z
+  );
+     
+    camera.position.y = 800;
+     camera.position.x = seno;
+     camera.position.z = coseno;
+
+
   }
 
-  console.log(camera);
+
+
+if(numcam==5){
+    
+  camera.lookAt(
+    pil.position.x,pil.position.y, pil.position.z
+  );
+     
+    camera.position.y = 200;
+     camera.position.x = seno2+100;
+     camera.position.z = coseno2+600;
+
+
+  }
+ 
+
+  //console.log(camera);
   //controls.target.set(camera.position.x,camera.position.y,camera.position.z);
   Teclado();
   render_modelo();
@@ -189,12 +231,28 @@ function Teclado() {
     // camera.position.z -= 2;
     trasladaZ -= 2;
     girarZ = Math.PI;
+    abajo = false;
+    if (numcam == 1) {
+      camera.rotation.y = 0;
+      camera.position.x = arbol.position.x;
+      camera.position.z = arbol.position.z + 20;
+    }
+
+    //camera.position.y =arbol.position.y + 14;
   }
 
   if (teclado.pressed("down")) {
     //  camera.position.z += 2;
     trasladaZ += 2;
     girarZ = 0;
+    abajo = true;
+    if (numcam == 1) {
+      //virar camara
+      camera.rotation.y = Math.PI;
+      camera.position.x = arbol.position.x;
+      camera.position.z = arbol.position.z - 15;
+      camera.position.y = arbol.position.y + 10;
+    }
   }
 
   if (teclado.pressed("right")) {
@@ -202,12 +260,28 @@ function Teclado() {
     trasladaX += 2;
 
     girarZ = Math.PI / 2;
+    abajo = false;
+    if (numcam == 1) {
+      //virar camara
+      camera.rotation.y = -Math.PI / 2;
+      camera.position.x = arbol.position.x - 20;
+      camera.position.z = arbol.position.z;
+    }
   }
 
   if (teclado.pressed("left")) {
     //  camera.position.x -= 2;
     trasladaX -= 2;
     girarZ = -Math.PI / 2;
+    abajo = false;
+    if (numcam == 1) {
+      //virar camara
+      camera.rotation.y = Math.PI / 2;
+      camera.position.x = arbol.position.x + 20;
+      camera.position.z = arbol.position.z;
+    }
+
+    //trasladaX=trasladaZ;
   }
   if (teclado.pressed("Q")) {
     //  camera.position.y += 1;
@@ -237,6 +311,13 @@ function Teclado() {
   if (teclado.pressed("5")) {
     numcam = 5;
   }
+
+  if (teclado.pressed("P")) {
+    radio+=1;
+  }
+  if (teclado.pressed("L")) {
+    radio-=1;
+  }
 }
 
 function render_modelo() {
@@ -265,15 +346,40 @@ function render_modelo() {
     }
   }
 
+  //motor de fisica
+  scene.simulate();
+
   //luces para el perrito
 
   //Crear Avatar
 
   light3.position.x = trasladaX;
-  light3.position.y = trasladaY + 5;
-  light3.position.z = trasladaZ + 10;
+
+  if (abajo == true) {
+    light3.position.z = trasladaZ - 10;
+    light3.position.y = trasladaY + 50;
+  } else {
+    light3.position.z = trasladaZ + 10;
+    light3.position.y = trasladaY + 10;
+  }
+
   scene.add(light3);
 
-  console.log(trasladaY);
+   //elipse
+  seno = Math.sin(delta) * 3300;
+  
+
+ coseno = Math.cos(delta) * 500;
+
+
+ seno2 = Math.sin(delta) * radio;
+  
+
+ coseno2 = Math.cos(delta) * radio;
+
+  delta += 0.03;
+  delta2 += 0.03;
+
+ // console.log(trasladaY);
   renderer.render(scene, camera);
 }
