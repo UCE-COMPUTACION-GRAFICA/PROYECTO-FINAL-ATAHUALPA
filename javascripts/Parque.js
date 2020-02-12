@@ -5,6 +5,7 @@ flr2 = new THREE.Object3D();
 flr3 = new THREE.Object3D();
 fl4 = new THREE.Object3D();
 flr5 = new THREE.Object3D();
+var loader1 = new THREE.GLTFLoader();
 
 class Parque {
   crearParque() {
@@ -1117,14 +1118,15 @@ class Parque {
     //PARTE DEL PARQUE 1
     arb.crearArboles();
 
-   /* var light2 = new THREE.PointLight(0x8A4B08, 1);
+    /*var light2 = new THREE.PointLight(0x0B610B, 1);
     light2.position.x = -70;
     light2.position.y = 40;
-    light2.position.z = 350;
-    scene.add(light2);
+    light2.position.z = 310;
+    scene.add(light2);*/
     //insertar un modelo de arbol
-    ar.cargarModelo3D("Modelos/arbol2.glb", -70, 20, 310, 0, 0, 0, 1.5, 1.5, 2);*/
-    
+    this.cargarModeloArbol("Modelos/arbol2.glb", -70, 20, 310, 0, 0, 0, 1.5, 1.5, 2);
+   
+
     this.flores(-60, 20, 100, 0, 0, 0, 1.1, 0.8, 1.1, 0xf781f3);
     flr = flr1;
     this.flores(-60, 30, 80, 0, 0, 0, 1.1, 0.8, 1.1, 0xf5a9e1);
@@ -1198,4 +1200,51 @@ class Parque {
     flr.scale.y = esc_y;
     flr.scale.z = esc_z;
   }
+  
+  cargarModeloArbol(
+    direccion,
+    pos_x,
+    pos_y,
+    pos_z,
+    rot_x,
+    rot_y,
+    rot_z,
+    esc_x,
+    esc_y,
+    esc_z
+  ) {
+    loader1.load(
+      direccion,
+      function(gltf) {
+        arbol = gltf.scene;
+
+        console.log(gltf);
+        arbol = gltf.scene;
+        console.log(arbol.children[0]);
+       arbol.children[0].material = new THREE.MeshLambertMaterial();
+
+       arbol.position.x = pos_x;
+        arbol.position.y = pos_y;
+        arbol.position.z = pos_z;
+
+        arbol.rotation.x = rot_x;
+        arbol.rotation.y = rot_y;
+       arbol.rotation.z = rot_z;
+
+        arbol.scale.x = esc_x;
+        arbol.scale.y = esc_y;
+        arbol.scale.z = esc_z;
+
+        scene.add(arbol);
+        return arbol;
+      },
+      undefined,
+      function(error) {
+        console.error(error);
+      }
+    );
+
+  }
+
+
 }

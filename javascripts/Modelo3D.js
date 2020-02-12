@@ -1,5 +1,7 @@
 loader = new THREE.GLTFLoader();
+
 class Modelo3D {
+
   cargarModelo3D(
     direccion,
     pos_x,
@@ -15,27 +17,27 @@ class Modelo3D {
     loader.load(
       direccion,
       function(gltf) {
-        arbol = gltf.scene;
+        modelo = gltf.scene;
 
         console.log(gltf);
-        arbol = gltf.scene;
-        console.log(arbol.children[0]);
-        arbol.children[0].material = new THREE.MeshLambertMaterial();
+        modelo = gltf.scene;
+        console.log(modelo.children[0]);
+        modelo.children[0].material = new THREE.MeshLambertMaterial();
 
-        arbol.position.x = pos_x;
-        arbol.position.y = pos_y;
-        arbol.position.z = pos_z;
+        modelo.position.x = pos_x;
+        modelo.position.y = pos_y;
+        modelo.position.z = pos_z;
 
-        arbol.rotation.x = rot_x;
-        arbol.rotation.y = rot_y;
-        arbol.rotation.z = rot_z;
+        modelo.rotation.x = rot_x;
+        modelo.rotation.y = rot_y;
+        modelo.rotation.z = rot_z;
 
-        arbol.scale.x = esc_x;
-        arbol.scale.y = esc_y;
-        arbol.scale.z = esc_z;
+        modelo.scale.x = esc_x;
+        modelo.scale.y = esc_y;
+        modelo.scale.z = esc_z;
 
-        scene.add(arbol);
-        return arbol;
+        scene.add(modelo);
+        return modelo;
       },
       undefined,
       function(error) {
