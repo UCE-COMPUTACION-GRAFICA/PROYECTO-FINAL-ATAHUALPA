@@ -99,10 +99,10 @@ function inicio() {
   material = new THREE.MeshBasicMaterial({ color: 0x00ff0000 });
   //CAMARAS
   //camara que sigue al objeto
-  camera.position.x = 1000;
-  camera.position.z = 500;
-  camera.position.y = 15;
-  camera.rotation.y = -Math.PI;
+  camera.position.x = -1000;
+  camera.position.z = 1500;
+  camera.position.y = 105;
+  
 
   // EVENTS
   THREEx.WindowResize(renderer, camera);

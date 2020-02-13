@@ -11,9 +11,9 @@ class Casas {
     this.casa1(0, 0, 0, 0, 0, 0, 1, 1, 1);
     this.casa2(0, 0, 0, 0, 0, 0, 1, 1, 1);
     this.casa3();
-    this.casa4(0, 0, 20, 0, 0, 0, 1, 1, 1);
-    this.casa5(0, 0, -250, 0, 0, 0, 1, 1, 1.5);
-    this.casa6(0, 0, 420, 0, 0, 0, 1, 1, 1.2);
+    this.casa4(0, 0, 20, 0, 0, 0, 1, 1, 1, 0xffbf00, 0xb43104, 0xffffff);
+    this.casa5(0, 0, -218, 0, 0, 0, 1, 1, 1.5, 0xf7d358, 0xf5da81);
+    this.casa6(0, 0, 460, 0, 0, 0, 1, 1, 1.2, 0xf5d0a9, 0xffffff, 0xf7be81);
   }
 
   suelo() {
@@ -43,7 +43,7 @@ class Casas {
       630,
       500,
       10,
-      780,
+      790,
       textura,
       false,
       0,
@@ -434,7 +434,20 @@ class Casas {
     );
   }
 
-  casa4(pos_x, pos_y, pos_z, rot_x, rot_y, rot_z, esc_x, esc_y, esc_z) {
+  casa4(
+    pos_x,
+    pos_y,
+    pos_z,
+    rot_x,
+    rot_y,
+    rot_z,
+    esc_x,
+    esc_y,
+    esc_z,
+    colorT,
+    colorb,
+    colors
+  ) {
     darColor = true;
     cu.crear_cubo(
       1500,
@@ -451,7 +464,7 @@ class Casas {
       1,
       1,
       1,
-      0xffbf00
+      colorT
     );
     c4.add(cubo);
 
@@ -472,7 +485,7 @@ class Casas {
       1,
       1,
       1,
-      0xb43104
+      colorb
     );
 
     c4.add(cubo);
@@ -494,7 +507,7 @@ class Casas {
       1,
       1,
       1,
-      0xb43104
+      colorb
     );
 
     c4.add(cubo);
@@ -515,9 +528,9 @@ class Casas {
       1,
       1,
       1,
-      0xffffff
+      colors
     );
-
+    c4.add(cono);
     //puertas
 
     t.crear_texturas("texturas/puertaMadera2.jpg", 1, 1);
@@ -549,18 +562,28 @@ class Casas {
     scene.add(c4);
   }
 
-  casa5(pos_x, pos_y, pos_z, rot_x, rot_y, rot_z, esc_x, esc_y, esc_z) {
-
-
+  casa5(
+    pos_x,
+    pos_y,
+    pos_z,
+    rot_x,
+    rot_y,
+    rot_z,
+    esc_x,
+    esc_y,
+    esc_z,
+    colorA,
+    colorT
+  ) {
     //BARRA ARRIBA
     darColor = true;
     cu.crear_cubo(
       1490,
       115,
-      563,
+      553,
       400,
       30,
-      170,
+      210,
       null,
       false,
       0,
@@ -569,7 +592,7 @@ class Casas {
       1,
       1,
       1,
-      0xf7d358
+      colorA
     );
     c5.add(cubo);
 
@@ -577,10 +600,10 @@ class Casas {
     darColor = true;
     cu.crear_cubo(
       1510,
-      0,
+      7,
       550,
       400,
-      50,
+      25,
       200,
       null,
       false,
@@ -590,7 +613,7 @@ class Casas {
       1,
       1,
       1,
-      0xf7d358
+      colorA
     );
     c5.add(cubo);
 
@@ -610,7 +633,7 @@ class Casas {
       1,
       1,
       1,
-      0xf5da81
+      colorT
     );
     c5.add(cubo);
 
@@ -645,7 +668,20 @@ class Casas {
     scene.add(c5);
   }
 
-  casa6(pos_x, pos_y, pos_z, rot_x, rot_y, rot_z, esc_x, esc_y, esc_z) {
+  casa6(
+    pos_x,
+    pos_y,
+    pos_z,
+    rot_x,
+    rot_y,
+    rot_z,
+    esc_x,
+    esc_y,
+    esc_z,
+    colorA,
+    colorB,
+    colorT
+  ) {
     darColor = true;
     cu.crear_cubo(
       1500,
@@ -662,7 +698,7 @@ class Casas {
       1,
       1,
       1,
-      0xf7be81
+      colorT
     );
     c6.add(cubo);
 
@@ -683,7 +719,7 @@ class Casas {
       1,
       1,
       1,
-      0xf5d0a9
+      colorA
     );
 
     c6.add(cubo);
@@ -705,12 +741,12 @@ class Casas {
       1,
       1,
       1,
-      0xffffff
+      colorB
     );
 
     c6.add(cubo);
 
-    //puertas
+    //puertas de pasillo
 
     darColor = true;
     cu.crear_cubo(
