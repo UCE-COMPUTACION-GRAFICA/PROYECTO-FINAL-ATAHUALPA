@@ -43,5 +43,6 @@ class Esfera {
   
     
     scene.add(sphere);
+    return sphere;
   }
 }

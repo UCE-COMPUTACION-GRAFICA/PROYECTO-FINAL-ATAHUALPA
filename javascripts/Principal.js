@@ -19,7 +19,7 @@ var teclado = new THREEx.KeyboardState();
 THREEx.WindowResize(renderer, camera); //se adapta al tamaño de la pantalla
 
 //DECLARACION DE VARIABLES
-var figura, material, textura_fig,arbol;
+var figura, material, textura_fig, arbol;
 var cubo;
 var cono;
 var sphere;
@@ -45,11 +45,15 @@ var trasladaZ = 600;
 var trasladaX = 210;
 var trasladaY = 14;
 var girarZ = Math.PI;
-var numcam = 1;
+var numcam = 2;
 var subir = true;
 var bajar = false;
 var limite_sup = 16;
 var limite_inf = 14;
+var su = true;
+var ba= false;
+var limite_arriba = 650;
+var limite_abajo = -700;
 var pil;
 var abajo = false;
 var delta = 0,
@@ -58,10 +62,14 @@ var delta = 0,
   coseno,
   seno2,
   coseno2,
-  radio = 10;
+  radio = 10,
+  radio2 = 15;
+var mover = true;
+var contA = -100,contB=0;
 
 //DECLARACION DE OBJETOS
 var ci = new Cilindro();
+var nu=new Nube();
 var sci = new SemiCilindro();
 var cu = new Cubo();
 var t = new Textura();
@@ -82,7 +90,8 @@ var banca = new Bancas();
 var ca = new Casas();
 var lab = new Laberinto();
 var cm = new CasasMercado();
-var co =new Cono();
+var co = new Cono();
+var carr = new Carro();
 
 var light3;
 /****************************llamado de funciones************************/
@@ -99,15 +108,14 @@ function inicio() {
   material = new THREE.MeshBasicMaterial({ color: 0x00ff0000 });
   //CAMARAS
   //camara que sigue al objeto
-  camera.position.x = -1000;
-  camera.position.z = 1500;
-  camera.position.y = 105;
-  
+  camera.position.x = 210;
+  camera.position.z = 600;
+  camera.position.y = 20;
 
   // EVENTS
   THREEx.WindowResize(renderer, camera);
   THREEx.FullScreen.bindKey({ charCode: "m".charCodeAt(0) });
-  //controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls = new THREE.OrbitControls(camera, renderer.domElement);
   //para no salirse del skybox
   //controls.minDistance = 500;
   //controls.maxDistance = 1500;
@@ -126,7 +134,7 @@ function inicio() {
 
 function CargarScenario() {
   //Crea un SkyBox
- f.crearFondo();
+  f.crearFondo();
   p.PlanoPrincipal();
   a.crearParque();
   var i = new Iglesia(40, 30, 0, 0, 0, 0, 0.7, 1, 1);
@@ -163,8 +171,17 @@ function CargarScenario() {
     4,
     4
   );
-}
 
+  nu.crearNube(700,0,-980,0,0,0,1,1,1);
+  
+  //crear una pelota
+  t.crear_texturas("texturas/balon_fut.jpg",1,0.69);
+
+  e.crear_esfera(100, 15, 100, 0, 0, 0, 1.5, 1, 1, textura, false, 10, 10, 10);
+nuevaE=sphere;
+  //cargar carro
+}
+var nuevaE,nube2;
 function animacion() {
   requestAnimationFrame(animacion);
   //Camara numero 1 es para poder visualizar el avatar que realizará el recorrido virtual
@@ -210,8 +227,19 @@ function animacion() {
     camera.position.x = seno2 + 100;
     camera.position.z = coseno2 + 600;
   }
-  if(numcam==6){
-    //controls = new THREE.OrbitControls(camera, renderer.domElement);
+  //camara para el cementerio
+  if (numcam == 6) {
+    camera.lookAt(modelo.position.x, modelo.position.y, modelo.position.z);
+
+    camera.position.y = 300;
+    camera.position.x = -1800;
+    camera.position.z = 800;
+  }
+
+  if (numcam == 7) {
+    camera.position.y = 20;
+    camera.position.x = 800;
+    camera.position.z = 800;
   }
 
   //console.log(camera);
@@ -287,23 +315,41 @@ function Teclado() {
   }
   //CAMARAS
   if (teclado.pressed("1")) {
+    mover = false;
     numcam = 1;
   }
 
   if (teclado.pressed("2")) {
+    mover = true;
     numcam = 2;
   }
 
   if (teclado.pressed("3")) {
+    mover = true;
     numcam = 3;
   }
 
   if (teclado.pressed("4")) {
+    mover = true;
     numcam = 4;
   }
 
   if (teclado.pressed("5")) {
+    mover = true;
     numcam = 5;
+  }
+  if (teclado.pressed("6")) {
+    if (mover == true) {
+      trasladaX = -1800;
+      trasladaZ = 0;
+    }
+
+    numcam = 6;
+  }
+
+  if (teclado.pressed("7")) {
+    mover = true;
+    numcam = 7;
   }
 
   if (teclado.pressed("P")) {
@@ -313,9 +359,13 @@ function Teclado() {
     radio -= 1;
   }
 
-  
+  //volver al inicio
+  if (teclado.pressed("V")) {
+    trasladaX = 210;
+    trasladaZ = 600;
+    numcam = 1;
+  }
 }
-
 
 function render_modelo() {
   //controls.update();
@@ -355,7 +405,7 @@ function render_modelo() {
     light3.position.z = trasladaZ + 10;
     light3.position.y = trasladaY + 20;
   }
-//luces para el perrito
+  //luces para el perrito
   scene.add(light3);
 
   //elipse
@@ -364,8 +414,56 @@ function render_modelo() {
   seno2 = Math.sin(delta) * radio;
   coseno2 = Math.cos(delta) * radio;
 
+carr.dibujarCarro(contB, 0, contA, 0, 0, 0, 1, 1, 1, 0xdf01d7, 0xff00ff);
+
+
+
+//colision carro
+if (auto.position.z < 500 ) {
+  contA += 20;
+  
+}else{
+  
+  if(auto.position.x>-2120){
+    contB-=40;
+  }else{
+    if (auto.position.z < 100 ) {
+      contA -= 20;}
+  }
+}
+
+
+//pelota
+if(nuevaE.position.z<800){
+  nuevaE.position.z+=10;
+}else{
+  nuevaE.position.z=-100;
+}
+
+  
+ //nube
+
+ if (nube.position.y < 500 && ba == false) {
+  nube.position.y  += 5;
+  ba = false;
+  su = true;
+} else {
+  ba = true;
+  nube.position.y -= 5;
+
+  if (nube.position.y  < 10 && su == true) {
+    nube.position.y += 5;
+    ba = false;
+    // limite_sup -= 1;
+  }
+}
+
+
+
+
   delta += 0.03;
   delta2 += 0.03;
+
 
   // console.log(trasladaY);
   renderer.render(scene, camera);

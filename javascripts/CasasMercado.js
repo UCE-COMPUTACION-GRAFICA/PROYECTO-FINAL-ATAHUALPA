@@ -184,12 +184,12 @@ class CasasMercado {
 
     //ventana
     t.crear_texturas("texturas/ventanaVidrio.jpg", 1, 1);
-    cu.crear_cubo(-700, 70, 780, 5, 30, 50, textura, false, 0, 0, 0, 1, 1, 1);
+    cu.crear_cubo(-700, 70, 780, 10, 30, 50, textura, false, 0, 0, 0, 1, 1, 1);
     ca1.add(cubo);
     //puerta
 
     t.crear_texturas("texturas/puertaMadera2.jpg", 1, 1);
-    cu.crear_cubo(-700, 25, 835, 5, 50, 30, textura, false, 0, 0, 0, 1, 1, 1);
+    cu.crear_cubo(-700, 25, 835, 10, 50, 30, textura, false, 0, 0, 0, 1, 1, 1);
     ca1.add(cubo);
 
     //segundo piso
@@ -215,7 +215,7 @@ class CasasMercado {
 
     //ventana
     t.crear_texturas("texturas/ventanaVidrio.jpg", 1, 1);
-    cu.crear_cubo(-695, 140, 800, 5, 30, 60, textura, false, 0, 0, 0, 1, 1, 1);
+    cu.crear_cubo(-695, 140, 800, 10, 30, 60, textura, false, 0, 0, 0, 1, 1, 1);
     ca1.add(cubo);
 
     //terraza
@@ -468,13 +468,13 @@ darColor=true;
           casas.add(cubo);
           //postes
           darColor=true;
-          ci.crearCilindro(-810, 100, 150, 0, 0, 0, 1, 1, 1, 7, 60, 2, false, 0x08298AF);
+          ci.crearCilindro(-830, 90, 150, 0, 0, 0, 1, 1, 1, 7, 80, 2, false, 0x08298AF);
           casas.add(cilindro);
           darColor=true;
-          ci.crearCilindro(-810, 100, 80, 0, 0, 0, 1, 1, 1, 7, 60, 2, false, 0x08298AF);
+          ci.crearCilindro(-830, 90, 80, 0, 0, 0, 1, 1, 1, 7, 80, 2, false, 0x08298AF);
           casas.add(cilindro);
           darColor=true;
-          ci.crearCilindro(-810, 100, 10, 0, 0, 0, 1, 1, 1, 7, 60, 2, false, 0x08298AF);
+          ci.crearCilindro(-830, 90, 10, 0, 0, 0, 1, 1, 1, 7, 80, 2, false, 0x08298AF);
           casas.add(cilindro);
   }
 }
