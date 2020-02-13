@@ -51,26 +51,26 @@ dibujarCarro(pos_x,pos_y,pos_z,rot_x,rot_y,rot_z,esc_x,esc_y,esc_z,colorA, color
     auto.add(cubo);
 
 //atras
+
+
+
+
     t.crear_texturas("texturas/negro.jpg",1,1);
-    e.crear_esfera(890, 7, 600, 0, -Math.PI/2, 0, 1, 1, 1, textura, false, 10, 20, 20);
+    e.crear_esfera(890, 7, 610, 0, -Math.PI/2, 0, 1, 1, 1, textura, false, 10, 20, 20);
     auto.add(sphere);
     
-    e.crear_esfera(910, 7, 600, 0, -Math.PI/2, 0, 1, 1, 1,textura, false, 10, 20, 20);
+    e.crear_esfera(910, 7, 610, 0, -Math.PI/2, 0, 1, 1, 1,textura, false, 10, 20, 20);
     auto.add(sphere);
 
 
-    e.crear_esfera(890, 7, 630, 0, -Math.PI/2, 0, 1, 1, 1, textura, false, 10, 20, 20);
+
+    e.crear_esfera(895, 7, 540, 0, -Math.PI/2, 0, 1, 1, 1, textura, false, 10, 20, 20);
     auto.add(sphere);
     
-    e.crear_esfera(910, 7, 630, 0, -Math.PI/2, 0, 1, 1, 1,textura, false, 10, 20, 20);
+    e.crear_esfera(925, 7, 540, 0, -Math.PI/2, 0, 1, 1, 1,textura, false, 10, 20, 20);
     auto.add(sphere);
 
 
-    e.crear_esfera(890, 7, 570, 0, -Math.PI/2, 0, 1, 1, 1, textura, false, 10, 20, 20);
-    auto.add(sphere);
-    
-    e.crear_esfera(910, 7, 570, 0, -Math.PI/2, 0, 1, 1, 1,textura, false, 10, 20, 20);
-    auto.add(sphere);
 
     
     auto.position.x = pos_x;

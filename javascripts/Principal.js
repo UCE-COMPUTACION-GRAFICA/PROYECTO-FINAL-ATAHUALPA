@@ -1,9 +1,9 @@
-//CREACION DE LA ESCENA
-
+/*//CREACION DE LA ESCENA
 //"use strict";
-
 //Physijs.scripts.worker = "javascripts/libs/physijs_worker.js";
-//Physijs.scripts.ammo = "javascripts/libs/ammo.js";
+//Physijs.scripts.ammo = "javascripts/libs/ammo.js";*/
+
+//@Autor: Estefania Nicolalde
 
 var scene = new THREE.Scene();
 //var scene = new Physijs.Scene();
@@ -45,7 +45,7 @@ var trasladaZ = 600;
 var trasladaX = 210;
 var trasladaY = 14;
 var girarZ = Math.PI;
-var numcam = 7;
+var numcam = 1;
 var subir = true;
 var bajar = false;
 var limite_sup = 16;
@@ -266,7 +266,12 @@ function animacion() {
   }
 
   if (numcam == 7) {
-    camera.lookAt(auto.position.x, auto.position.y+10, auto.position.z-200);
+    camera.rotation.set(-0.1965, 0.04098, 0.008156);
+    camera.lookAt(auto.position.x, auto.position.y , auto.position.z);
+    
+    camera.position.x = -458.52;
+    camera.position.y = 459.86;
+    camera.position.z = 2064.6417;
 
   }
 
@@ -444,15 +449,13 @@ function render_modelo() {
   coseno2 = Math.cos(delta) * radio;
 
   //colision carro
-//AUTO
+  //AUTO
 
-  if(auto.position.x>-2500){
+  if (auto.position.x > -2500) {
     auto.position.x -= 20;
-  }else{
-    auto.position.x= 1500;
-
+  } else {
+    auto.position.x = 1500;
   }
-  
 
   //pelota
   if (nuevaE.position.z < 800) {
