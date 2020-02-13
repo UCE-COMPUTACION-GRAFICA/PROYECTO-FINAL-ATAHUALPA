@@ -107,7 +107,7 @@ function inicio() {
   // EVENTS
   THREEx.WindowResize(renderer, camera);
   THREEx.FullScreen.bindKey({ charCode: "m".charCodeAt(0) });
-  controls = new THREE.OrbitControls(camera, renderer.domElement);
+  //controls = new THREE.OrbitControls(camera, renderer.domElement);
   //para no salirse del skybox
   //controls.minDistance = 500;
   //controls.maxDistance = 1500;
@@ -126,7 +126,7 @@ function inicio() {
 
 function CargarScenario() {
   //Crea un SkyBox
- /* f.crearFondo();
+ f.crearFondo();
   p.PlanoPrincipal();
   a.crearParque();
   var i = new Iglesia(40, 30, 0, 0, 0, 0, 0.7, 1, 1);
@@ -138,7 +138,7 @@ function CargarScenario() {
   t.crear_texturas("texturas/blanco_abstracto.jpg", 0.2, 0.8);
   var lt = new Letras(-9, -10, -81, 0, 0, 0, 1, 1, 1, textura);
   lt.crearLetras();
-*/
+
   cm.crearCasas();
 
   banca.crearBancas();
@@ -168,7 +168,7 @@ function CargarScenario() {
 function animacion() {
   requestAnimationFrame(animacion);
   //Camara numero 1 es para poder visualizar el avatar que realizará el recorrido virtual
- /* if (numcam == 1) {
+  if (numcam == 1) {
     //sigue al perrito
     camera.lookAt(
       modelo.position.x,
@@ -212,7 +212,7 @@ function animacion() {
   }
   if(numcam==6){
     //controls = new THREE.OrbitControls(camera, renderer.domElement);
-  }*/
+  }
 
   //console.log(camera);
   //controls.target.set(camera.position.x,camera.position.y,camera.position.z);
@@ -221,7 +221,7 @@ function animacion() {
 }
 
 function Teclado() {
- /* if (teclado.pressed("up")) {
+  if (teclado.pressed("up")) {
     // camera.position.z -= 2;
     trasladaZ -= 2;
     girarZ = Math.PI;
@@ -313,7 +313,7 @@ function Teclado() {
     radio -= 1;
   }
 
-  */
+  
 }
 
 

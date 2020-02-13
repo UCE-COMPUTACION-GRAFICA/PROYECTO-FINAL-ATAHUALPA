@@ -19,7 +19,8 @@ class CasasMercado {
     //suelo
 
     t.crear_texturas("texturas/Chrome.png ", 1, 1);
-    cu.crear_cubo(-1000, 5, 490, 700, 7, 900, textura, false, 0, 0, 0, 1, 1, 1);
+    cu.crear_cubo(-1000, 5, 470, 700, 7, 1045, textura, false, 0, 0, 0, 1, 1, 1);
+
 
     this.casa1(0, 0, 0, 0, 0, 0, 1, 1, 1, 0xf5f6ce, 0xf3f781, 0xffffff);
     ca1 = ca0;
@@ -133,11 +134,11 @@ class CasasMercado {
 
     //junta parroquial encima de las gradas
     //asas atras final
-    ca.casa5(-500, 10, -670, 0, -Math.PI/2, 0, 0.5, 0.8, 1.3, 0xFACC2E, 0xffffff);
+    ca.casa5(-620, 10, -670, 0, -Math.PI/2, 0, 0.5, 0.8, 1.1, 0xFACC2E, 0xffffff);
     c5 = ca11;
     casas.add(ca11);
 
-    ca.casa5(-400, 10, -670, 0, -Math.PI/2, 0, 0.5, 1, 1, 0x0174DF, 0xffffff);
+    ca.casa5(-420, 10, -670, 0, -Math.PI/2, 0, 0.5, 1, 1, 0x0174DF, 0xffffff);
     c5 = ca12;
     casas.add(ca12);
     
@@ -361,7 +362,7 @@ class CasasMercado {
     esc_y,
     esc_z){
 
-
+//para l grada
         darColor=true;
         cu.crear_cubo(
             -1050,
@@ -381,15 +382,16 @@ class CasasMercado {
             0xBDBDBD
             
           );
-
+          casas.add(cubo);
+//pared de mercado
         t.crear_texturas("texturas/piedra.webp", 2, 2);
         cu.crear_cubo(
             -1050,
-            50,
-            200,
+            5,
+            190,
             500,
-            50,
-            50,
+            100,
+            20,
             textura,
             false,
             0,
@@ -400,15 +402,58 @@ class CasasMercado {
             1,
             
           );
+          casas.add(cubo);
 
           t.crear_texturas("texturas/piedra.webp", 2, 2);
+          cu.crear_cubo(
+              -850,
+              35,
+              95,
+              50,
+              60,
+              210,
+              textura,
+              false,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1,
+              
+            );
+
+            casas.add(cubo);
+            //girado
+          t.crear_texturas("texturas/piedra.webp", 2, 2);
         cu.crear_cubo(
-            -550,
+            -830,
+            25,
+            95,
             50,
-            200,
-            50,
-            50,
-            500,
+            60,
+            210,
+            textura,
+            false,
+            0,
+            0,
+            Math.PI/6,
+            1,
+            1,
+            1,
+            
+          );
+          casas.add(cubo);
+
+          //parte techo
+darColor=true;
+          cu.crear_cubo(
+            -830,
+            135,
+            80,
+            80,
+            10,
+            190,
             textura,
             false,
             0,
@@ -417,11 +462,19 @@ class CasasMercado {
             1,
             1,
             1,
+            0x0174DF
             
           );
-        
-
-
-
+          casas.add(cubo);
+          //postes
+          darColor=true;
+          ci.crearCilindro(-810, 100, 150, 0, 0, 0, 1, 1, 1, 7, 60, 2, false, 0x08298AF);
+          casas.add(cilindro);
+          darColor=true;
+          ci.crearCilindro(-810, 100, 80, 0, 0, 0, 1, 1, 1, 7, 60, 2, false, 0x08298AF);
+          casas.add(cilindro);
+          darColor=true;
+          ci.crearCilindro(-810, 100, 10, 0, 0, 0, 1, 1, 1, 7, 60, 2, false, 0x08298AF);
+          casas.add(cilindro);
   }
 }
