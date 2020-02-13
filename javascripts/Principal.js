@@ -328,15 +328,15 @@ function render_modelo() {
 
   //colision del perrito para que salte
   if (trasladaY < limite_sup && bajar == false) {
-    trasladaY += 0.3;
+    trasladaY += 0.15;
     bajar = false;
     subir = true;
   } else {
     bajar = true;
-    trasladaY -= 0.3;
+    trasladaY -= 0.15;
 
     if (trasladaY < limite_inf && subir == true) {
-      trasladaY += 0.3;
+      trasladaY += 0.15;
       bajar = false;
       // limite_sup -= 1;
     }
