@@ -45,13 +45,13 @@ var trasladaZ = 600;
 var trasladaX = 210;
 var trasladaY = 14;
 var girarZ = Math.PI;
-var numcam = 2;
+var numcam = 7;
 var subir = true;
 var bajar = false;
 var limite_sup = 16;
 var limite_inf = 14;
 var su = true;
-var ba= false;
+var ba = false;
 var limite_arriba = 650;
 var limite_abajo = -700;
 var pil;
@@ -65,11 +65,13 @@ var delta = 0,
   radio = 10,
   radio2 = 15;
 var mover = true;
-var contA = -100,contB=0;
+var contA = -100,
+  contB = 0;
+var noche = false;
 
 //DECLARACION DE OBJETOS
 var ci = new Cilindro();
-var nu=new Nube();
+var nu = new Nube();
 var sci = new SemiCilindro();
 var cu = new Cubo();
 var t = new Textura();
@@ -115,7 +117,7 @@ function inicio() {
   // EVENTS
   THREEx.WindowResize(renderer, camera);
   THREEx.FullScreen.bindKey({ charCode: "m".charCodeAt(0) });
-  controls = new THREE.OrbitControls(camera, renderer.domElement);
+  //controls = new THREE.OrbitControls(camera, renderer.domElement);
   //para no salirse del skybox
   //controls.minDistance = 500;
   //controls.maxDistance = 1500;
@@ -134,7 +136,9 @@ function inicio() {
 
 function CargarScenario() {
   //Crea un SkyBox
+
   f.crearFondo();
+
   p.PlanoPrincipal();
   a.crearParque();
   var i = new Iglesia(40, 30, 0, 0, 0, 0, 0.7, 1, 1);
@@ -172,18 +176,43 @@ function CargarScenario() {
     4
   );
 
-  nu.crearNube(700,0,-980,0,0,0,1,1,1);
-  
-  //crear una pelota
-  t.crear_texturas("texturas/balon_fut.jpg",1,0.69);
+  nu.crearNube(700, 0, -980, 0, 0, 0, 1, 1, 1);
 
-  e.crear_esfera(100, 15, 100, 0, 0, 0, 1.5, 1, 1, textura, false, 10, 10, 10);
-nuevaE=sphere;
+  //crear una pelota
+  t.crear_texturas("texturas/balon_fut.jpg", 1, 0.69);
+
+  e.crear_esfera(100, 20, 100, 0, 0, 0, 1.5, 1, 1, textura, false, 7, 10, 10);
+  nuevaE = sphere;
+
+  //poner un torus
+
+  to.crear_toro(
+    568,
+    15,
+    375,
+    10,
+    3,
+    16,
+    100,
+    Math.PI / 2,
+    0,
+    0,
+    1.2,
+    1.2,
+    1.2,
+    null,
+    0x6e6e6e
+  );
+  torit = torus;
+
+  carr.crearCarro();
+  //carrito = auto;
   //cargar carro
 }
-var nuevaE,nube2;
+var nuevaE, nube2, torit, carrito;
 function animacion() {
   requestAnimationFrame(animacion);
+
   //Camara numero 1 es para poder visualizar el avatar que realizará el recorrido virtual
   if (numcam == 1) {
     //sigue al perrito
@@ -237,9 +266,8 @@ function animacion() {
   }
 
   if (numcam == 7) {
-    camera.position.y = 20;
-    camera.position.x = 800;
-    camera.position.z = 800;
+    camera.lookAt(auto.position.x, auto.position.y+10, auto.position.z-200);
+
   }
 
   //console.log(camera);
@@ -370,6 +398,7 @@ function Teclado() {
 function render_modelo() {
   //controls.update();
   stats.update();
+
   //movimiento del perrito
   modelo.position.x = trasladaX;
   modelo.position.y = trasladaY;
@@ -414,56 +443,46 @@ function render_modelo() {
   seno2 = Math.sin(delta) * radio;
   coseno2 = Math.cos(delta) * radio;
 
-carr.dibujarCarro(contB, 0, contA, 0, 0, 0, 1, 1, 1, 0xdf01d7, 0xff00ff);
+  //colision carro
+//AUTO
 
-
-
-//colision carro
-if (auto.position.z < 500 ) {
-  contA += 20;
-  
-}else{
-  
-  if(auto.position.x>-2120){
-    contB-=40;
+  if(auto.position.x>-2500){
+    auto.position.x -= 20;
   }else{
-    if (auto.position.z < 100 ) {
-      contA -= 20;}
+    auto.position.x= 1500;
+
   }
-}
-
-
-//pelota
-if(nuevaE.position.z<800){
-  nuevaE.position.z+=10;
-}else{
-  nuevaE.position.z=-100;
-}
-
   
- //nube
 
- if (nube.position.y < 500 && ba == false) {
-  nube.position.y  += 5;
-  ba = false;
-  su = true;
-} else {
-  ba = true;
-  nube.position.y -= 5;
+  //pelota
+  if (nuevaE.position.z < 800) {
+    nuevaE.position.z += 10;
+  } else {
+    nuevaE.position.z = -100;
+  }
 
-  if (nube.position.y  < 10 && su == true) {
+  //nube
+
+  if (nube.position.y < 800 && ba == false) {
     nube.position.y += 5;
     ba = false;
-    // limite_sup -= 1;
+    su = true;
+  } else {
+    ba = true;
+    nube.position.y -= 5;
+
+    if (nube.position.y < 10 && su == true) {
+      nube.position.y += 5;
+      ba = false;
+      // limite_sup -= 1;
+    }
   }
-}
 
-
-
+  //torus
+  torit.rotation.z += 1;
 
   delta += 0.03;
   delta2 += 0.03;
-
 
   // console.log(trasladaY);
   renderer.render(scene, camera);

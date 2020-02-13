@@ -19,12 +19,12 @@ class Nube{
 
         //otra nube
 
-    e.crear_esfera(100, 60, -700, 0, 0, 0, 4, 1, 1, textura, false, 100, 10, 10);
+    e.crear_esfera(-1500, 60, -700, 0, 0, 0, 5, 1, 1, textura, false, 100, 10, 10);
         nube.add(sphere);
-        e.crear_esfera(200, 100, -700, 0, 0, 0, 3, 1, 1, textura, false, 100, 10, 10);
+        e.crear_esfera(-1400, 100, -700, 0, 0, 0, 3, 1, 1, textura, false, 100, 10, 10);
         nube.add(sphere);
 
-        e.crear_esfera(110, 100, -700, 0, 0, 0, 1, 4, 1, textura, false, 20, 10, 10);
+        e.crear_esfera(-1510, 110, -700, 0, 0, 0, 1, 4, 1, textura, false, 20, 10, 10);
         nube.add(sphere);
 
 

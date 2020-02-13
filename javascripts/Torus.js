@@ -53,6 +53,7 @@ class Torus{
    
     scene.add(torus);
     darColor=false;
+    return torus;
   
   }
 

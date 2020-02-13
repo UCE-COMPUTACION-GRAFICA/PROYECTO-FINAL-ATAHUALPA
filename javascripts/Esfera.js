@@ -36,12 +36,10 @@ class Esfera {
     sphere.scale.y = esc_y;
     sphere.scale.z = esc_z;
 
-
     scene.add(pivotPoint);
     scene.add(arbl);
     scene.add(flr);
-  
-    
+
     scene.add(sphere);
     return sphere;
   }
