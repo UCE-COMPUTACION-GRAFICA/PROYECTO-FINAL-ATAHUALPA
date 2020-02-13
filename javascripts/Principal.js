@@ -4,6 +4,7 @@
 //Physijs.scripts.ammo = "javascripts/libs/ammo.js";*/
 
 //@Autor: Estefania Nicolalde
+//fecha:13/02/2020
 
 var scene = new THREE.Scene();
 //var scene = new Physijs.Scene();
